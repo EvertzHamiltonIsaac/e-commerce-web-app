@@ -5,6 +5,7 @@ import wishlist from "../images/wishlist.svg";
 import user from "../images/user.svg";
 import cart from "../images/cart.svg";
 import menu from "../images/menu.svg";
+
 const Header = () => {
   return (
     <>
@@ -32,7 +33,9 @@ const Header = () => {
           <div className="row align-items-center">
             <div className="col-2">
               <h2>
-                <Link to={"/"} className="text-white">Ginger</Link>
+                <Link to={"/"} className="text-white">
+                  Ginger
+                </Link>
               </h2>
             </div>
             <div className="col-5">

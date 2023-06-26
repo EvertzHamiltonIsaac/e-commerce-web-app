@@ -37,7 +37,8 @@ const Footer = () => {
               <h4 className="text-white mb-4">Contact Us</h4>
               <div>
                 <address className="text-white fs-6">
-                Calle Barney Morgan # 265, <br /> Ensanche Luperon, Santo Domingo <br />
+                  Calle Barney Morgan # 265, <br /> Ensanche Luperon, Santo
+                  Domingo <br />
                   PinCode: 10401
                 </address>
                 <a
@@ -111,7 +112,8 @@ const Footer = () => {
           <div className="row">
             <div className="col-12">
               <p className="text-center mb-0 text-white">
-                &copy; {new Date().getFullYear()}; Powered by Ginger Development Team
+                &copy; {new Date().getFullYear()}; Powered by Ginger Development
+                Team
               </p>
             </div>
           </div>

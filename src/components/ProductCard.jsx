@@ -38,7 +38,7 @@ const ProductCard = (props) => {
                 </button>
               </div>
               <div className="product-image">
-                <img src={item?.images[0].url} className="img-fluid" alt="product image" />
+                <img src={watch2} className="img-fluid" alt="product image" />
                 <img src={watch2} className="img-fluid" alt="product image" />
               </div>
               <div className="product-details">
@@ -49,7 +49,7 @@ const ProductCard = (props) => {
                 <ReactStars
                   count={5}
                   size={24}
-                  value={item?.totalrating.toString()}
+                  value={parseFloat(item?.totalrating)}
                   edit={false}
                   activeColor="#ffd700"
                 />

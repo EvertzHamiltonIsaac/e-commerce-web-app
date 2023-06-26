@@ -5,9 +5,10 @@ export const getAllProducts = createAsyncThunk(
   "product/get",
   async (thunkAPI) => {
     try {
-      return await productService.getProducts;
+      const response = await productService.getProducts();
+      return response;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error);
+      return thunkAPI.rejectWithValue(error.response.data);
     }
   }
 );
@@ -21,11 +22,11 @@ const productState = {
 };
 
 export const productSlice = createSlice({
-  name: "auth",
+  name: "product",
   initialState: productState,
   reducers: {},
-  extraReducers: (buider) => {
-    buider
+  extraReducers: (builder) => {
+    builder
       .addCase(getAllProducts.pending, (state) => {
         state.isLoading = true;
       })
@@ -36,10 +37,10 @@ export const productSlice = createSlice({
         state.product = action.payload;
       })
       .addCase(getAllProducts.rejected, (state, action) => {
-        state.isError = true;
         state.isLoading = false;
+        state.isError = true;
         state.isSuccess = false;
-        state.message = action.error;
+        state.message = action.error.message;
       });
   },
 });

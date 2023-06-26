@@ -5,10 +5,12 @@ import ProductCard from "../components/ProductCard";
 import SpecialProduct from "../components/SpecialProduct";
 import Container from "../components/Container";
 import { services } from "../utils/Data";
+import Meta from "../components/Meta";
 
 const Home = () => {
   return (
     <>
+    <Meta title={"Home"} />
       <Container class1="home-wrapper-1 py-5">
         <div className="row">
           <div className="col-6">
@@ -176,7 +178,7 @@ const Home = () => {
           <div className="col-12">
             <h3 className="section-heading">Featured Collection</h3>
           </div>
-          <ProductCard />
+          <ProductCard  />
           <ProductCard />
           <ProductCard />
           <ProductCard />
