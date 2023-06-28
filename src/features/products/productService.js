@@ -11,9 +11,9 @@ const getProducts = async () => {
   }
 };
 
-const addToWishlist = async () => {
+const addToWishlist = async (prodId) => {
   try {
-    const response = await axios.get(`${base_url}wishlist`);
+    const response = await axios.put(`${base_url}wishlist`, { prodId });
     return response.data;
   } catch (error) {
     console.error("Error retrieving wishlist:", error);
