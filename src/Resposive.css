@@ -67,6 +67,9 @@
     margin-left: 20px ;
   }
 
+  .mala-practica:hover{
+    margin-left: 10px;
+  }
 
   .header-upper-links-container .links-div:hover{
     background-color: var(--color-secundary);
@@ -80,6 +83,14 @@
   /* Header part End  */
 
 
+  /* Footer part............................................................. */
+
+  
+
+  /* Footer part ends */
+
+
+
 }
 
 
@@ -87,10 +98,42 @@
 
 @media (max-width: 768px) {
 
+  .header-upper-links-container .links-div:hover{
+    background-color: var(--color-secundary);
+    padding: 40px 50px;
+  }
+
+  .input-div{
+    width: 50% !important;
+   }
+
+   header{
+    padding-left: 20%;
+
+  }
+
+  .link-logo {
+    margin-right: 450px;
+  }
+
+
  }
 
 
  /* Móviles en vertical */
  @media (max-width: 480px) { 
+
+  .button-toggle{
+    margin-left: 0%;
+  }
+
+  .link-logo {
+    margin-right: 300px;
+  }
+
+
+  .button-toggle{
+    margin-left: 8%;
+  }
 
   }
