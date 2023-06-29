@@ -10,7 +10,7 @@ import Meta from "../components/Meta";
 const Home = () => {
   return (
     <>
-    <Meta title={"Home"} />
+    <Meta title={"Ginger"} />
       <Container class1="home-wrapper-1 py-5">
         <div className="row">
           <div className="col-6">

@@ -2,12 +2,13 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
 }
 :root {
-  --color-131921: #021e43;
+  --color-main: #021e43;
   --color-3b4149: #3b4149;
   --color-febd69: #b8cee3;
-  --color-232f3e: #00377a;
+  --color-secundary: #00377a;
   --color-bf4800: #bf4800;
   --color-f5f5f7: #f5f5f7;
   --color-ededed: #ededed;
@@ -41,6 +42,7 @@ a {
 .gap-10 {
   gap: 10px;
 }
+
 .gap-15 {
   gap: 15px;
 }
@@ -49,7 +51,7 @@ a {
 }
 
 .button {
-  background-color: var(--color-232f3e);
+  background-color: var(--color-secundary);
   color: white;
   font-size: 14px;
   padding: 13px 33px;
@@ -61,23 +63,49 @@ a {
 }
 /* Header Part */
 
+.logo-img{
+  height: 30px;
+  margin-right: 10px;
+}
+
+.link-logo {
+  text-transform: uppercase;
+  margin-top: 6px;
+}
+
+.button-toggle{
+  display: none;
+}
+
 .header-top-strip {
   border-bottom: 1px solid var(--color-3b4149);
-  background-color: var(--color-131921);
+  background-color: var(--color-main);
 }
+
 .header-upper {
-  background-color: var(--color-131921);
+  background-color: var(--color-main);
 }
+
 .header-bottom {
-  background-color: var(--color-232f3e);
+  background-color: var(--color-secundary);
 }
 .header-upper .input-group-text {
   background-color: var(--color-febd69);
+}
+.header-upper-links-container{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-upper-links-container div{
+  margin: 0px 5px;
 }
 .header-upper.header-upper-links img {
   width: 35px;
   height: 35px;
 }
+
 .header-bottom .menu-links a,
 .header-bottom .dropdown button {
   color: white;
@@ -91,16 +119,19 @@ a {
 .header-bottom .dropdown button:focus {
   box-shadow: none;
 }
+
 .header-bottom .dropdown-menu {
-  background-color: var(--color-131921);
+  background-color: var(--color-main);
   width: 100%;
   transform: translate3d(0px, 57px, 0px) !important;
 }
+
 .header-bottom .dropdown-item {
   padding: 20px;
   margin-bottom: 3px;
   border-bottom: 1px solid var(--color-3b4149);
 }
+
 .header-bottom .dropdown-item:hover {
   background-color: transparent;
   color: var(--color-febd69) !important;
@@ -110,14 +141,14 @@ a {
 /* Footer Part */
 
 footer {
-  background-color: var(--color-232f3e);
+  background-color: var(--color-secundary);
 }
 
 footer:not(:first-child) {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 footer .input-group-text {
-  background-color: var(--color-232f3e);
+  background-color: var(--color-secundary);
   color: white;
   padding: 8px 17px;
 }
@@ -149,7 +180,7 @@ footer .input-group-text {
   font-size: 18px;
   line-height: 28px;
   letter-spacing: 0.4;
-  color: var(--color-131921);
+  color: var(--color-main);
 }
 .small-banner-content {
   top: 25%;
@@ -176,7 +207,7 @@ footer .input-group-text {
   font-size: 14px;
   line-height: 22px;
   letter-spacing: 0.4;
-  color: var(--color-131921);
+  color: var(--color-main);
 }
 .small-banner {
   width: 49%;
@@ -247,7 +278,7 @@ footer .input-group-text {
 }
 .blog-content h5 {
   font-size: 18px;
-  color: var(--color-131921);
+  color: var(--color-main);
 }
 .blog-content p.desc {
   font-size: 13px;
@@ -570,11 +601,11 @@ footer .input-group-text {
 }
 .signup {
   background-color: var(--color-febd69);
-  color: var(--color-131921);
+  color: var(--color-main);
   border: none;
 }
 .signup:hover {
-  background-color: var(--color-131921);
+  background-color: var(--color-main);
   color: white;
 }
 /*  auth card  ends*/

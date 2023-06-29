@@ -1,4 +1,96 @@
+:root {
+  --color-main: #021e43;
+  --color-3b4149: #3b4149;
+  --color-febd69: #b8cee3;
+  --color-secundary: #00377a;
+  --color-bf4800: #bf4800;
+  --color-f5f5f7: #f5f5f7;
+  --color-ededed: #ededed;
+  --color-777777: #777777;
+  --color-1c1c1b: #1c1c1b;
+}
 
- /* Header Part................................. */
 
- /* Header Part End................................. */
+/* Tablets en horizonal y escritorios normales */
+@media (max-width: 1252px) {
+  
+  /* Header part.................................. */
+  
+  .button-toggle{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: var(--color-main);
+    color: white;
+    border: 2px solid white;
+    margin-left: 6%;
+  }
+
+  header{
+    padding: 10%;
+
+  }
+
+  
+ .input-div{
+  width: 60% !important;
+  margin-left: 8%;
+ }
+
+  .flex-end{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+
+  .header-upper-links{
+    display: none; 
+  }
+
+  .header-upper-links.isActive{
+    display: flex ; 
+  }
+  
+  .header-upper-links-container{
+    display: block;
+  }
+
+  .header-upper-links-container div{
+    display: inline;
+  }
+
+  .mala-practica{
+    margin-left: 20px ;
+  }
+
+
+  .header-upper-links-container .links-div:hover{
+    background-color: var(--color-secundary);
+    padding: 40px 300px;
+    border-radius: 10px;
+    width: 100%;
+    height: 50px;
+    cursor: pointer;
+  }
+
+  /* Header part End  */
+
+
+}
+
+
+/* Móviles en horizontal o tablets en vertical */
+
+@media (max-width: 768px) {
+
+ }
+
+
+ /* Móviles en vertical */
+ @media (max-width: 480px) { 
+
+  }
