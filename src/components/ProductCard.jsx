@@ -6,6 +6,7 @@ import watch2 from "../images/watch-1.avif";
 import addcart from "../images/add-cart.svg";
 import view from "../images/view.svg";
 import PropTypes from "prop-types";
+import { url } from "../utils/BaseURL";
 
 const ProductCard = (props) => {
   const { grid, data } = props;
@@ -17,7 +18,7 @@ const ProductCard = (props) => {
       {data?.map((item, index) => {
         return (
           <div
-          key={index}
+            key={index}
             className={` ${
               location.pathname == "/product" ? `gr-${grid}` : "col-3"
             } `}
@@ -38,14 +39,22 @@ const ProductCard = (props) => {
                 </button>
               </div>
               <div className="product-image">
-                <img src={watch2} className="img-fluid" alt="product image" />
-                <img src={watch2} className="img-fluid" alt="product image" />
+                <img
+                  src={item?.images[0].url}
+                  className="img-fluid d-block mx-auto"
+                  alt="product image"
+                  width={160}
+                />
+                <img
+                  src={watch2}
+                  className="img-fluid d-block mx-auto"
+                  alt="product image"
+                  width={160}
+                />
               </div>
               <div className="product-details">
                 <h6 className="brand">{item?.brand}</h6>
-                <h5 className="product-title">
-                  {item?.title}
-                </h5>
+                <h5 className="product-title">{item?.title}</h5>
                 <ReactStars
                   count={5}
                   size={24}
@@ -57,9 +66,8 @@ const ProductCard = (props) => {
                   className={`description ${
                     grid === 12 ? "d-block" : "d-none"
                   }`}
-                  dangerouslySetInnerHTML={{__html:  item?.description}}
-                >
-                </p>
+                  dangerouslySetInnerHTML={{ __html: item?.description }}
+                ></p>
                 <p className="price">$ {item?.price}</p>
               </div>
               <div className="action-bar position-absolute">
