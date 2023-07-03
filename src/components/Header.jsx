@@ -1,6 +1,6 @@
 import { NavLink, Link } from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
-import { TiThMenu } from "react-icons/ti";
+import { FaBars } from "react-icons/fa6";
 import compare from "../images/compare.svg";
 import wishlist from "../images/wishlist.svg";
 import user from "../images/user.svg";
@@ -14,6 +14,7 @@ const Header = () => {
   const toggleMenu = () => {
     setMenu(!Menu_toggle);
   };
+
   return (
     <>
       <header className="header-upper py-3">
@@ -42,7 +43,7 @@ const Header = () => {
               </div>
             </div>
           <button onClick={toggleMenu} className="button-toggle">
-              <TiThMenu className="icons-menu" />
+              <FaBars className="icons-menu"/>
             </button>
             <div className="col-5 flex-end">
             

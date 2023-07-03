@@ -15,17 +15,18 @@
 @media (max-width: 1252px) {
   
   /* Header part.................................. */
-  
+
   .button-toggle{
     display: flex;
     align-items: center;
     justify-content: center;
     width: 40px;
     height: 40px;
-    background-color: var(--color-main);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 10px;
     color: white;
-    border: 2px solid white;
     margin-left: 6%;
+    background: transparent;
   }
 
   header{
@@ -84,8 +85,11 @@
 
 
   /* Footer part............................................................. */
-
   
+  .newletter-container {
+    display: inline !important;    
+  }
+
 
   /* Footer part ends */
 
