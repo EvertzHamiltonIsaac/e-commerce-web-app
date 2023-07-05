@@ -4,6 +4,9 @@ import { base_url } from "../../utils/axiosConfig";
 const register = async (userData) => {
   try {
     const response = await axios.post(`${base_url}auth/register`, userData);
+    if (response.data) {
+      localStorage.setItem("customer", JSON.stringify(response.data));
+    }
     return response.data;
   } catch (error) {
     console.error("Error registering user:", error);
@@ -23,5 +26,5 @@ const login = async (userData) => {
 
 export const authService = {
   register,
-  login
+  login,
 };
