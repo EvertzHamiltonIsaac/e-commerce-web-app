@@ -6,7 +6,6 @@ import watch2 from "../images/watch-1.avif";
 import addcart from "../images/add-cart.svg";
 import view from "../images/view.svg";
 import PropTypes from "prop-types";
-import { url } from "../utils/BaseURL";
 
 const ProductCard = (props) => {
   const { grid, data } = props;
@@ -41,13 +40,13 @@ const ProductCard = (props) => {
               <div className="product-image">
                 <img
                   src={item?.images[0].url}
-                  className="img-fluid d-block mx-auto"
+                  className="img-fluid "
                   alt="product image"
                   width={160}
                 />
                 <img
                   src={watch2}
-                  className="img-fluid d-block mx-auto"
+                  className="img-fluid"
                   alt="product image"
                   width={160}
                 />
