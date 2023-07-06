@@ -73,7 +73,7 @@ const OurStore = () => {
                   <div className="form-floating">
                     <input
                       type="email"
-                      className="form-control"
+                      className="form-control"    
                       id="floatingInput"
                       placeholder="From"
                     />

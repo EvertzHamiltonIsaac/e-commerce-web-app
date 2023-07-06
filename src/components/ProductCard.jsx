@@ -9,6 +9,7 @@ import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import { addToWishlist } from "../features/products/productSlice";
 
+
 const ProductCard = (props) => {
   const { grid, data } = props;
   //console.log(data);
