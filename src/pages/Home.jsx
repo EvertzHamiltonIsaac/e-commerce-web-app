@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import Marquee from "react-fast-marquee";
 import BlogCard from "../components/BlogCard";
 import ProductCard from "../components/ProductCard";
@@ -11,7 +10,9 @@ const Home = () => {
   return (
     <>
     <Meta title={"Ginger"} />
-      <Container class1="home-wrapper-1 py-5">
+
+    
+      {/* <Container class1="home-wrapper-1 py-5">
         <div className="row">
           <div className="padding-0 col-6">
             <div className="main-banner position-relative ">
@@ -89,7 +90,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </Container>
+      </Container> */}
       <Container class1="home-wrapper-2 py-5">
         <div className="row">
           <div className="col-12">

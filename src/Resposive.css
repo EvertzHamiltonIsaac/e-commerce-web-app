@@ -15,57 +15,46 @@
   
   /* Header part.................................. */
 
- .nav-links{
-  width: 100% !important;
-  height: 80px;
-  margin: 5px;
-  border-radius: 10px;
-  padding: 10px !important;
- }
+  .nav-links {
+    width: 100% !important;
+    height: 80px;
+    margin: 5px;
+    border-radius: 10px;
+    padding: 10px !important;
+  }
 
- .nav-links:focus{
-  background-color: rgba(255, 255, 255, 0.76) !important;
- }
+  .nav-links:focus {
+    background-color: rgba(255, 255, 255, 0.76) !important;
+  }
 
- .InputGroup{
-  margin: auto;
-  padding: 10px;
-}
+  .InputGroup {
+    margin: auto;
+    padding: 10px;
+  }
 
-.logo-toggle{
-  margin-left: 110px;
-}
-/* 
-
+  .logo-toggle {
+    margin-left: 110px;
+  }
 
   /* Header part End  */
 
-
   /* Footer part............................................................. */
-
 
   /* Footer part ends */
 
   /* Home part */
 
   /* Home part end */
-
-
 }
-
 
 /* Móviles en horizontal o tablets en vertical */
 
 @media (max-width: 768px) {
-  
   /* Footer part............................................................. */
 
-
   /* Footer part ends */
+}
 
- }
-
-
- /* Móviles en vertical */
- @media (max-width: 480px) { 
-  }
+/* Móviles en vertical */
+@media (max-width: 480px) {
+}

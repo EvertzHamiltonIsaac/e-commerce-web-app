@@ -68,7 +68,7 @@ a {
   color: white !important;
 }
 
-/* Header Part */
+/* Header Part.............................................................................................................................. */
 
 .nav-bar-container {
   background-color: var(--color-main);
@@ -123,9 +123,6 @@ a {
   margin: 20px 15px;
 }
 
-
-
-
 header{
   background-color: var(--color-secundary);
 }
@@ -155,7 +152,6 @@ header .nav-link{
   padding: 15px !important;
 }
 
-
 .dropdown-item:hover{
   background-color: rgba(255, 255, 255, 0.2) !important;
 }
@@ -168,7 +164,7 @@ header .nav-link{
 
 /* Header Part End Here */
 
-/* Footer Part */
+/* Footer Part.......................................................................................................... */
 
 footer {
   background-color: var(--color-secundary);
@@ -185,7 +181,8 @@ footer .input-group-text {
 
 /* Footer Part Ends Here */
 
-/* Home Page */
+/* Home Page....................................................................................................... */
+
 .main-banner-content {
   top: 15%;
   left: 5%;
@@ -250,7 +247,8 @@ footer .input-group-text {
 .padding-0 {
   padding: 0px 10px !important;
 }
-/* home wrapper 2 */
+
+/* home wrapper 2................................................................................................. */
 
 .home-wrapper-2 {
   background-color: var(--color-f5f5f7);
@@ -258,7 +256,7 @@ footer .input-group-text {
 
 /* home wrapper 2 ends */
 
-/* categories section */
+/* categories section................................................................................................... */
 
 .categories {
   background-color: white;
@@ -289,9 +287,10 @@ footer .input-group-text {
   border-right: 1px solid var(--color-ededed);
 }
 /* categories section ends here */
+
 /* Home Page Ends */
 
-/* BLog Part */
+/* BLog Part........................................................................................................................ */
 
 .blog-card {
   background-color: white;
@@ -339,7 +338,7 @@ footer .input-group-text {
 }
 /*  Blog Part ends here */
 
-/* Product Card */
+/* Product Card.............................................................................. */
 
 .product-card {
   padding: 15px;
@@ -394,7 +393,7 @@ footer .input-group-text {
 }
 /* Product Card ends here */
 
-/* Special Product */
+/* Special Product........................................................................................................... */
 
 .special-product-card {
   padding: 20px 10px;
@@ -404,7 +403,7 @@ footer .input-group-text {
 
 /* Special Product ends here */
 
-/* famous card */
+/* famous card................................................................................................................. */
 
 .famous-card .famous-content {
   top: 10%;
@@ -435,7 +434,7 @@ footer .input-group-text {
 }
 /* famous card ends */
 
-/* Our Store */
+/* Our Store............................................................................................................................ */
 .filter-card {
   background-color: white;
   border-radius: 10px;
@@ -537,7 +536,7 @@ footer .input-group-text {
 }
 /* Our store ends here */
 
-/* Contact Page */
+/* Contact Page...................................................................................................... */
 .contact-inner-wrapper {
   padding: 30px 20px;
   border-radius: 15px;
@@ -569,7 +568,7 @@ footer .input-group-text {
 }
 /* Contact Page ends */
 
-/* Compare Product Page */
+/* Compare Product Page .....................................................................................................*/
 
 .compare-product-card {
   padding: 20px 15px;
@@ -606,7 +605,7 @@ footer .input-group-text {
 }
 /* Compare Product Page end here */
 
-/*  auth card */
+/*  auth card................................................................................................................. */
 
 .auth-card {
   padding: 20px;
@@ -648,15 +647,16 @@ footer .input-group-text {
 }
 /*  auth card  ends*/
 
-/* Policy Pages */
+/* Policy Pages.......................................................................... */
 
 .policy {
   background-color: white;
   padding: 30px;
 }
+
 /* Policy Pages  ends */
 
-/* Main Product Page */
+/* Main Product Page....................................................................................... */
 
 .description-wrapper h4,
 .reviews-wrapper h3 {
@@ -771,7 +771,7 @@ footer .input-group-text {
 }
 /* Main Product Page */
 
-/* Cart Page */
+/* Cart Page................................................................................................................ */
 .cart-header,
 .cart-data {
   border-bottom: 1px solid #eaeaea;
@@ -802,7 +802,7 @@ footer .input-group-text {
 }
 /* Cart Page Ends here */
 
-/* Shippping Page */
+/* Shippping Page..................................................................................................................... */
 
 .total {
   font-size: 14px;
