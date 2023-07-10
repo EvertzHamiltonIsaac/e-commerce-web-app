@@ -1,9 +1,9 @@
 import { BsSearch } from "react-icons/bs";
-import compare from "../images/compare.svg";
-import wishlist from "../images/wishlist.svg";
-import user from "../images/user.svg";
-import cart from "../images/cart.svg";
-import menu from "../images/menu.svg";
+import compare from "../../images/compare.svg";
+import wishlist from "../../images/wishlist.svg";
+import user from "../../images/user.svg";
+import cart from "../../images/cart.svg";
+import menu from "../../images/menu.svg";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
@@ -22,7 +22,7 @@ const Header = () => {
             <Navbar.Brand href="/" className="logo">
               <img
                 alt=""
-                src="/public/logowhite.png"
+                src="/logowhite.png"
                 width="30"
                 height="30"
                 className="d-inline-block align-center mb-2"

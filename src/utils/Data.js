@@ -1,3 +1,4 @@
+
 export const services = [
     {
     image: "images/service.png",
@@ -15,7 +16,7 @@ export const services = [
     {
     image: "images/service-03.png",
     title: "Support 24/7",
-    tagline: "Shop with aan expert",
+    tagline: "Shop with an expert",
     },    
 
     {
@@ -33,3 +34,4 @@ export const services = [
 
  
 ];
+

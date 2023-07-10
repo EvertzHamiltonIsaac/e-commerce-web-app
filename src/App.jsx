@@ -2,7 +2,7 @@ import './App.css'
 import './Resposive.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Layaout from './components/Layout';
+import Layaout from './components/common/Layout';
 import Home from './pages/Home';
 import About from './pages/About';
 import Contact from './pages/Contact';
