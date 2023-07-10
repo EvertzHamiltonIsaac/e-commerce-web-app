@@ -11,6 +11,11 @@
   padding: 20px;
 }
 
+
+.service-container .items img{
+    margin-right: 10px;
+}
+
 .service-container .items:hover {
   background-color: white;
   cursor: pointer;
