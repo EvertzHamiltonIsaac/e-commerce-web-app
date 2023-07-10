@@ -1,6 +1,6 @@
 import Container from "react-bootstrap/Container";
 import { services } from "../../utils/Data";
-import "../css components/services.css"
+import "../styles/services.css"
 
 
 const Services = () => {

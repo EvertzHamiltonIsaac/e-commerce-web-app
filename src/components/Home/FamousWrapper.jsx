@@ -1,5 +1,5 @@
 import Container from "react-bootstrap/Container";
-import "../css components/FamousWrapper.css";
+import "../styles/FamousWrapper.css";
 import famouswrapper01 from "../../images/famouswrapper01.png";
 import famouswrapper02 from "../../images/famouswrapper02.png";
 import famouswrapper03 from "../../images/famouswrapper03.png";
@@ -161,7 +161,7 @@ const FamousWrapper = () => {
               </figure>
 
               <button>More</button>
-              
+
               <div className="design-container">
                 <span className="design design--1"></span>
                 <span className="design design--2"></span>

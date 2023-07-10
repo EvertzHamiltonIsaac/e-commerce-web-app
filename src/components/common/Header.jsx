@@ -44,7 +44,7 @@ const Header = () => {
                 >
                   <img
                     alt=""
-                    src="/public/logowhite.png"
+                    src="/logowhite.png"
                     width="30"
                     height="30"
                     className="d-inline-block align-center mb-2"

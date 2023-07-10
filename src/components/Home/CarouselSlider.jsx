@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import Categories from "./Categories"
 import Button from 'react-bootstrap/Button';
-import "../css components/CarouselSlider.css"
+import "../styles/CarouselSlider.css"
 import { useEffect, useState } from "react";
 
 
