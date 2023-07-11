@@ -36,18 +36,18 @@ const SpecialProduct = () => {
                 <b>5 days</b>
               </p>
               <div className="d-flex gap-10 align-items-center">
-                <span className="badge rounded-circle p-3 bg-primary">1</span>:
-                <span className="badge rounded-circle p-3 bg-primary">1</span>:
-                <span className="badge rounded-circle p-3 bg-primary">1</span>
+                <span className="badge rounded-circle p-3 timer">1</span>:
+                <span className="badge rounded-circle p-3 timer">1</span>:
+                <span className="badge rounded-circle p-3 timer">1</span>
               </div>
             </div>
             <div className="prod-count my-3">
               <p>Products: 5</p>
               <div className="">
-                  <ProgressBar animated  variant="primary" now={60} />
+                  <ProgressBar animated  now={60} />
               </div>
             </div>
-            <Button className="button-special-product" variant="outline-primary">Add to Cart</Button>{' '}
+            <Button className="button-special-product">Add to Cart</Button>{' '}
           </div>
         </div>
       </div>

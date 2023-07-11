@@ -1,124 +1,156 @@
-import { Link } from "react-router-dom";
-import { BsLinkedin, BsGithub, BsYoutube, BsInstagram } from "react-icons/bs";
+import {
+  MDBFooter,
+  MDBContainer,
+  MDBRow,
+  MDBCol,
+  MDBIcon,
+  MDBInputGroup,
+  MDBBtn,
+} from "mdb-react-ui-kit";
+import "@fortawesome/fontawesome-free/css/all.min.css";
+import { Container } from "react-bootstrap";
 import newsletter from "../../images/newsletter.png";
+import { Link } from "react-router-dom";
+
 const Footer = () => {
   return (
     <>
-      <footer className="py-4">
-        <div className="container-xxl">
-          <div className="newletter-container row align-items-center">
-            <div className="col-5">
-              <div className="footer-top-data d-flex gap-30 align-items-center">
-                <img src={newsletter} alt="newsletter" />
-                <h2 className="mb-0 text-white">Sign Up for Newsletter</h2>
-              </div>
+      <div className="footer-container">
+        <Container xxl="true">
+          <MDBFooter className="text-center text-lg-start text-muted">
+            <MDBContainer className="p-4 pb-0 border-bottom">
+              <form action="">
+                <MDBRow className="d-flex justify-content-center">
+                  <MDBCol size="auto" className="mb-4 mb-md-2">
+                    <p className="pt-2 text-white">
+                      <img src={newsletter} alt="newsletter" className="mx-2" />
+                      <strong>Sign up for our newsletter</strong>
+                    </p>
+                  </MDBCol>
+
+                  <MDBCol md="5" size="12" className="mb-4 mb-md-0">
+                    <MDBInputGroup className="mb-3">
+                      <input
+                        className="form-control"
+                        placeholder="Your Email Address"
+                        type="text"
+                      />
+                      <MDBBtn outline color="light">
+                        Subscribe
+                      </MDBBtn>
+                    </MDBInputGroup>
+                  </MDBCol>
+                </MDBRow>
+              </form>
+            </MDBContainer>
+
+            <section className="text-white">
+              <MDBContainer className="text-center text-md-start mt-5">
+                <MDBRow className="mt-3">
+                  <MDBCol md="3" lg="4" xl="3" className="mx-auto mb-4">
+                    <h6 className="text-uppercase fw-bold mb-3">
+                      <img
+                        alt=""
+                        src="/logowhite.png"
+                        width="20"
+                        height="20"
+                        className="d-inline-block align-center mx-2 mb-1"
+                      />
+                      Ginger Company
+                    </h6>
+                    <p>
+                      Here you can use rows and columns to organize your footer
+                      content. Lorem ipsum dolor sit amet, consectetur
+                      adipisicing elit.
+                    </p>
+                  </MDBCol>
+
+                  <MDBCol md="2" lg="2" xl="2" className="mx-auto mb-4">
+                    <h6 className="text-uppercase fw-bold mb-4">Information</h6>
+                    <p>
+                      <a href="/privacy-policy" className="text-reset">
+                        Privacy Policy
+                      </a>
+                    </p>
+                    <p>
+                      <a href="/refund-policy" className="text-reset">
+                        Refund Policy
+                      </a>
+                    </p>
+                    <p>
+                      <a href="/shipping-policy" className="text-reset">
+                        Shipping Policy
+                      </a>
+                    </p>
+                    <p>
+                      <a href="/term-conditions" className="text-reset">
+                        Terms & Conditions
+                      </a>
+                    </p>
+                  </MDBCol>
+
+                  <MDBCol md="3" lg="2" xl="2" className="mx-auto mb-4">
+                    <h6 className="text-uppercase fw-bold mb-4">
+                      Useful links
+                    </h6>
+                    <p>
+                      <a href="#!" className="text-reset">
+                        Pricing
+                      </a>
+                    </p>
+                    <p>
+                      <a href="#!" className="text-reset">
+                        Settings
+                      </a>
+                    </p>
+                    <p>
+                      <a href="#!" className="text-reset">
+                        Orders
+                      </a>
+                    </p>
+                    <p>
+                      <a href="#!" className="text-reset">
+                        Help
+                      </a>
+                    </p>
+                  </MDBCol>
+
+                  <MDBCol md="4" lg="3" xl="3" className="mx-auto mb-md-0 mb-4">
+                    <h6 className="text-uppercase fw-bold mb-4">Contact</h6>
+                    <p>
+                      <MDBIcon icon="home" className="me-2" />
+                      Calle Barney Morgan # 265, <br /> Ensanche Luperon, Santo
+                      Domingo <br />
+                      PinCode: 10401
+                    </p>
+                    <p>
+                      <MDBIcon icon="envelope" className="me-2" />
+                      <Link
+                        className="link-footer"
+                        to="gingerdevelopmentteam@gmail.com"
+                      >
+                        gingerdevelopmentteam@gmail.com
+                      </Link>
+                    </p>
+                    <p>
+                      <MDBIcon icon="phone" className="me-3" />
+                      <Link className="link-footer"> +1 8299259762</Link>
+                    </p>
+                    <p>
+                      <MDBIcon icon="print" className="me-3" /> + 01 234 567 89
+                    </p>
+                  </MDBCol>
+                </MDBRow>
+              </MDBContainer>
+            </section>
+
+            <div className="text-center p-4 text-white">
+              &copy; {new Date().getFullYear()} Powered by Ginger Development
+              Team
             </div>
-            <div className="col-7">
-              <div className="input-group">
-                <input
-                  type="text"
-                  className="form-control py-1"
-                  placeholder="Your Email Address"
-                  aria-label="Your Email Address"
-                  aria-describedby="basic-addon2"
-                />
-                <span className="input-group-text p-2" id="basic-addon2">
-                  Subscribe
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
-      <footer className="py-4">
-        <div className="container-xxl">
-          <div className="row">
-            <div className="col-4">
-              <h4 className="text-white mb-4">Contact Us</h4>
-              <div>
-                <address className="text-white fs-6">
-                  Calle Barney Morgan # 265, <br /> Ensanche Luperon, Santo
-                  Domingo <br />
-                  PinCode: 10401
-                </address>
-                <a
-                  href="tel:+1 8299259762"
-                  className="mt-3 d-block mb-1 text-white"
-                >
-                  +1 8299259762
-                </a>
-                <a
-                  href="mailto:navdeepdahiya753@gmail.com"
-                  className="mt-2 d-block mb-0 text-white"
-                >
-                  gingerdevelopmentteam@gmail.com
-                </a>
-                <div className="social_icons d-flex align-items-center gap-30 mt-4">
-                  <a className="text-white" href="#">
-                    <BsLinkedin className="fs-4" />
-                  </a>
-                  <a className="text-white" href="#">
-                    <BsInstagram className="fs-4" />
-                  </a>
-                  <a className="text-white" href="#">
-                    <BsGithub className="fs-4" />
-                  </a>
-                  <a className="text-white" href="#">
-                    <BsYoutube className="fs-4" />
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className="col-3">
-              <h4 className="text-white mb-4">Information</h4>
-              <div className="footer-link d-flex flex-column">
-                <Link to="/privacy-policy" className="text-white py-2 mb-1">
-                  Privacy Policy
-                </Link>
-                <Link to="/refund-policy" className="text-white py-2 mb-1">
-                  Refund Policy
-                </Link>
-                <Link to="/shipping-policy" className="text-white py-2 mb-1">
-                  Shipping Policy
-                </Link>
-                <Link to="/term-conditions" className="text-white py-2 mb-1">
-                  Terms & Conditions
-                </Link>
-                <Link className="text-white py-2 mb-1">Blogs</Link>
-              </div>
-            </div>
-            <div className="col-3">
-              <h4 className="text-white mb-4">Account</h4>
-              <div className="footer-link d-flex flex-column">
-                <Link className="text-white py-2 mb-1">About Us</Link>
-                <Link className="text-white py-2 mb-1">Faq</Link>
-                <Link className="text-white py-2 mb-1">Contact</Link>
-              </div>
-            </div>
-            <div className="col-2">
-              <h4 className="text-white mb-4">Quick Links</h4>
-              <div className="footer-link d-flex flex-column">
-                <Link className="text-white py-2 mb-1">Laptops</Link>
-                <Link className="text-white py-2 mb-1">Headphones</Link>
-                <Link className="text-white py-2 mb-1">Tablets</Link>
-                <Link className="text-white py-2 mb-1">Watch</Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
-      <footer className="py-4">
-        <div className="container-xxl">
-          <div className="row">
-            <div className="col-12">
-              <p className="text-center mb-0 text-white">
-                &copy; {new Date().getFullYear()}; Powered by Ginger Development
-                Team
-              </p>
-            </div>
-          </div>
-        </div>
-      </footer>
+          </MDBFooter>
+        </Container>
+      </div>
     </>
   );
 };

@@ -20,11 +20,7 @@ const Header = () => {
         <Navbar key={expand} expand={expand} className="nav-bar-container ">
           <Container xxl="true">
             <Navbar.Brand href="/" className="logo">
-              <img
-                alt=""
-                src="/logowhite.png"
-                width="30"
-                height="30"
+              <img alt="" src="/logowhite.png" width="30" height="30"
                 className="d-inline-block align-center mb-2"
               />
               {"  "}

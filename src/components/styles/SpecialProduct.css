@@ -18,6 +18,24 @@
     width: 300px;
 }
 
+.button-special-product{
+    border: 1px solid #021e43;
+    background: transparent;
+    color: #021e43;
+}
+
+.button-special-product:hover{
+    background-color: #021e43;
+}
+
+.timer{
+    background-color: #021e43;
+}
+
+.progress-bar{
+    background-color: #021e43 !important;
+}
+
 
 @media (max-width: 1190px) {
     .sub-container-card{

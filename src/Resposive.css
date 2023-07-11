@@ -40,6 +40,9 @@
     width: 100%;
   }
 
+  .container-footer footer{
+    display: inline-block; 
+  }
 
 }
 
