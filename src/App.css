@@ -211,6 +211,23 @@ footer .input-group-text {
 }
 /* categories section ends here */
 
+
+/* Special Products........................................................................ */
+
+
+.special-Product{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  gap: 20px;
+}
+
+
+/* Special Products End */
+
+.Blog-card-items{
+  margin: 20px;
+}
+
 /* Home Page Ends */
 
 /* BLog Part........................................................................................................................ */
@@ -316,46 +333,6 @@ footer .input-group-text {
 }
 /* Product Card ends here */
 
-/* Special Product........................................................................................................... */
-
-.special-product-card {
-  padding: 20px 10px;
-  border-radius: 10px;
-  background-color: white;
-}
-
-/* Special Product ends here */
-
-/* famous card................................................................................................................. */
-
-/* .famous-card .famous-content {
-  top: 10%;
-  left: 5%;
-}
-.famous-card img {
-  border-radius: 10px;
-}
-.famous-content h5 {
-  font-size: 13px;
-  line-height: 20px;
-  font-weight: 400px;
-  color: white;
-  margin-bottom: 7px;
-  text-transform: uppercase;
-}
-.famous-content h6 {
-  font-size: 24px;
-  line-height: 38px;
-  font-weight: 500;
-  color: white;
-}
-.famous-content p {
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 100;
-  color: white;
-} */
-/* famous card ends */
 
 /* Our Store............................................................................................................................ */
 .filter-card {
