@@ -44,14 +44,18 @@
     display: inline-block; 
   }
 
+  
 }
 
 /* Móviles en horizontal o tablets en vertical */
 
 @media (max-width: 800px) {
- 
+  
 }
 
 /* Móviles en vertical */
 @media (max-width: 480px) {
+  .signup-btn{
+    margin-left: 10px;
+  }
 }

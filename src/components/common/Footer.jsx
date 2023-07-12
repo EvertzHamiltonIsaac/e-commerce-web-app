@@ -119,9 +119,8 @@ const Footer = () => {
                     <h6 className="text-uppercase fw-bold mb-4">Contact</h6>
                     <p>
                       <MDBIcon icon="home" className="me-2" />
-                      Calle Barney Morgan # 265, <br /> Ensanche Luperon, Santo
+                      Calle Barney Morgan # 265, Ensanche Luperon, Santo
                       Domingo <br />
-                      PinCode: 10401
                     </p>
                     <p>
                       <MDBIcon icon="envelope" className="me-2" />
@@ -129,7 +128,7 @@ const Footer = () => {
                         className="link-footer"
                         to="gingerdevelopmentteam@gmail.com"
                       >
-                        gingerdevelopmentteam@gmail.com
+                        gingerteam@gmail.com
                       </Link>
                     </p>
                     <p>

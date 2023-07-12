@@ -52,7 +52,12 @@ const Home = () => {
       </Container>
 
       <Container class1="home-wrapper-2">
-        <FamousWrapper />
+        <div className="container-wrapper-famous">
+          <FamousWrapper />
+          <FamousWrapper />
+          <FamousWrapper />
+          <FamousWrapper />
+        </div>
       </Container>
 
       <Container class1="special-wrapper py-5 home-wrapper-2">
@@ -61,14 +66,13 @@ const Home = () => {
             <h3 className="section-heading">Special Products</h3>
           </div>
         </div>
-         <div className="special-Product">
-         <SpecialProduct />
+        <div className="special-Product">
           <SpecialProduct />
           <SpecialProduct />
           <SpecialProduct />
-         </div>
+          <SpecialProduct />
+        </div>
       </Container>
-
 
       <Container class1="popular-wrapper py-5 home-wrapper-2">
         <div className="row">
@@ -125,13 +129,13 @@ const Home = () => {
           </div>
         </div>
         <div className="row">
-          <div >
-          <Carousel responsive={responsive}>
-          <BlogCard />
-          <BlogCard />
-          <BlogCard />
-          <BlogCard />
-          </Carousel>
+          <div>
+            <Carousel responsive={responsive}>
+              <BlogCard />
+              <BlogCard />
+              <BlogCard />
+              <BlogCard />
+            </Carousel>
           </div>
         </div>
       </Container>
