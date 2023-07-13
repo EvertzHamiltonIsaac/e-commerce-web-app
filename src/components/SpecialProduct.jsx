@@ -8,7 +8,7 @@ import { Button, Container } from "react-bootstrap";
 const SpecialProduct = () => {
   const [countdown, setCountdown] = useState(() => {
     const savedCountdown = localStorage.getItem("countdown");
-    return savedCountdown ? parseInt(savedCountdown, 10) : 864000; // 10 días en segundos
+    return savedCountdown ? parseInt(savedCountdown, 10) : 864000; 
   });
 
   useEffect(() => {
@@ -25,7 +25,7 @@ const SpecialProduct = () => {
       localStorage.setItem("countdown", "864000");
     };
 
-    const resetInterval = setInterval(resetCountdown, 864000000); // 10 días en milisegundos
+    const resetInterval = setInterval(resetCountdown, 864000000); 
 
     return () => {
       clearInterval(timer);
