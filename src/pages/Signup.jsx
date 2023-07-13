@@ -51,7 +51,7 @@ const Signup = () => {
             <img src={logo} alt="logo" />
             </div>
               <h3 className="text-center mb-3">Sign Up</h3>
-              <form action="" onSubmit={formik.handleSubmit} className="d-flex flex-column gap-15">
+              <form action="" onSubmit={formik.handleSubmit} className="d-flex flex-column">
                 <CustomInput
                   type="text"
                   name="firstName"
