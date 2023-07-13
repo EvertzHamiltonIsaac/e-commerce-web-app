@@ -6,7 +6,7 @@ import watch2 from "../images/watch-1.avif";
 import addcart from "../images/add-cart.svg";
 import view from "../images/view.svg";
 import PropTypes from "prop-types";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addToWishlist } from "../features/products/productSlice";
 
 const ProductCard = (props) => {
@@ -42,7 +42,7 @@ const ProductCard = (props) => {
               <div className="wishlist-icon position-absolute">
                 <button
                   className="border-0 bg-transparent"
-                  onClick={(e) => {
+                  onClick={()=> {
                     addToWish(item?._id);
                   }}
                 >

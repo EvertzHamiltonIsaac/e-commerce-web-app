@@ -3,13 +3,11 @@
     justify-content: center;
     padding: 15px;
     border-radius: 10px;
-    box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
-    
+    border-bottom: 1px solid rgba(128, 128, 128, 0.653);
+    margin-right: 50px;
 }
 
-.container-cards .Primary-btn{
-    padding-top: 200px !important;
-}
+
 .img-container img{
     width: 250px;
 }
@@ -17,11 +15,12 @@
 .order-container{
     padding: 20px;
     border-radius: 10px ;
-    background-color: rgba(128, 128, 128, 0.119);
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    width: 35%;
 }
 
 .items-order {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #d0cece;
     align-items: center;
     display: flex;
     justify-content: space-between;
@@ -31,19 +30,48 @@
 }
 
 .order-total{
-    margin-top: 10px;
+    margin: 15px 0px;
     display: flex;
     justify-content: space-between;
 }
 
 .items-order p {
-    margin: 0 ;
+    margin: 0px 3px 0px 0px ;
+    color: #939393;
+    font-weight: 100;
 }
 .card-input{
-    border: 1px solid rgba(128, 128, 128, 0.172);
+    border: 1px solid rgba(102, 102, 102, 0.479);
     height: 50px;
     width: 100px;
     padding: 15px;
     color: rgba(128, 128, 128, 0.653);
     border-radius: 10px;
+    margin-right: 10px;
 }
+.btn-overlay img{
+    width: 10px;
+    text-align: center;
+  vertical-align: middle;
+}
+
+.btn-overlay{
+    border: 1px solid #a5a5a5;
+    border-radius: 100%;
+    width: 5px;
+    background-color: #a5a5a5;
+}
+
+.vl {
+    border-left:2px solid rgb(192, 192, 192);
+    height: 25px;
+    margin: 0px 5px;
+  }
+
+  .container-cards .price, .order-container .price{
+    font-weight: 600;
+  }
+
+  .btn-link{
+    width: 100%;
+  }
