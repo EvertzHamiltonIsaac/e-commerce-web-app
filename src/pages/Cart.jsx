@@ -1,7 +1,7 @@
 import BreadCrumb from "../components/BreadCrumb";
 import Meta from "../components/Meta";
 import Container from "../components/Container";
-import Cards from "../components/Cart/cards";
+import Cards from "../components/Cart/Cards";
 import Orden from "../components/Cart/Orden";
 
 const Cart = () => {
