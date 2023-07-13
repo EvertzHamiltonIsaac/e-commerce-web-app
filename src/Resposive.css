@@ -1,26 +1,59 @@
-
- /* Header Part................................. */
-@media only screen and (max-width: 1920px) {
-    .sub-container{
-        margin: 0px 100px;
-      }
+:root {
+  --color-main: #021e43;
+  --color-hover: #b8cee3;
+  --color-secundary: #00377a;
+  --color-brands: #bf4800;
+  --color-Grimmy: #777777;
 }
 
-@media only screen and (max-width: 1498px) {
-    .sub-container{
-        margin: 0px 50px;
-      }
+
+/* Tablets en horizonal y escritorios normales */
+@media (max-width: 1399px) {
+  
+  /* Header part.................................. */
+
+  .nav-links {
+    width: 100% !important;
+    height: 80px;
+    margin: 5px;
+    border-radius: 10px;
+    padding: 10px !important;
+  }
+
+  .nav-links:focus {
+    background-color: rgba(255, 255, 255, 0.76) !important;
+  }
+
+  .InputGroup {
+    margin: auto;
+    padding: 10px;
+  }
+
+  .logo-toggle {
+    margin-left: 110px;
+  }
+  .category{
+    display: none;
+  } 
+
+  .contentWidth {
+    width: 100%;
+  }
+
+  .container-footer footer{
+    display: inline-block; 
+  }
 }
 
-@media only screen and (max-width: 1400px) {
-    .sub-container{
-        margin: 0px 10px;
-      }
+/* Móviles en horizontal o tablets en vertical */
+
+@media (max-width: 800px) {
+  
 }
 
-@media only screen and (max-width: 1322px) {
-    .sub-container{
-        margin: 0px 10px;
-      }
+/* Móviles en vertical */
+@media (max-width: 480px) {
+  .signup-btn{
+    margin-left: 10px;
+  }
 }
- /* Header Part End................................. */

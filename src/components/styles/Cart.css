@@ -1,0 +1,49 @@
+.container-cards{
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+    
+}
+
+.container-cards .Primary-btn{
+    padding-top: 200px !important;
+}
+.img-container img{
+    width: 250px;
+}
+
+.order-container{
+    padding: 20px;
+    border-radius: 10px ;
+    background-color: rgba(128, 128, 128, 0.119);
+}
+
+.items-order {
+    border-bottom: 1px solid black;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    padding: 10px;
+}
+
+.order-total{
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.items-order p {
+    margin: 0 ;
+}
+.card-input{
+    border: 1px solid rgba(128, 128, 128, 0.172);
+    height: 50px;
+    width: 100px;
+    padding: 15px;
+    color: rgba(128, 128, 128, 0.653);
+    border-radius: 10px;
+}

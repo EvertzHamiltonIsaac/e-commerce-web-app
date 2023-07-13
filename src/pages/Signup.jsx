@@ -6,6 +6,8 @@ import { useFormik } from "formik";
 import * as yup from 'yup';
 import { useDispatch } from "react-redux";
 import { registerUser } from "../features/user/userSlice";
+import logo from "../images/mmlogo.png"
+
 
 const signUpSchema = yup.object({
   firstName: yup.string().required("First Name is Required"),
@@ -45,8 +47,11 @@ const Signup = () => {
         <div className="row">
           <div className="col-12">
             <div className="auth-card">
+            <div className="d-flex justify-content-center my-2">
+            <img src={logo} alt="logo" />
+            </div>
               <h3 className="text-center mb-3">Sign Up</h3>
-              <form action="" onSubmit={formik.handleSubmit} className="d-flex flex-column gap-15">
+              <form action="" onSubmit={formik.handleSubmit} className="d-flex flex-column">
                 <CustomInput
                   type="text"
                   name="firstName"
@@ -131,7 +136,7 @@ const Signup = () => {
                 </div>
                 <div>
                   <div className="mt-3 d-flex justify-content-center gap-15 align-items-center">
-                    <button className="button border-0">Sign Up</button>
+                    <button className="btn Primary-btn">Sign Up</button>
                   </div>
                 </div>
               </form>

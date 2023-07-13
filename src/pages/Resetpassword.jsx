@@ -26,7 +26,7 @@ const Resetpassword = () => {
                 />
                 <div>
                   <div className="mt-3 d-flex justify-content-center gap-15 align-items-center">
-                    <button className="button border-0">Ok</button>
+                    <button className="btn Primary-btn">Ok</button>
                   </div>
                 </div>
               </form>
