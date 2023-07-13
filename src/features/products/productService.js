@@ -1,5 +1,5 @@
 import axios from "axios";
-import { base_url } from "../../utils/axiosConfig";
+import { base_url, config } from "../../utils/axiosConfig";
 
 const getProducts = async () => {
   try {
@@ -11,9 +11,15 @@ const getProducts = async () => {
   }
 };
 
-const addToWishlist = async (prodId) => {
+const addToWishlist = async (productId) => {
+  console.log(config);
+  console.log(productId);
   try {
-    const response = await axios.put(`${base_url}wishlist`, { prodId });
+    const response = await axios.put(
+      `${base_url}wishlist`,
+      { productId },
+      config
+    );
     return response.data;
   } catch (error) {
     console.error("Error retrieving wishlist:", error);
@@ -23,5 +29,5 @@ const addToWishlist = async (prodId) => {
 
 export const productService = {
   getProducts,
-  addToWishlist
+  addToWishlist,
 };

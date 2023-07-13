@@ -1,15 +1,15 @@
 export const base_url = "https://ginger-final-project.onrender.com/api/v1/";
 
-const getTokenFromLocalStorage = localStorage.getItem("user")
-? JSON.parse(localStorage.getItem("customer"))
-: null;
+const getTokenFromLocalStorage = localStorage.getItem("sessionToken")
+  ? localStorage.getItem("sessionToken")
+  : null;
 
 export const config = {
-    header: {
-        Authorization: `Bearer ${
-            getTokenFromLocalStorage !== null ? getTokenFromLocalStorage.sessionToken : ""
-        }`,
+  headers: {
+    Authorization: `Bearer ${
+      getTokenFromLocalStorage !== null ? getTokenFromLocalStorage : ""
+    }`,
 
-        Accept: "application/json",
-    },
+    Accept: "application/json",
+  },
 };

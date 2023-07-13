@@ -6,11 +6,18 @@ import watch2 from "../images/watch-1.avif";
 import addcart from "../images/add-cart.svg";
 import view from "../images/view.svg";
 import PropTypes from "prop-types";
+import { useDispatch, useSelector } from "react-redux";
+import { addToWishlist } from "../features/products/productSlice";
 
 const ProductCard = (props) => {
   const { grid, data } = props;
-  console.log(data);
+  //console.log(data);
   let location = useLocation();
+  const dispatch = useDispatch();
+
+  const addToWish = (id) => {
+    dispatch(addToWishlist(id));
+  };
 
   return (
     <>
@@ -23,30 +30,35 @@ const ProductCard = (props) => {
             } `}
           >
             <Link
-              to={`${
+              /*to={`${
                 location.pathname == "/"
                   ? "/product/:id"
                   : location.pathname == "/product/:id"
                   ? "/product/:id"
                   : ":id"
-              }`}
+              }`}*/
               className="product-card position-relative"
             >
               <div className="wishlist-icon position-absolute">
-                <button className="border-0 bg-transparent">
+                <button
+                  className="border-0 bg-transparent"
+                  onClick={(e) => {
+                    addToWish(item?._id);
+                  }}
+                >
                   <img src={wish} alt="wishlist" />
                 </button>
               </div>
               <div className="product-image">
                 <img
                   src={item?.images[0].url}
-                  className="img-fluid "
+                  className="img-fluid mx-auto"
                   alt="product image"
                   width={160}
                 />
                 <img
                   src={watch2}
-                  className="img-fluid"
+                  className="img-fluid mx-auto"
                   alt="product image"
                   width={160}
                 />
