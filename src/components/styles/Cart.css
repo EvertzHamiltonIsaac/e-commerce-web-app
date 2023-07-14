@@ -47,7 +47,7 @@
     padding: 15px;
     color: rgba(128, 128, 128, 0.653);
     border-radius: 10px;
-    margin-right: 10px;
+    margin: 0px 20px;
 }
 .btn-overlay img{
     width: 10px;
@@ -74,4 +74,39 @@
 
   .btn-link{
     width: 100%;
+  }
+
+  @media (max-width: 1100px) {
+    .cart-container-components{
+        display: inline-block !important;
+    }
+
+    .order-container{
+        margin-top: 20px;
+        width: 100%;
+    }
+
+
+  }
+
+  @media (max-width: 670px) {
+    .container-cards{
+        display: inline-block;
+    }
+
+    .img-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .card-input{
+        width: 75px;
+        margin: 0px 10px;
+    }
+
+    .container-cards .clasify {
+        font-size: 14px;
+    }
+
   }

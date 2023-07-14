@@ -17,9 +17,9 @@ const Orden = () => {
       </div>
       <div className="items-order  ">
         <div className="d-flex align-items-center">
-        <p>Shipping estimate</p>
+          <p>Shipping estimate</p>
 
-        <OverlayTrigger
+          <OverlayTrigger
             placement="right"
             overlay={
               <Tooltip id="button-tooltip-2">Check out this avatar</Tooltip>
@@ -70,8 +70,8 @@ const Orden = () => {
           <span>$ 2040.0</span> &nbsp;
         </p>
       </div>
-      <Link to="/" className="btn-link btn Primary-btn">
-        Read More
+      <Link to="/checkout" className="btn-link btn Primary-btn">
+        Checkout
       </Link>
     </div>
   );

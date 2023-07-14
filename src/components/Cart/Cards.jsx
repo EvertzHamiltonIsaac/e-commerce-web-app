@@ -20,10 +20,11 @@ const Cards = () => {
           <img src={famouswrapper04} alt="Product" />
         </div>
 
-        <div className="func-container">
+      <div className="d-flex">
+      <div className="func-container">
           <div className="func-class">
             <h4>Samsung Galaxy Note10+ Mobile Phone</h4>
-            <div className="d-flex text-secondary">
+            <div className="clasify d-flex text-secondary">
               <p>8 Colores</p>
               <div className="vl"></div>
               <p>Medium</p>
@@ -41,7 +42,7 @@ const Cards = () => {
                 }}
                 duration={200}
                 onClick={handleCheckboxClick}
-                disabled={true}
+                disabled={true} 
               />
               <p className="mx-3">{stockStatus}</p>
             </div>
@@ -51,6 +52,7 @@ const Cards = () => {
         <div data-bs-theme="dark" >
       <CloseButton />
     </div>
+      </div>
       </div>
     </div>
   );
