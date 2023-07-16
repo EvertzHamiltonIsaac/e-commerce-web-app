@@ -10,6 +10,7 @@ import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { addToWishlist } from "../features/products/productSlice";
 import DOMPurify from "dompurify";
+import defaultImage from "../images/defaultImage.png"
 
 const ProductCard = (props) => {
   const { grid, data } = props;
@@ -34,7 +35,9 @@ const ProductCard = (props) => {
   return (
     <>
       {data?.map((item, index) => {
+        const imageSrc = item.images[0]?.url || defaultImage;
         return (
+          
           <div
             key={index}
             className={` ${
@@ -59,18 +62,20 @@ const ProductCard = (props) => {
                   <img src={wish} alt="wishlist" />
                 </button>
               </div>
-              <div className="product-image">
+              <div className="product-image d-flex justify-content-center align-items-center">
                 <img
-                  src={item?.images[0].url}
-                  className="img-fluid mx-auto"
+                  src={imageSrc}
+                  className="mx-auto "
                   alt="product image"
-                  width={160}
+                  width={269}
+                  height={269}
                 />
                 <img
                   src={watch2}
-                  className="img-fluid mx-auto"
+                  className="mx-auto"
                   alt="product image"
-                  width={160}
+                  width={269}
+                  height={269}
                 />
               </div>
               <div className="product-details">
