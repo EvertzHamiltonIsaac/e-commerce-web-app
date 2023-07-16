@@ -1,3 +1,4 @@
+import  { useRef, useEffect } from "react";
 import ReactStars from "react-rating-stars-component";
 import { Link, useLocation } from "react-router-dom";
 import prodcompare from "../images/prodcompare.svg";
@@ -8,16 +9,27 @@ import view from "../images/view.svg";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { addToWishlist } from "../features/products/productSlice";
+import DOMPurify from "dompurify";
 
 const ProductCard = (props) => {
   const { grid, data } = props;
   //console.log(data);
   let location = useLocation();
   const dispatch = useDispatch();
+  const descriptionRef = useRef([]);
 
   const addToWish = (id) => {
     dispatch(addToWishlist(id));
   };
+
+  useEffect(() => {
+    data?.forEach((item, index) => {
+      const sanitizedDescription = DOMPurify.sanitize(item.description);
+      if (descriptionRef.current[index]) {
+        descriptionRef.current[index].innerHTML = sanitizedDescription;
+      }
+    });
+  }, [data]);
 
   return (
     <>
@@ -26,7 +38,7 @@ const ProductCard = (props) => {
           <div
             key={index}
             className={` ${
-              location.pathname == "/product" ? `gr-${grid}` : "col-3"
+              location.pathname === "/product" ? `gr-${grid}` : "col-3"
             } `}
           >
             <Link
@@ -42,9 +54,7 @@ const ProductCard = (props) => {
               <div className="wishlist-icon position-absolute">
                 <button
                   className="border-0 bg-transparent"
-                  onClick={()=> {
-                    addToWish(item?._id);
-                  }}
+                  onClick={() => addToWish(item?._id)}
                 >
                   <img src={wish} alt="wishlist" />
                 </button>
@@ -77,7 +87,7 @@ const ProductCard = (props) => {
                   className={`description ${
                     grid === 12 ? "d-block" : "d-none"
                   }`}
-                  dangerouslySetInnerHTML={{ __html: item?.description }}
+                  ref={(el) => (descriptionRef.current[index] = el)}
                 ></p>
                 <p className="price">$ {item?.price}</p>
               </div>
