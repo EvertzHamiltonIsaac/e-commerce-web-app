@@ -118,7 +118,7 @@ const ProductCard = (props) => {
 };
 
 ProductCard.propTypes = {
-  grid: PropTypes.number.isRequired,
+  grid: PropTypes.number,
   data: PropTypes.array,
 };
 
