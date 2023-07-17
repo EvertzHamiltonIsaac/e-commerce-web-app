@@ -1,4 +1,3 @@
-import React from "react";
 import BreadCrumb from "../components/BreadCrumb";
 import Meta from "../components/Meta";
 import Container from "../components/Container";
@@ -6,12 +5,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getUserProductWishlist } from "../features/user/userSlice";
 import { addToWishlist } from "../features/products/productSlice";
+import defaultImage from "../images/defaultImage.png"
+
 
 const Wishlist = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getUserProductWishlist());
-  }, []);
+  }, [dispatch]);
   const wishlistState = useSelector(
     (state) => state?.auth?.wishlist?.data?.wishlist
   );
@@ -30,6 +31,7 @@ const Wishlist = () => {
         <div className="row">
           {!wishlistState === 0 && <div>No Data</div>}
           {wishlistState?.map((item, index) => {
+            const imageUrl = item?.images?.[0]?.url || defaultImage;
             return (
               <div className="col-3" key={index}>
                 <div className="wishlist-card position-relative">
@@ -43,14 +45,11 @@ const Wishlist = () => {
                   />
                   <div className="wishlist-card-image">
                     <img
-                      src={
-                        item?.images[0].url
-                          ? item?.images[0].url
-                          : "images/watch.jpg"
-                      }
-                      className="img-fluid w-100 d-block mx-auto"
+                      src={imageUrl}
+                      className="mx-auto img-whish"
                       alt="watch"
-                      width={160}
+                      width={269}
+                      height={269}
                     />
                   </div>
                   <div className="py-3 px-3">
