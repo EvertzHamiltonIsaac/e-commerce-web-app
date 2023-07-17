@@ -1,3 +1,4 @@
+import  { useRef, useEffect } from "react";
 import ReactStars from "react-rating-stars-component";
 import { Link, useLocation } from "react-router-dom";
 import prodcompare from "../images/prodcompare.svg";
@@ -8,25 +9,39 @@ import view from "../images/view.svg";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { addToWishlist } from "../features/products/productSlice";
+import DOMPurify from "dompurify";
+import defaultImage from "../images/defaultImage.png"
 
 const ProductCard = (props) => {
   const { grid, data } = props;
   //console.log(data);
   let location = useLocation();
   const dispatch = useDispatch();
+  const descriptionRef = useRef([]);
 
   const addToWish = (id) => {
     dispatch(addToWishlist(id));
   };
 
+  useEffect(() => {
+    data?.forEach((item, index) => {
+      const sanitizedDescription = DOMPurify.sanitize(item.description);
+      if (descriptionRef.current[index]) {
+        descriptionRef.current[index].innerHTML = sanitizedDescription;
+      }
+    });
+  }, [data]);
+
   return (
     <>
       {data?.map((item, index) => {
+        const imageSrc = item.images[0]?.url || defaultImage;
         return (
+          
           <div
             key={index}
             className={` ${
-              location.pathname == "/product" ? `gr-${grid}` : "col-3"
+              location.pathname === "/product" ? `gr-${grid}` : "col-3"
             } `}
           >
             <Link
@@ -42,25 +57,25 @@ const ProductCard = (props) => {
               <div className="wishlist-icon position-absolute">
                 <button
                   className="border-0 bg-transparent"
-                  onClick={(e) => {
-                    addToWish(item?._id);
-                  }}
+                  onClick={() => addToWish(item?._id)}
                 >
                   <img src={wish} alt="wishlist" />
                 </button>
               </div>
-              <div className="product-image">
+              <div className="product-image d-flex justify-content-center align-items-center">
                 <img
-                  src={item?.images[0].url}
-                  className="img-fluid mx-auto"
+                  src={imageSrc}
+                  className="mx-auto "
                   alt="product image"
-                  width={160}
+                  width={269}
+                  height={269}
                 />
                 <img
                   src={watch2}
-                  className="img-fluid mx-auto"
+                  className="mx-auto"
                   alt="product image"
-                  width={160}
+                  width={269}
+                  height={269}
                 />
               </div>
               <div className="product-details">
@@ -77,7 +92,7 @@ const ProductCard = (props) => {
                   className={`description ${
                     grid === 12 ? "d-block" : "d-none"
                   }`}
-                  dangerouslySetInnerHTML={{ __html: item?.description }}
+                  ref={(el) => (descriptionRef.current[index] = el)}
                 ></p>
                 <p className="price">$ {item?.price}</p>
               </div>
@@ -103,7 +118,7 @@ const ProductCard = (props) => {
 };
 
 ProductCard.propTypes = {
-  grid: PropTypes.number.isRequired,
+  grid: PropTypes.number,
   data: PropTypes.array,
 };
 
