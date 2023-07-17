@@ -1,5 +1,5 @@
 import axios from "axios";
-import { base_url } from "../../utils/axiosConfig";
+import { base_url, config } from "../../utils/axiosConfig";
 
 const register = async (userData) => {
   try {
@@ -23,8 +23,15 @@ const login = async (userData) => {
     throw error;
   }
 };
+const getUserWishlist = async (userData) => {
+  const response = await axios.get(`${base_url}user/wishlist`, config);
+  if (response.data) {
+    return response.data;
+  }
+};
 
 export const authService = {
   register,
   login,
+  getUserWishlist,
 };
