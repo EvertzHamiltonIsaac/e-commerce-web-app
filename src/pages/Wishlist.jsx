@@ -1,3 +1,4 @@
+import { useState } from "react";
 import BreadCrumb from "../components/BreadCrumb";
 import Meta from "../components/Meta";
 import Container from "../components/Container";
@@ -12,6 +13,7 @@ const Wishlist = () => {
   useEffect(() => {
     dispatch(getUserProductWishlist());
   }, [dispatch]);
+
   const wishlistState = useSelector(
     (state) => state?.auth?.wishlist?.data?.wishlist
   );
@@ -22,29 +24,51 @@ const Wishlist = () => {
       dispatch(getUserProductWishlist());
     }, 300);
   };
+
+  const [hoveredItemId, setHoveredItemId] = useState(null);
+
+  const handleMouseEnter = (itemId) => {
+    setHoveredItemId(itemId);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredItemId(null);
+  };
+
   return (
     <>
       <Meta title={"Wishlist"} />
       <BreadCrumb title="Wishlist" />
       <Container class1="wishlist-wrapper home-wrapper-2 py-5">
-        <div className="row">
+        <h1>My wishlist</h1>
+        <div className="wishlist-container">
+          {!wishlistState === 0 && <div>No Data</div>}
           {wishlistState?.map((item, index) => {
             const imageUrl = item?.images?.[0]?.url || defaultImage;
+            const isHovered = item?._id === hoveredItemId;
+
             return (
-              <div className="col-3" key={index}>
+              <div
+                className="wishlist"
+                key={index}
+                onMouseEnter={() => handleMouseEnter(item?._id)}
+                onMouseLeave={handleMouseLeave}
+              >
                 <div className="wishlist-card position-relative">
-                  <img
-                    onClick={() => {
-                      removeFromWishlist(item?._id);
-                    }}
-                    src="images/cross.svg"
-                    alt="cross"
-                    className="position-absolute cross img-fluid"
-                  />
+                  {isHovered && (
+                    <img
+                      onClick={() => {
+                        removeFromWishlist(item?._id);
+                      }}
+                      src="images/cross.svg"
+                      alt="cross"
+                      className="position-absolute cross img-fluid"
+                    />
+                  )}
                   <div className="wishlist-card-image">
                     <img
                       src={imageUrl}
-                      className="mx-auto img-whish"
+                      className="mx-auto img-wish"
                       alt="watch"
                       width={269}
                       height={269}
@@ -52,7 +76,7 @@ const Wishlist = () => {
                   </div>
                   <div className="py-3 px-3">
                     <h5 className="title">{item?.title}</h5>
-                    <h6 className="price">{item?.price}</h6>
+                    <h6 className="price">$ {item?.price}</h6>
                   </div>
                 </div>
               </div>

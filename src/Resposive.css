@@ -43,18 +43,27 @@
   .container-footer footer{
     display: inline-block; 
   }
+  .wishlist-container {
+    grid-template-columns: repeat(3, 1fr); /* 1 product per column */
+  }
+  
 
 }
 
 /* Móviles en horizontal o tablets en vertical */
 
 @media (max-width: 800px) {
-  
+  .wishlist-container {
+    grid-template-columns: repeat(2, 1fr); /* 1 product per column */
+  }
 }
 
 /* Móviles en vertical */
 @media (max-width: 480px) {
   .signup-btn{
     margin-left: 10px;
+  }
+  .wishlist-container {
+    grid-template-columns: repeat(1, 1fr); /* 1 product per column */
   }
 }
