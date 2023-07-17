@@ -5,8 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getUserProductWishlist } from "../features/user/userSlice";
 import { addToWishlist } from "../features/products/productSlice";
-import defaultImage from "../images/defaultImage.png"
-
+import defaultImage from "../images/defaultImage.png";
 
 const Wishlist = () => {
   const dispatch = useDispatch();
@@ -29,7 +28,6 @@ const Wishlist = () => {
       <BreadCrumb title="Wishlist" />
       <Container class1="wishlist-wrapper home-wrapper-2 py-5">
         <div className="row">
-          {!wishlistState === 0 && <div>No Data</div>}
           {wishlistState?.map((item, index) => {
             const imageUrl = item?.images?.[0]?.url || defaultImage;
             return (
