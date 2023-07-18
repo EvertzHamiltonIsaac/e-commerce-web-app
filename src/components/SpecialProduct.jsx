@@ -4,6 +4,7 @@ import "./styles/SpecialProduct.css";
 import watch from "../../src/images/famouswrapper04.png";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import { Button, Container } from "react-bootstrap";
+import PropTypes from "prop-types";
 
 const SpecialProduct = (props) => {
   const { title, brand, totalrating, price, sold, quantity } = props;
@@ -98,5 +99,16 @@ const SpecialProduct = (props) => {
     </>
   );
 };
+
+SpecialProduct.propTypes = {
+  title: PropTypes.string.isRequired,
+  brand: PropTypes.string,
+  totalrating: PropTypes.flot,
+  price: PropTypes.flot,
+  sold: PropTypes.number,
+  quantity: PropTypes.number
+  // Resto de las propiedades
+};
+
 
 export default SpecialProduct;
