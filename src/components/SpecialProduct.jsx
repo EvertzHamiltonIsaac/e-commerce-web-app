@@ -5,10 +5,11 @@ import watch from "../../src/images/famouswrapper04.png";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import { Button, Container } from "react-bootstrap";
 
-const SpecialProduct = () => {
+const SpecialProduct = (props) => {
+  const { title, brand, totalrating, price, sold, quantity } = props;
   const [countdown, setCountdown] = useState(() => {
     const savedCountdown = localStorage.getItem("countdown");
-    return savedCountdown ? parseInt(savedCountdown, 10) : 864000; 
+    return savedCountdown ? parseInt(savedCountdown, 10) : 864000;
   });
 
   useEffect(() => {
@@ -25,7 +26,7 @@ const SpecialProduct = () => {
       localStorage.setItem("countdown", "864000");
     };
 
-    const resetInterval = setInterval(resetCountdown, 864000000); 
+    const resetInterval = setInterval(resetCountdown, 864000000);
 
     return () => {
       clearInterval(timer);
@@ -47,36 +48,46 @@ const SpecialProduct = () => {
               <img src={watch} className="img-card" alt="" />
             </div>
             <div className="special-product-content">
-              <h5 className="brand">Havels</h5>
-
-              <h6 className="title">
-                Samsung Galaxy Note10+ Mobile Phone; Sim...
-              </h6>
+              <h5 className="brand">{brand}</h5>
+              <h6 className="title">{title}</h6>
               <ReactStars
                 count={5}
                 size={24}
-                value={4}
+                value={totalrating}
                 edit={false}
                 activeColor="#ffd700"
               />
-
               <p className="price">
-                <span className="red-p">$100</span> &nbsp;
+                <span className="red-p">${price}</span> &nbsp;
               </p>
               <div className="discount-till d-flex align-items-center gap-10">
                 <p className="mb-0">
                   <b>{days} days</b>
                 </p>
                 <div className="d-flex gap-10 align-items-center">
-                  <span className="badge rounded-circle p-3 timer">{hours}</span>:
-                  <span className="badge rounded-circle p-3 timer">{minutes}</span>:
-                  <span className="badge rounded-circle p-3 timer">{seconds}</span>
+                  <span className="badge rounded-circle p-3 timer">
+                    {hours}
+                  </span>
+                  :
+                  <span className="badge rounded-circle p-3 timer">
+                    {minutes}
+                  </span>
+                  :
+                  <span className="badge rounded-circle p-3 timer">
+                    {seconds}
+                  </span>
                 </div>
               </div>
               <div className="prod-count my-3">
-                <p>Products: 5</p>
+                <p>Products: {quantity}</p>
                 <div className="">
-                  <ProgressBar animated now={60} />
+                  <ProgressBar
+                    style={{ width: quantity / quantity + sold * 100 + "%" }}
+                    animated
+                    now={quantity / quantity + sold * 100}
+                    min={quantity}
+                    max={sold + quantity}
+                  />
                 </div>
               </div>
               <Button className="button-special-product">Add to Cart</Button>{" "}

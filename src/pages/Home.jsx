@@ -15,19 +15,26 @@ import { useEffect } from "react";
 import { getAllBlogs } from "../features/blogs/blogSlice";
 import moment from "moment";
 import defaultImage from "../images/defaultImage.png";
+import { getAllProducts } from "../features/products/productSlice";
 
 const Home = () => {
   const blogState = useSelector((state) => state?.blog?.blogs?.data);
+  const productState = useSelector((state) => state?.product?.product?.data);
+  console.log(productState);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const getBlogs = () => {
-      dispatch(getAllBlogs());
-    };
     getBlogs();
+    getProducts();
   }, [dispatch]);
-  console.log(blogState);
+  const getBlogs = () => {
+    dispatch(getAllBlogs());
+  };
+  const getProducts = () => {
+    dispatch(getAllProducts());
+  };
+
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
@@ -84,10 +91,21 @@ const Home = () => {
           </div>
         </div>
         <div className="special-Product">
-          <SpecialProduct />
-          <SpecialProduct />
-          <SpecialProduct />
-          <SpecialProduct />
+          {productState?.map((item, index) => {
+            if (item?.tags === "special") {
+              return (
+                <SpecialProduct
+                  key={index}
+                  brand={item?.brand}
+                  title={item?.title}
+                  totalrating={item?.totalrating.toString()}
+                  price={item?.price}
+                  sold={item?.sold}
+                  quantity={item?.quantity}
+                />
+              );
+            }
+          })}
         </div>
       </Container>
 
