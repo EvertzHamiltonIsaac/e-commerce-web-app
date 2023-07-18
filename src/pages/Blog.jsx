@@ -5,9 +5,11 @@ import Container from "../components/Container";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getAllBlogs } from "../features/blogs/blogSlice";
+import moment from "moment";
+import defaultImage from "../images/defaultImage.png";
 
 const Blog = () => {
-  const blogState = useSelector((state) => state?.blog?.blog?.data);
+  const blogState = useSelector((state) => state?.blog?.blogs?.data);
 
   const dispatch = useDispatch();
 
@@ -17,6 +19,7 @@ const Blog = () => {
     };
     getBlogs();
   }, [dispatch]);
+  console.log(blogState);
   return (
     <>
       <Meta title={"Blogs"} />
@@ -40,13 +43,17 @@ const Blog = () => {
             <div className="col-9">
               <div className="row">
                 {blogState?.map((item, index) => {
+                  const imageSrc = item.images[0]?.url || defaultImage;
                   return (
                     <div className="col-6 mb-3" key={index}>
                       <BlogCard
                         id={item?._id}
                         title={item?.title}
                         description={item?.description}
-                        image={item?.images[0]?.url}
+                        image={imageSrc}
+                        date={moment(item?.createdAt).format(
+                          "MMMM Do YYYY, h:mm"
+                        )}
                       />
                     </div>
                   );

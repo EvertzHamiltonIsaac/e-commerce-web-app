@@ -10,7 +10,17 @@ const getBlogs = async () => {
     throw error;
   }
 };
+const getBlog = async (id) => {
+  try {
+    const response = await axios.get(`${base_url}blog/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error retrieving blogs:", error);
+    throw error;
+  }
+};
 
 export const blogService = {
   getBlogs,
+  getBlog,
 };

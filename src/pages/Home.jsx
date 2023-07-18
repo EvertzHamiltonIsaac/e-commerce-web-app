@@ -10,7 +10,24 @@ import ItemCategories from "../components/Home/ItemCategories";
 import FamousWrapper from "../components/Home/FamousWrapper";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getAllBlogs } from "../features/blogs/blogSlice";
+import moment from "moment";
+import defaultImage from "../images/defaultImage.png";
+
 const Home = () => {
+  const blogState = useSelector((state) => state?.blog?.blogs?.data);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const getBlogs = () => {
+      dispatch(getAllBlogs());
+    };
+    getBlogs();
+  }, [dispatch]);
+  console.log(blogState);
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
@@ -129,14 +146,22 @@ const Home = () => {
           </div>
         </div>
         <div className="row">
-          <div>
-            <Carousel responsive={responsive}>
-              <BlogCard />
-              <BlogCard />
-              <BlogCard />
-              <BlogCard />
-            </Carousel>
-          </div>
+          {blogState?.map((item, index) => {
+            if (index < 4) {
+              const imageSrc = item?.images[0]?.url || defaultImage;
+              return (
+                <div className="col-3" key={index}>
+                  <BlogCard
+                    id={item?._id}
+                    title={item?.title}
+                    description={item?.description}
+                    image={imageSrc}
+                    date={moment(item?.createdAt).format("MMMM Do YYYY, h:mm")}
+                  />
+                </div>
+              );
+            }
+          })}
         </div>
       </Container>
     </>
