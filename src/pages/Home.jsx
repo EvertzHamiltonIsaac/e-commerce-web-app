@@ -8,7 +8,6 @@ import Meta from "../components/Meta";
 import CarouselSlider from "../components/Home/CarouselSlider";
 import ItemCategories from "../components/Home/ItemCategories";
 import FamousWrapper from "../components/Home/FamousWrapper";
-import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
