@@ -1,12 +1,12 @@
-import{ useState } from 'react';
-import BreadCrumb from '../components/BreadCrumb';
-import Meta from '../components/Meta';
-import Container from '../components/Container';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
-import { getUserProductWishlist } from '../features/user/userSlice';
-import { addToWishlist } from '../features/products/productSlice';
-import defaultImage from '../images/defaultImage.png';
+import { useState } from "react";
+import BreadCrumb from "../components/common/BreadCrumb";
+import Meta from "../components/common/Meta";
+import Container from "../components/Container";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getUserProductWishlist } from "../features/user/userSlice";
+import { addToWishlist } from "../features/products/productSlice";
+import defaultImage from "../images/defaultImage.png";
 
 const Wishlist = () => {
   const dispatch = useDispatch();
@@ -37,10 +37,10 @@ const Wishlist = () => {
 
   return (
     <>
-      <Meta title={'Wishlist'} />
+      <Meta title={"Wishlist"} />
       <BreadCrumb title="Wishlist" />
       <Container class1="wishlist-wrapper home-wrapper-2 py-5">
-      <h1>My wishlist</h1>
+        <h1>My wishlist</h1>
         <div className="wishlist-container">
           {!wishlistState === 0 && <div>No Data</div>}
           {wishlistState?.map((item, index) => {
