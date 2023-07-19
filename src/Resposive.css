@@ -1,0 +1,69 @@
+:root {
+  --color-main: #021e43;
+  --color-hover: #b8cee3;
+  --color-secundary: #00377a;
+  --color-brands: #bf4800;
+  --color-Grimmy: #777777;
+}
+
+
+/* Tablets en horizonal y escritorios normales */
+@media (max-width: 1399px) {
+  
+  /* Header part.................................. */
+
+  .nav-links {
+    width: 100% !important;
+    height: 80px;
+    margin: 5px;
+    border-radius: 10px;
+    padding: 10px !important;
+  }
+
+  .nav-links:focus {
+    background-color: rgba(255, 255, 255, 0.76) !important;
+  }
+
+  .InputGroup {
+    margin: auto;
+    padding: 10px;
+  }
+
+  .logo-toggle {
+    margin-left: 110px;
+  }
+  .category{
+    display: none;
+  } 
+
+  .contentWidth {
+    width: 100%;
+  }
+
+  .container-footer footer{
+    display: inline-block; 
+  }
+  .wishlist-container {
+    grid-template-columns: repeat(3, 1fr); /* 1 product per column */
+  }
+  
+
+}
+
+/* Móviles en horizontal o tablets en vertical */
+
+@media (max-width: 800px) {
+  .wishlist-container {
+    grid-template-columns: repeat(2, 1fr); /* 1 product per column */
+  }
+}
+
+/* Móviles en vertical */
+@media (max-width: 480px) {
+  .signup-btn{
+    margin-left: 10px;
+  }
+  .wishlist-container {
+    grid-template-columns: repeat(1, 1fr); /* 1 product per column */
+  }
+}
