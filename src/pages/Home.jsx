@@ -39,6 +39,7 @@ const Home = () => {
   const getProducts = () => {
     dispatch(getAllProducts());
   };
+  
 
   return (
     <>
@@ -214,7 +215,7 @@ const Home = () => {
             <h3 className="section-heading">Our Latest Blogs</h3>
           </div>
         </div>
-        <div className="row">
+        <div className="blog-container">
           {blogState?.map((item, index) => {
             if (index < 4) {
               const imageSrc = item?.images[0]?.url || defaultImage;

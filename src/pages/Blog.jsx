@@ -40,12 +40,12 @@ const Blog = () => {
                 </div>
               </div>
             </div>
-            <div className="col-9">
-              <div className="row">
+            <div className="">
+              <div className="">
                 {blogState?.map((item, index) => {
                   const imageSrc = item.images[0]?.url || defaultImage;
                   return (
-                    <div className="col-6 mb-3" key={index}>
+                    <div className="" key={index}>
                       <BlogCard
                         id={item?._id}
                         title={item?.title}
