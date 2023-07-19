@@ -21,7 +21,7 @@ const SingleBlog = () => {
       dispatch(getABlog(getBlogId));
     };
     getBlog();
-  }, [dispatch]);
+  });
   console.log(blogState);
   const imageSrc = blogState?.images[0]?.url || defaultImage;
   return (
