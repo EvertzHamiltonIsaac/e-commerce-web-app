@@ -22,6 +22,7 @@ import watch2 from "../images/watch-1.avif";
 import addcart from "../images/add-cart.svg";
 import view from "../images/view.svg";
 
+
 const Home = () => {
   const blogState = useSelector((state) => state?.blog?.blogs?.data);
   const productState = useSelector((state) => state?.product?.product?.data);
@@ -217,7 +218,7 @@ const Home = () => {
             if (index < 4) {
               const imageSrc = item?.images[0]?.url || defaultImage;
               return (
-                <div className="col-3" key={index}>
+                <div className=''  key={index}>
                   <BlogCard
                     id={item?._id}
                     title={item?.title}

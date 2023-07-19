@@ -1,34 +1,46 @@
 import PropTypes from "prop-types";
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
 import DOMPurify from "dompurify";
-
+import {
+  MDBCard,
+  MDBCardImage,
+  MDBCardBody,
+  MDBCardTitle,
+  MDBCardText,
+  MDBBtn,
+} from "mdb-react-ui-kit";
+import "mdb-react-ui-kit/dist/css/mdb.min.css";
 
 const BlogCard = (props) => {
-  
   const { id, title, description, date, image } = props;
   const sanitizedDescription = DOMPurify.sanitize(description);
-  const descriptionElement = document.createElement('div');
+  const descriptionElement = document.createElement("div");
   descriptionElement.innerHTML = sanitizedDescription;
   const sanitizedDescriptionText = descriptionElement.textContent;
- 
-  const truncatedDescription = sanitizedDescriptionText.length > 30
-    ? sanitizedDescriptionText.substring(0, 30) + "..."
-    : sanitizedDescriptionText;
+
+  const truncatedDescription =
+    sanitizedDescriptionText.length > 20
+      ? sanitizedDescriptionText.substring(0, 20) + "..."
+      : sanitizedDescriptionText;
   return (
-    <div className="Blog-card-items">
-      <div className="blog-card">
-      <Card className="card">
-      <Card.Img variant="top" src={image} className="img-blog"/>
-      <Card.Body>
-      <Card.Text>{date}</Card.Text>
-        <Card.Title>{title}</Card.Title>
-        <Card.Text>{truncatedDescription}</Card.Text>
-        <Button href={"/blog/" + id} variant="outline-primary">Go somewhere</Button>
-      </Card.Body>
-    </Card>
-      </div>
-    </div>
+    <MDBCard className="card-padding">
+      <MDBCardImage
+        src={image}
+        alt="..."
+        position="top"
+        className="img-blog-card"
+      />
+      <MDBCardBody>
+        <MDBCardText>
+          {" "}
+          <small className="text-muted">{date}</small>
+        </MDBCardText>
+        <MDBCardTitle>{title}</MDBCardTitle>
+        <MDBCardText>{truncatedDescription}</MDBCardText>
+        <MDBBtn href={"/blog/" + id} outline color="secondary">
+          Read More
+        </MDBBtn>
+      </MDBCardBody>
+    </MDBCard>
   );
 };
 
@@ -37,9 +49,7 @@ BlogCard.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
   date: PropTypes.string,
-  image: PropTypes.string
-
+  image: PropTypes.string,
 };
-
 
 export default BlogCard;
