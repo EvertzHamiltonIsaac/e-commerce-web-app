@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const BlogCard = (props) => {
   const { id, title, description, date, image } = props;
@@ -24,5 +25,15 @@ const BlogCard = (props) => {
     </div>
   );
 };
+
+BlogCard.propTypes = {
+  id: PropTypes.number,
+  title: PropTypes.string,
+  description: PropTypes.string,
+  date: PropTypes.date,
+  image: PropTypes.url
+
+};
+
 
 export default BlogCard;

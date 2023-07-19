@@ -4,12 +4,10 @@ import ProductCard from "../components/ProductCard";
 import SpecialProduct from "../components/SpecialProduct";
 import Container from "../components/Container";
 import Services from "../components/Home/Services";
-import Meta from "../components/Meta";
+import Meta from "../components/common/Meta";
 import CarouselSlider from "../components/Home/CarouselSlider";
 import ItemCategories from "../components/Home/ItemCategories";
 import FamousWrapper from "../components/Home/FamousWrapper";
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getAllBlogs } from "../features/blogs/blogSlice";
@@ -34,25 +32,7 @@ const Home = () => {
   const getProducts = () => {
     dispatch(getAllProducts());
   };
-
-  const responsive = {
-    superLargeDesktop: {
-      breakpoint: { max: 4000, min: 3000 },
-      items: 5,
-    },
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 3,
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 2,
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1,
-    },
-  };
+  
   return (
     <>
       <Meta title={"Home"} />
@@ -181,7 +161,7 @@ const Home = () => {
             }
           })}
         </div>
-      </Container>
+      </Container> 
     </>
   );
 };
