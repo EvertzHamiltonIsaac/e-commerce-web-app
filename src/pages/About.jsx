@@ -1,5 +1,5 @@
-import BreadCrumb from "../components/BreadCrumb";
-import Meta from "../components/Meta";
+import BreadCrumb from "../components/common/BreadCrumb";
+import Meta from "../components/common/Meta";
 
 const About = () => {
     return (

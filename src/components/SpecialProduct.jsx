@@ -54,7 +54,7 @@ const SpecialProduct = (props) => {
               <ReactStars
                 count={5}
                 size={24}
-                value={totalrating}
+                value={parseFloat(totalrating)}
                 edit={false}
                 activeColor="#ffd700"
               />
@@ -83,9 +83,9 @@ const SpecialProduct = (props) => {
                 <p>Products: {quantity}</p>
                 <div className="">
                   <ProgressBar
-                    style={{ width: quantity / quantity + sold * 100 + "%" }}
+                    style={{ width: (quantity / (quantity + sold)) * 100 + "%" }}
                     animated
-                    now={quantity / quantity + sold * 100}
+                    now={(quantity / (quantity + sold)) * 100}
                     min={quantity}
                     max={sold + quantity}
                   />
@@ -102,13 +102,11 @@ const SpecialProduct = (props) => {
 
 SpecialProduct.propTypes = {
   title: PropTypes.string.isRequired,
-  brand: PropTypes.string,
-  totalrating: PropTypes.flot,
-  price: PropTypes.flot,
-  sold: PropTypes.number,
-  quantity: PropTypes.number
-  // Resto de las propiedades
+  brand: PropTypes.string.isRequired,
+  totalrating: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  sold: PropTypes.number.isRequired,
+  quantity: PropTypes.number.isRequired
 };
-
 
 export default SpecialProduct;

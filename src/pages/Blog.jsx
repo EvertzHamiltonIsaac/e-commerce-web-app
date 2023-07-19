@@ -1,5 +1,5 @@
-import BreadCrumb from "../components/BreadCrumb";
-import Meta from "../components/Meta";
+import BreadCrumb from "../components/common/BreadCrumb";
+import Meta from "../components/common/Meta";
 import BlogCard from "../components/BlogCard";
 import Container from "../components/Container";
 import { useDispatch, useSelector } from "react-redux";
@@ -40,12 +40,12 @@ const Blog = () => {
                 </div>
               </div>
             </div>
-            <div className="col-9">
-              <div className="row">
+            <div className="">
+              <div className="">
                 {blogState?.map((item, index) => {
                   const imageSrc = item.images[0]?.url || defaultImage;
                   return (
-                    <div className="col-6 mb-3" key={index}>
+                    <div className="" key={index}>
                       <BlogCard
                         id={item?._id}
                         title={item?.title}

@@ -1,12 +1,13 @@
 import { Link, useLocation } from "react-router-dom";
-import BreadCrumb from "../components/BreadCrumb";
+import BreadCrumb from "../components/common/BreadCrumb";
 import { HiOutlineArrowLeft } from "react-icons/hi";
-import Meta from "../components/Meta";
+import Meta from "../components/common/Meta";
 import Container from "../components/Container";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getABlog } from "../features/blogs/blogSlice";
 import defaultImage from "../images/defaultImage.png";
+import DOMPurify from 'dompurify';
 
 const SingleBlog = () => {
   const blogState = useSelector((state) => state?.blog?.singleBlog?.data);
@@ -21,9 +22,11 @@ const SingleBlog = () => {
       dispatch(getABlog(getBlogId));
     };
     getBlog();
-  }, [dispatch]);
-  console.log(blogState);
+  }, [dispatch, getBlogId]);
+
+  const sanitizedDescription = DOMPurify.sanitize(blogState?.description);
   const imageSrc = blogState?.images[0]?.url || defaultImage;
+  
   return (
     <>
       <Meta title={blogState?.title} />
@@ -41,7 +44,7 @@ const SingleBlog = () => {
                 className="img-fluid w-100 my-4"
                 alt="blog"
               />
-              <p>{blogState?.description}</p>
+              <p dangerouslySetInnerHTML={{ __html: sanitizedDescription }} />
             </div>
           </div>
         </div>

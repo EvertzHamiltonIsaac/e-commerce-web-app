@@ -4,11 +4,10 @@ import ProductCard from "../components/ProductCard";
 import SpecialProduct from "../components/SpecialProduct";
 import Container from "../components/Container";
 import Services from "../components/Home/Services";
-import Meta from "../components/Meta";
+import Meta from "../components/common/Meta";
 import CarouselSlider from "../components/Home/CarouselSlider";
 import ItemCategories from "../components/Home/ItemCategories";
 import FamousWrapper from "../components/Home/FamousWrapper";
-import "react-multi-carousel/lib/styles.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getAllBlogs } from "../features/blogs/blogSlice";
@@ -16,7 +15,7 @@ import moment from "moment";
 import defaultImage from "../images/defaultImage.png";
 import { getAllProducts } from "../features/products/productSlice";
 import ReactStars from "react-rating-stars-component";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import prodcompare from "../images/prodcompare.svg";
 import wish from "../images/wish.svg";
 import watch2 from "../images/watch-1.avif";
@@ -26,38 +25,19 @@ import view from "../images/view.svg";
 const Home = () => {
   const blogState = useSelector((state) => state?.blog?.blogs?.data);
   const productState = useSelector((state) => state?.product?.product?.data);
-  console.log(productState);
+  // console.log(productState);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     getBlogs();
     getProducts();
-  }, [dispatch]);
+  });
   const getBlogs = () => {
     dispatch(getAllBlogs());
   };
   const getProducts = () => {
     dispatch(getAllProducts());
-  };
-
-  const responsive = {
-    superLargeDesktop: {
-      breakpoint: { max: 4000, min: 3000 },
-      items: 5,
-    },
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 3,
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 2,
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1,
-    },
   };
 
   return (
@@ -127,12 +107,7 @@ const Home = () => {
             const imageSrc = item.images[0]?.url || defaultImage;
             if (item?.tags === "popular") {
               return (
-                <div
-                  key={index}
-                  className={` ${
-                    location.pathname === "/product" ? `gr-${grid}` : "col-3"
-                  } `}
-                >
+                <div key={index}>
                   <Link
                     /*to={`${
                 location.pathname == "/"
@@ -144,10 +119,7 @@ const Home = () => {
                     className="product-card position-relative"
                   >
                     <div className="wishlist-icon position-absolute">
-                      <button
-                        className="border-0 bg-transparent"
-                        onClick={() => addToWish(item?._id)}
-                      >
+                      <button className="border-0 bg-transparent">
                         <img src={wish} alt="wishlist" />
                       </button>
                     </div>
@@ -240,7 +212,7 @@ const Home = () => {
             <h3 className="section-heading">Our Latest Blogs</h3>
           </div>
         </div>
-        <div className="row">
+        <div className="blog-container">
           {blogState?.map((item, index) => {
             if (index < 4) {
               const imageSrc = item?.images[0]?.url || defaultImage;
