@@ -14,25 +14,32 @@ import { getAllBlogs } from "../features/blogs/blogSlice";
 import moment from "moment";
 import defaultImage from "../images/defaultImage.png";
 import { getAllProducts } from "../features/products/productSlice";
+import ReactStars from "react-rating-stars-component";
+import { Link } from "react-router-dom";
+import prodcompare from "../images/prodcompare.svg";
+import wish from "../images/wish.svg";
+import watch2 from "../images/watch-1.avif";
+import addcart from "../images/add-cart.svg";
+import view from "../images/view.svg";
 
 const Home = () => {
   const blogState = useSelector((state) => state?.blog?.blogs?.data);
   const productState = useSelector((state) => state?.product?.product?.data);
-  console.log(productState);
+  // console.log(productState);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     getBlogs();
     getProducts();
-  }, [dispatch]);
+  });
   const getBlogs = () => {
     dispatch(getAllBlogs());
   };
   const getProducts = () => {
     dispatch(getAllProducts());
   };
-  
+
   return (
     <>
       <Meta title={"Home"} />
@@ -96,10 +103,74 @@ const Home = () => {
           </div>
         </div>
         <div className="row">
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
+          {productState?.map((item, index) => {
+            const imageSrc = item.images[0]?.url || defaultImage;
+            if (item?.tags === "popular") {
+              return (
+                <div
+                  key={index}
+                >
+                  <Link
+                    /*to={`${
+                location.pathname == "/"
+                  ? "/product/:id"
+                  : location.pathname == "/product/:id"
+                  ? "/product/:id"
+                  : ":id"
+              }`}*/
+                    className="product-card position-relative"
+                  >
+                    <div className="wishlist-icon position-absolute">
+                      <button className="border-0 bg-transparent" >
+                        <img src={wish} alt="wishlist" />
+                      </button>
+                    </div>
+                    <div className="product-image d-flex justify-content-center align-items-center">
+                      <img
+                        src={imageSrc}
+                        className="mx-auto "
+                        alt="product image"
+                        width={269}
+                        height={269}
+                      />
+                      <img
+                        src={watch2}
+                        className="mx-auto"
+                        alt="product image"
+                        width={269}
+                        height={269}
+                      />
+                    </div>
+                    <div className="product-details">
+                      <h6 className="brand">{item?.brand}</h6>
+                      <h5 className="product-title">{item?.title}</h5>
+                      <ReactStars
+                        count={5}
+                        size={24}
+                        value={parseFloat(item?.totalrating)}
+                        edit={false}
+                        activeColor="#ffd700"
+                      />
+                      <p className="price">$ {item?.price}</p>
+                    </div>
+                    <div className="action-bar position-absolute">
+                      <div className="d-flex flex-column gap-15">
+                        <button className="border-0 bg-transparent">
+                          <img src={prodcompare} alt="compare" />
+                        </button>
+                        <button className="border-0 bg-transparent">
+                          <img src={view} alt="view" />
+                        </button>
+                        <button className="border-0 bg-transparent">
+                          <img src={addcart} alt="addcart" />
+                        </button>
+                      </div>
+                    </div>
+                  </Link>
+                </div>
+              );
+            }
+          })}
         </div>
       </Container>
       <Container class1="marque-wrapper home-wrapper-2 py-5">
