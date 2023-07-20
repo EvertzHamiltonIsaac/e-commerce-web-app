@@ -6,8 +6,8 @@ import {
   MDBCardBody,
   MDBCardTitle,
   MDBCardText,
-  MDBBtn,
 } from "mdb-react-ui-kit";
+import { Link } from "react-router-dom";
 
 const BlogCard = (props) => {
   const { id, title, description, date, image } = props;
@@ -35,9 +35,9 @@ const BlogCard = (props) => {
         </MDBCardText>
         <MDBCardTitle>{title}</MDBCardTitle>
         <MDBCardText>{truncatedDescription}</MDBCardText>
-        <MDBBtn href={"/blog/" + id} className="signup-btn" outline color="secondary">
+        <Link to={"/blog/" + id} className="btn Primary-btn">
           Read More
-        </MDBBtn>
+        </Link>
       </MDBCardBody>
     </MDBCard>
   );
