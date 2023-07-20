@@ -454,6 +454,8 @@ header .nav-link{
   border-radius: 15px;
   background-color: white;
   gap: 15px;
+  display: flex;
+  justify-content: space-between;
 }
 .contact-inner-wrapper > div {
   width: 48%;
@@ -478,6 +480,11 @@ header .nav-link{
 .contact-inner-wrapper p {
   color: var(--color-Grimmy);
 }
+
+.contact-btn{
+  width: 100% !important;
+}
+
 /* Contact Page ends */
 
 /* Compare Product Page .....................................................................................................*/
