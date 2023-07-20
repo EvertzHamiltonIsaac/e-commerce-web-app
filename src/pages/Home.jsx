@@ -32,7 +32,7 @@ const Home = () => {
   useEffect(() => {
     getBlogs();
     getProducts();
-  });
+  }, []);
   const getBlogs = () => {
     dispatch(getAllBlogs());
   };
