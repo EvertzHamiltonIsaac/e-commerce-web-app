@@ -8,7 +8,6 @@ import {
   MDBCardText,
   MDBBtn,
 } from "mdb-react-ui-kit";
-import "mdb-react-ui-kit/dist/css/mdb.min.css";
 
 const BlogCard = (props) => {
   const { id, title, description, date, image } = props;
@@ -36,7 +35,7 @@ const BlogCard = (props) => {
         </MDBCardText>
         <MDBCardTitle>{title}</MDBCardTitle>
         <MDBCardText>{truncatedDescription}</MDBCardText>
-        <MDBBtn href={"/blog/" + id} outline color="secondary">
+        <MDBBtn href={"/blog/" + id} className="signup-btn" outline color="secondary">
           Read More
         </MDBBtn>
       </MDBCardBody>
