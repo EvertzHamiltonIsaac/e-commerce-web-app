@@ -63,7 +63,7 @@ const Contact = () => {
             ></iframe>
           </div>
           <div className="col-12 mt-5">
-            <div className="contact-inner-wrapper d-flex justify-content-between ">
+            <div className="contact-inner-wrapper ">
               <div>
                 <h3 className="contact-title mb-4">Contact</h3>
                 <form
@@ -130,11 +130,11 @@ const Contact = () => {
                     </div>
                   </div>
                   <div>
-                    <button className="button border-0">Submit</button>
+                    <button className="btn Primary-btn contact-btn">Submit</button>
                   </div>
                 </form>
               </div>
-              <div>
+              <div className="contact-info">
                 <h3 className="contact-title mb-4">Get in touch with us</h3>
                 <div>
                   <ul className="ps-0">
@@ -152,7 +152,7 @@ const Contact = () => {
                     <li className="mb-3 d-flex gap-15 align-items-center">
                       <AiOutlineMail className="fs-5" />
                       <a href="mailto:navdeepdahiya753@gmail.com">
-                        gingerdevelopmentteam@gmail.com
+                        gingerteam@gmail.com
                       </a>
                     </li>
                     <li className="mb-3 d-flex gap-15 align-items-center">
