@@ -20,6 +20,7 @@ const Blog = () => {
     getBlogs();
   }, [dispatch]);
   console.log(blogState);
+  
   return (
     <>
       <Meta title={"Blogs"} />

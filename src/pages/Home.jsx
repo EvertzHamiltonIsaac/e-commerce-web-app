@@ -1,6 +1,5 @@
 import Marquee from "react-fast-marquee";
 import BlogCard from "../components/BlogCard";
-import ProductCard from "../components/ProductCard";
 import SpecialProduct from "../components/SpecialProduct";
 import Container from "../components/Container";
 import Services from "../components/Home/Services";
@@ -56,10 +55,74 @@ const Home = () => {
           <div className="col-12">
             <h3 className="section-heading">Featured Collection</h3>
           </div>
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
+          <div className="d-flex">
+          {productState?.map((item, index) => {
+            const imageSrc = item.images[0]?.url || defaultImage;
+            if (item?.tags === "featured") {
+              return (
+                <div key={index}>
+                  <Link
+                    /*to={`${
+                location.pathname == "/"
+                  ? "/product/:id"
+                  : location.pathname == "/product/:id"
+                  ? "/product/:id"
+                  : ":id"
+              }`}*/
+                    className="product-card position-relative"
+                  >
+                    <div className="wishlist-icon position-absolute">
+                      <button className="border-0 bg-transparent">
+                        <img src={wish} alt="wishlist" />
+                      </button>
+                    </div>
+                    <div className="product-image d-flex justify-content-center align-items-center">
+                      <img
+                        src={imageSrc}
+                        className="mx-auto "
+                        alt="product image"
+                        width={269}
+                        height={269}
+                      />
+                      <img
+                        src={watch2}
+                        className="mx-auto"
+                        alt="product image"
+                        width={269}
+                        height={269}
+                      />
+                    </div>
+                    <div className="product-details">
+                      <h6 className="brand">{item?.brand}</h6>
+                      <h5 className="product-title">{item?.title}</h5>
+                      <ReactStars
+                        count={5}
+                        size={24}
+                        value={parseFloat(item?.totalrating)}
+                        edit={false}
+                        activeColor="#ffd700"
+                      />
+                      <p className="price">$ {item?.price}</p>
+                    </div>
+                    <div className="action-bar position-absolute">
+                      <div className="d-flex flex-column gap-15">
+                        <button className="border-0 bg-transparent">
+                          <img src={prodcompare} alt="compare" />
+                        </button>
+                        <button className="border-0 bg-transparent">
+                          <img src={view} alt="view" />
+                        </button>
+                        <button className="border-0 bg-transparent">
+                          <img src={addcart} alt="addcart" />
+                        </button>
+                      </div>
+                    </div>
+                  </Link>
+                </div>
+              );
+            }
+          })}
+          </div>
         </div>
       </Container>
 
@@ -172,6 +235,7 @@ const Home = () => {
           })}
         </div>
       </Container>
+
       <Container class1="marque-wrapper home-wrapper-2 py-5">
         <div className="row">
           <div className="col-12">
