@@ -5,12 +5,12 @@ import CheckBox from "react-animated-checkbox";
 import CloseButton from 'react-bootstrap/CloseButton';
 
 const Cards = () => {
-  const [checked, setChecked] = useState(true);
+  const [checked, setChecked] = useState(false);
   const [stockStatus, setStockStatus] = useState("Out of Stock");
 
   const handleCheckboxClick = () => {
     setChecked((prevState) => !prevState);
-    setStockStatus(checked ? "In Stock" : "Out of Stock");
+    setStockStatus(checked ? "Out of Stock" : "In Stock");
   };
 
   return (
