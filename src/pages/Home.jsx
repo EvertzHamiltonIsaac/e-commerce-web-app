@@ -14,7 +14,7 @@ import moment from "moment";
 import defaultImage from "../images/defaultImage.png";
 import { getAllProducts } from "../features/products/productSlice";
 import ReactStars from "react-rating-stars-component";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import prodcompare from "../images/prodcompare.svg";
 import wish from "../images/wish.svg";
 import watch2 from "../images/watch-1.avif";
@@ -25,20 +25,21 @@ import view from "../images/view.svg";
 const Home = () => {
   const blogState = useSelector((state) => state?.blog?.blogs?.data);
   const productState = useSelector((state) => state?.product?.product?.data);
-  // console.log(productState);
+  const  navigate=useNavigate();
 
   const dispatch = useDispatch();
 
   useEffect(() => {
+    const getBlogs = () => {
+      dispatch(getAllBlogs());
+    };
+    const getProducts = () => {
+      dispatch(getAllProducts());
+    };
+  
     getBlogs();
     getProducts();
-  }, []);
-  const getBlogs = () => {
-    dispatch(getAllBlogs());
-  };
-  const getProducts = () => {
-    dispatch(getAllProducts());
-  };
+  }, [dispatch]);
 
   return (
     <>
@@ -55,20 +56,13 @@ const Home = () => {
           <div className="col-12">
             <h3 className="section-heading">Featured Collection</h3>
           </div>
-          <div className="d-flex">
+          <div className="d-flex gap-15">
           {productState?.map((item, index) => {
             const imageSrc = item.images[0]?.url || defaultImage;
             if (item?.tags === "featured") {
               return (
                 <div key={index}>
-                  <Link
-                    /*to={`${
-                location.pathname == "/"
-                  ? "/product/:id"
-                  : location.pathname == "/product/:id"
-                  ? "/product/:id"
-                  : ":id"
-              }`}*/
+                  <div
                     className="product-card position-relative"
                   >
                     <div className="wishlist-icon position-absolute">
@@ -110,14 +104,14 @@ const Home = () => {
                           <img src={prodcompare} alt="compare" />
                         </button>
                         <button className="border-0 bg-transparent">
-                          <img src={view} alt="view" />
+                          <img onClick={()=>navigate("/product/:" + item?._id)} src={view} alt="view" />
                         </button>
                         <button className="border-0 bg-transparent">
                           <img src={addcart} alt="addcart" />
                         </button>
                       </div>
                     </div>
-                  </Link>
+                  </div>
                 </div>
               );
             }
@@ -147,6 +141,7 @@ const Home = () => {
               return (
                 <SpecialProduct
                   key={index}
+                  id={item?._id}
                   brand={item?.brand}
                   title={item?.title}
                   totalrating={item?.totalrating.toString()}
@@ -167,21 +162,13 @@ const Home = () => {
           </div>
         </div>
         <div className="row">
-          {productState?.map((item, index) => {
+         <div className="d-flex gap-15 ">
+         {productState?.map((item, index) => {
             const imageSrc = item.images[0]?.url || defaultImage;
             if (item?.tags === "popular") {
               return (
                 <div key={index}>
-                  <Link
-                    /*to={`${
-                location.pathname == "/"
-                  ? "/product/:id"
-                  : location.pathname == "/product/:id"
-                  ? "/product/:id"
-                  : ":id"
-              }`}*/
-                    className="product-card position-relative"
-                  >
+                  <div className="product-card position-relative">
                     <div className="wishlist-icon position-absolute">
                       <button className="border-0 bg-transparent">
                         <img src={wish} alt="wishlist" />
@@ -221,18 +208,19 @@ const Home = () => {
                           <img src={prodcompare} alt="compare" />
                         </button>
                         <button className="border-0 bg-transparent">
-                          <img src={view} alt="view" />
+                          <img onClick={()=>navigate("/product/:" + item?._id)} src={view} alt="view" />
                         </button>
                         <button className="border-0 bg-transparent">
                           <img src={addcart} alt="addcart" />
                         </button>
                       </div>
                     </div>
-                  </Link>
+                  </div>
                 </div>
               );
             }
           })}
+         </div>
         </div>
       </Container>
 
