@@ -6,7 +6,7 @@ import CloseButton from 'react-bootstrap/CloseButton';
 
 const Cards = () => {
   const [checked, setChecked] = useState();
-  const [stockStatus, setStockStatus] = useState("Out of Stock");
+  const [stockStatus, setStockStatus] = useState("In stock");
 
   const handleCheckboxClick = () => {
     setChecked((prevState) => !prevState);
