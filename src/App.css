@@ -454,6 +454,8 @@ header .nav-link{
   border-radius: 15px;
   background-color: white;
   gap: 15px;
+  display: flex;
+  justify-content: space-between;
 }
 .contact-inner-wrapper > div {
   width: 48%;
@@ -478,6 +480,11 @@ header .nav-link{
 .contact-inner-wrapper p {
   color: var(--color-Grimmy);
 }
+
+.contact-btn{
+  width: 100% !important;
+}
+
 /* Contact Page ends */
 
 /* Compare Product Page .....................................................................................................*/
@@ -664,6 +671,7 @@ header .nav-link{
   width: 48%;
   border: 1px solid rgba(0, 0, 0, 0.25);
 }
+
 .main-product-image .js-image-zoom__zoomed-image {
   left: 50px !important;
   padding: 10px;
@@ -755,19 +763,30 @@ header .nav-link{
 }
 /* Shipping page ends here */
 
+
 .blog-container{
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); 
+  gap: 15px;
 }
 
-.blog-card .card{
-  width: 20rem;
-  display: flex;
-  flex-wrap: wrap;
+.img-blog-card{
+  height: 300px !important;
 }
 
-.blog-card .img-blog{
-  text-align: center;
-  height: 318px;
-  object-fit: cover;
+@media (max-width: 950px) {
+  
+  .blog-container{
+    grid-template-columns: repeat(2, 1fr); 
+  }
 }
+
+@media (max-width: 550px) {
+  
+  .blog-container{
+    grid-template-columns: repeat(1, 1fr); 
+  }
+}
+
+/* ...................................................................... */
+

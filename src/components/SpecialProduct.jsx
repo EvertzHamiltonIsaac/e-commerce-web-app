@@ -7,7 +7,7 @@ import { Button, Container } from "react-bootstrap";
 import PropTypes from "prop-types";
 
 const SpecialProduct = (props) => {
-  const { title, brand, totalrating, price, sold, quantity } = props;
+  const { id, title, brand, totalrating, price, sold, quantity } = props;
   const [countdown, setCountdown] = useState(() => {
     const savedCountdown = localStorage.getItem("countdown");
     return savedCountdown ? parseInt(savedCountdown, 10) : 864000;
@@ -91,7 +91,7 @@ const SpecialProduct = (props) => {
                   />
                 </div>
               </div>
-              <Button className="button-special-product">Add to Cart</Button>{" "}
+              <Button className="button-special-product" href={'/product/'+id} >View Product</Button>{" "}
             </div>
           </div>
         </div>
@@ -101,6 +101,7 @@ const SpecialProduct = (props) => {
 };
 
 SpecialProduct.propTypes = {
+  id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   brand: PropTypes.string.isRequired,
   totalrating: PropTypes.string.isRequired,

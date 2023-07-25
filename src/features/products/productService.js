@@ -11,9 +11,18 @@ const getProducts = async () => {
   }
 };
 
+
+const getSingleProduct = async (id) => {
+  try {
+    const response = await axios.get(`${base_url}product/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error retrieving single product:", error);
+    throw error;
+  }
+};
+
 const addToWishlist = async (productId) => {
-  console.log(config);
-  console.log(productId);
   try {
     const response = await axios.put(
       `${base_url}wishlist`,
@@ -30,4 +39,5 @@ const addToWishlist = async (productId) => {
 export const productService = {
   getProducts,
   addToWishlist,
+  getSingleProduct
 };
