@@ -1,44 +1,49 @@
-import { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
+import {Link, useLocation } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import ReactStars from "react-rating-stars-component";
-import BreadCrumb from "../components/common/BreadCrumb";
-import Meta from "../components/common/Meta";
-import ProductCard from "../components/ProductCard";
-import Color from "../components/Color";
-import { TbGitCompare } from "react-icons/tb";
-import { AiOutlineHeart } from "react-icons/ai";
-import { Link, useLocation } from "react-router-dom";
-import Container from "../components/Container";
-import { useDispatch, useSelector } from "react-redux";
-import { getAProduct } from "../features/products/productSlice";
-import defaultImage from "../images/defaultImage.png";
 import Zoom from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
 import Spinner from "react-bootstrap/Spinner";
 import { toast } from "react-toastify";
+import { TbGitCompare } from "react-icons/tb";
+import { AiOutlineHeart } from "react-icons/ai";
+import BreadCrumb from "../components/common/BreadCrumb";
+import Meta from "../components/common/Meta";
+import ProductCard from "../components/ProductCard";
+import Color from "../components/Color";
+import Container from "../components/Container";
+import { getAProduct } from "../features/products/productSlice";
 import { addProdToCart } from "../features/user/userSlice";
+import defaultImage from "../images/defaultImage.png";
 
 const SingleProduct = () => {
-  
-  // const [color, setColor] = useState(null);
-  const [quantity, setQuantity] = useState(1);
   const location = useLocation();
   const getProductId = location.pathname.split("/")[2];
   const dispatch = useDispatch();
   const productState = useSelector((state) => state.product.product.data);
   const [isLoading, setIsLoading] = useState(true);
-  const availablity = productState?.quantity - productState?.sold === 0 ? "Out of Stock" : "In Stock";
-
+  const [quantity, setQuantity] = useState(1);
   const [selectedColorId, setSelectedColorId] = useState(null);
   const [selectedColorName, setSelectedColorName] = useState("");
+  const [selectedImage, setSelectedImage] = useState();
+  const colorData = productState?.color || [];
+  const isColorDataValid = colorData.length > 0 && colorData[0].name !== undefined;
+  const availablity = productState?.quantity - productState?.sold === 0 ? "Out of Stock" : "In Stock";
 
   const setColor = (colorId) => {
     setSelectedColorId(colorId);
     const selectedColor = productState?.color.find((color) => color._id === colorId);
     setSelectedColorName(selectedColor ? selectedColor.name : "");
   };
-
-  useEffect(() => {
-    dispatch(getAProduct(getProductId)).then(() => setIsLoading(false));
+  
+   useEffect(() => {
+    dispatch(getAProduct(getProductId))
+      .then(() => setIsLoading(false))
+      .catch((error) => {
+        console.error("Error fetching product data:", error);
+        setIsLoading(false);
+      });
   }, [dispatch, getProductId]);
 
   const [orderedProduct] = useState(true);
@@ -69,6 +74,7 @@ const SingleProduct = () => {
 
   const closeModal = () => {};
 
+
   if (isLoading) {
     return (
       <div className="my-5">
@@ -85,169 +91,153 @@ const SingleProduct = () => {
     );
   }
 
-  const imageSrc = productState?.images[0]?.url || defaultImage;
-
   return (
     <>
-      <Meta title={"Product Name"} />
-      <BreadCrumb title="Product Name" />
+      <Meta title={productState?.title || "Product Name"} />
+      <BreadCrumb title={productState?.title || "Product Name"} />
       <Container class1="main-product-wrapper py-5 home-wrapper-2">
-        <div className="row">
-          <div className="col-6">
-            <div className="main-product-image">
-              <div>
-                <Zoom>
-                  <img src={imageSrc} width="500" />
-                </Zoom>
+        {productState && productState.images && (
+          <div className="row">
+            <div className="col-6 product-inline">
+              <div className="main-product-image">
+                <div>
+                  <Zoom>
+                    <img src={selectedImage || productState?.images?.[0]?.url || defaultImage} width="500" alt="" />
+                  </Zoom>
+                </div>
               </div>
-            </div>
-            <div className="other-product-images d-flex flex-wrap gap-15">
-              {productState?.images.map((item, index) => {
-                return (
-                  <div key={index}>
-                    <Zoom>
+              <div className="other-product-images d-flex flex-wrap gap-10">
+                {productState?.images.map((item, index) => {
+                  return (
+                    <div key={index} onClick={() => setSelectedImage(item.url)}>
                       <img
                         src={item?.url}
-                        width="400"
+                        width="500"
                         alt=""
-                        className="img-fluid"
+                        className="img-fluid img-product"
                       />
-                    </Zoom>
-                  </div>
-                );
-              })}
+                    </div>
+                  );
+                })}
+              </div>
             </div>
-          </div>
-          <div className="col-6">
-            <div className="main-product-details">
-              <div className="border-bottom">
-                <h3 className="title">{productState?.title}</h3>
-              </div>
-              <div className="border-bottom py-3">
-                <p className="price">$ {productState?.price}</p>
-                <div className="d-flex align-items-center gap-10">
-                  <ReactStars
-                    count={5}
-                    size={24}
-                    value={parseFloat(productState?.totalrating)}
-                    edit={false}
-                    activeColor="#ffd700"
-                  />
-                  <p className="mb-0 t-review">( 2 Reviews )</p>
+            <div className="col-6 product-inline">
+              <div className="main-product-details">
+                <div className="border-bottom">
+                  <h3 className="title">{productState?.title}</h3>
                 </div>
-                <a className="review-btn" href="#review">
-                  Write a Review
-                </a>
-              </div>
-              <div className=" py-3">
-                <div className="d-flex gap-10 align-items-center my-2">
-                  <h3 className="product-heading">Type :</h3>
-                  <p className="product-data">Watch</p>
-                </div>
-                <div className="d-flex gap-10 align-items-center my-2">
-                  <h3 className="product-heading">Brand :</h3>
-                  <p className="product-data">{productState?.brand}</p>
-                </div>
-                <div className="d-flex gap-10 align-items-center my-2">
-                  <h3 className="product-heading">Category :</h3>
-                  <p className="product-data">{productState?.catogory}</p>
-                </div>
-                <div className="d-flex gap-10 align-items-center my-2">
-                  <h3 className="product-heading">Tags :</h3>
-                  <p className="product-data">{productState?.tags}</p>
-                </div>
-                <div className="d-flex gap-10 align-items-center my-2">
-                  <h3 className="product-heading">Availablity :</h3>
-                  <p className="product-data">{availablity}</p>
-                </div>
-                <div className="d-flex gap-10 flex-column mt-2 mb-3">
-                  {/* <h3 className="product-heading">Size :</h3>
-                  <div className="d-flex flex-wrap gap-15">
-                    <span className="badge border border-1 bg-white text-dark border-secondary">
-                      S
-                    </span>
-                    <span className="badge border border-1 bg-white text-dark border-secondary">
-                      M
-                    </span>
-                    <span className="badge border border-1 bg-white text-dark border-secondary">
-                      XL
-                    </span>
-                    <span className="badge border border-1 bg-white text-dark border-secondary">
-                      XXL
-                    </span>
-                  </div>
-                </div>s
-                <div className="d-flex gap-10 flex-column mt-2 mb-3"> */}
-                  <h3 className="product-heading">Color: {selectedColorName}  </h3>
-                  <Color setColor={setColor} colorData={productState?.color} />
-                </div>
-                <div className="d-flex align-items-center gap-15 flex-row mt-2 mb-3">
-                  <h3 className="product-heading">Quantity :</h3>
-                  <div className="">
-                    <input
-                      type="number"
-                      name=""
-                      min={0}
-                      max={productState?.quantity - productState?.sold}
-                      className="form-control"
-                      style={{ width: "70px" }}
-                      id=""
-                      onChange={(e) => setQuantity(e.target.value)}
-                      value={quantity}
+                <div className="border-bottom py-3">
+                  <p className="price">$ {productState?.price}</p>
+                  <div className="d-flex align-items-center gap-10">
+                    <ReactStars
+                      count={5}
+                      size={24}
+                      value={parseFloat(productState?.totalrating)}
+                      edit={false}
+                      activeColor="#ffd700"
                     />
+                    <p className="mb-0 t-review">( 2 Reviews )</p>
                   </div>
-                  <div className="d-flex align-items-center gap-30 ms-5">
-                    <button
-                      className="button border-0"
-                      data-bs-toggle="modal"
-                      data-bs-target="#staticBackdrop"
-                      type="button"
-                      onClick={() => {
-                        uploadCart();
-                      }}
-                    >
-                      Add to Cart
-                    </button>
-                    <button className="button signup">Buy It Now</button>
-                  </div>
-                </div>
-                <div className="d-flex align-items-center gap-15">
-                  <div>
-                    <a href="">
-                      <TbGitCompare className="fs-5 me-2" /> Add to Compare
-                    </a>
-                  </div>
-                  <div>
-                    <a href="">
-                      <AiOutlineHeart className="fs-5 me-2" /> Add to Wishlist
-                    </a>
-                  </div>
-                </div>
-                <div className="d-flex gap-10 flex-column  my-3">
-                  <h3 className="product-heading">Shipping & Returns :</h3>
-                  <p className="product-data">
-                    Free shipping and returns available on all orders! <br /> We
-                    ship all US domestic orders within
-                    <b>5-10 business days!</b>
-                  </p>
-                </div>
-                <div className="d-flex gap-10 align-items-center my-3">
-                  <h3 className="product-heading">Product Link:</h3>
-                  <a
-                    href="javascript:void(0);"
-                    onClick={() => {
-                      copyToClipboard(
-                        "https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg?cs=srgb&dl=pexels-fernando-arcos-190819.jpg&fm=jpg"
-                      );
-                    }}
-                  >
-                    Copy Product Link
+                  <a className="review-btn" href="#review">
+                    Write a Review
                   </a>
                 </div>
+                <div className="py-3">
+                  <div className="d-flex gap-10 align-items-center my-2">
+                    <h3 className="product-heading">Type :</h3>
+                    <p className="product-data">Watch</p>
+                  </div>
+                  <div className="d-flex gap-10 align-items-center my-2">
+                    <h3 className="product-heading">Brand :</h3>
+                    <p className="product-data">{productState?.brand}</p>
+                  </div>
+                  <div className="d-flex gap-10 align-items-center my-2">
+                    <h3 className="product-heading">Category :</h3>
+                    <p className="product-data">{productState?.catogory}</p>
+                  </div>
+                  <div className="d-flex gap-10 align-items-center my-2">
+                    <h3 className="product-heading">Tags :</h3>
+                    <p className="product-data">{productState?.tags}</p>
+                  </div>
+                  <div className="d-flex gap-10 align-items-center my-2">
+                    <h3 className="product-heading">Availability :</h3>
+                    <p className="product-data">{availablity}</p>
+                  </div>
+                  <div className="d-flex gap-10 flex-column mt-1 mb-1">
+                    <div className="d-flex gap-10 align-items-center my-1">
+                      <h3 className="product-heading">Color: </h3>
+                      <p className="product-data mx-2"> {selectedColorName} </p>
+                    </div>
+                    {isColorDataValid && (
+                      <Color setColor={setColor} colorData={colorData} />
+                    )}
+                  </div>
+                  <div className="d-flex align-items-center gap-15 flex-row mt-2 mb-3">
+                    <h3 className="product-heading">Quantity :</h3>
+                    <div className="">
+                      <input
+                        type="number"
+                        name=""
+                        min={0}
+                        max={productState?.quantity - productState?.sold}
+                        className="form-control"
+                        style={{ width: "70px" }}
+                        id=""
+                        onChange={(e) => setQuantity(e.target.value)}
+                        value={quantity}
+                      />
+                    </div>
+                    <div className="d-flex align-items-center gap-30 ms-5">
+                      <button
+                        className="btn Primary-btn"
+                        data-bs-toggle="modal"
+                        data-bs-target="#staticBackdrop"
+                        type="button"
+                        onClick={() => {
+                          uploadCart();
+                        }}
+                      >
+                        Add to Cart
+                      </button>
+                    </div>
+                  </div>
+                  <div className="d-flex align-items-center gap-15">
+                    <div>
+                      <a href="">
+                        <TbGitCompare className="fs-5 me-2" /> Add to Compare
+                      </a>
+                    </div>
+                    <div>
+                      <a href="">
+                        <AiOutlineHeart className="fs-5 me-2" /> Add to Wishlist
+                      </a>
+                    </div>
+                  </div>
+                  <div className="d-flex gap-10 flex-column my-3">
+                    <h3 className="product-heading">Shipping & Returns :</h3>
+                    <p className="product-data">
+                      Free shipping and returns available on all orders! <br /> We
+                      ship all US domestic orders within <b>5-10 business days!</b>
+                    </p>
+                  </div>
+                  <div className="d-flex gap-10 align-items-center my-3">
+                    <h3 className="product-heading">Product Link:</h3>
+                    <a
+                      href="javascript:void(0);"
+                      onClick={() => {
+                        copyToClipboard(
+                          "https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg?cs=srgb&dl=pexels-fernando-arcos-190819.jpg&fm=jpg"
+                        );
+                      }}
+                    >
+                      Copy Product Link
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        )}
       </Container>
 
       <Container class1="description-wrapper py-5 home-wrapper-2">
@@ -255,9 +245,7 @@ const SingleProduct = () => {
           <div className="col-12">
             <h4>Description</h4>
             <div className="bg-white p-3">
-              <p
-                dangerouslySetInnerHTML={{ __html: productState?.description }}
-              ></p>
+              <p dangerouslySetInnerHTML={{ __html: productState?.description }} />
             </div>
           </div>
         </div>

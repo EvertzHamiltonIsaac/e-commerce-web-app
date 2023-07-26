@@ -24,11 +24,11 @@ const Color = (props) => {
 Color.propTypes = {
   colorData: PropTypes.arrayOf(
     PropTypes.shape({
-      _id: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
+      _id: PropTypes.string,
+      title: PropTypes.string,
     })
   ),
-  setColor: PropTypes.func.isRequired,
+  setColor: PropTypes.func,
 };
 
 export default Color;

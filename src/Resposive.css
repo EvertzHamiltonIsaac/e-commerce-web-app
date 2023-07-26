@@ -80,4 +80,10 @@
   margin-top: 40px;
 }
 
+
+.product-inline{
+  display: inline-block !important;
+  width: auto !important;
+}
+
 }

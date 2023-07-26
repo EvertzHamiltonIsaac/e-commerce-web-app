@@ -667,8 +667,8 @@ header .nav-link{
   padding: 20px;
 }
 .other-product-images > div {
-  padding: 20px;
-  width: 48%;
+  padding: 10px;
+  width: 15%;
   border: 1px solid rgba(0, 0, 0, 0.25);
 }
 
@@ -718,6 +718,11 @@ header .nav-link{
   font-size: 14px;
   color: var(--color-Grimmy);
 }
+
+.img-product{
+  cursor: pointer;
+}
+
 /* Main Product Page */
 
 /* Cart Page................................................................................................................ */
