@@ -9,9 +9,9 @@ import { getUserCart } from "../../features/user/userSlice";
 const Cards = () => {
   const [checked, setChecked] = useState(false);
   const [stockStatus, setStockStatus] = useState("Out of Stock");
-
   const dispatch = useDispatch();
   const userCartState = useSelector((state) => state?.auth?.cartProducts?.data);
+  
   useEffect(() => {
     dispatch(getUserCart());
   }, [dispatch]);
