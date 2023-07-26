@@ -7,7 +7,10 @@ import { useEffect } from "react";
 import { getUserProductWishlist } from "../features/user/userSlice";
 import { addToWishlist } from "../features/products/productSlice";
 import defaultImage from "../images/defaultImage.png";
-
+import { Link } from "react-router-dom";
+import addcart from "../images/add-cart.svg";
+import view from "../images/view.svg";
+import prodcompare from "../images/prodcompare.svg";
 const Wishlist = () => {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -66,13 +69,18 @@ const Wishlist = () => {
                     />
                   )}
                   <div className="wishlist-card-image">
-                    <img
-                      src={imageUrl}
-                      className="mx-auto img-wish"
-                      alt="watch"
-                      width={269}
-                      height={269}
-                    />
+                    <Link
+                      to={"/product/" + item?._id}
+                      className="border-0 bg-transparent"
+                    >
+                      <img
+                        src={imageUrl}
+                        className="mx-auto img-wish"
+                        alt="watch"
+                        width={269}
+                        height={269}
+                      />
+                    </Link>
                   </div>
                   <div className="py-3 px-3">
                     <h5 className="title">{item?.title}</h5>
