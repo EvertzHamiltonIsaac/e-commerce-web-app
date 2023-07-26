@@ -26,7 +26,7 @@ const SingleProduct = () => {
   const dispatch = useDispatch();
   const productState = useSelector((state) => state.product.product.data);
   const [isLoading, setIsLoading] = useState(true);
-
+  const availablity = productState?.quantity - productState?.sold === 0 ? "Out of Stock" : "In Stock";
 
   const [selectedColorId, setSelectedColorId] = useState(null);
   const [selectedColorName, setSelectedColorName] = useState("");
@@ -158,7 +158,7 @@ const SingleProduct = () => {
                 </div>
                 <div className="d-flex gap-10 align-items-center my-2">
                   <h3 className="product-heading">Availablity :</h3>
-                  <p className="product-data">In Stock</p>
+                  <p className="product-data">{availablity}</p>
                 </div>
                 <div className="d-flex gap-10 flex-column mt-2 mb-3">
                   {/* <h3 className="product-heading">Size :</h3>
@@ -187,7 +187,8 @@ const SingleProduct = () => {
                     <input
                       type="number"
                       name=""
-                      min={1}
+                      min={0}
+                      max={productState?.quantity - productState?.sold}
                       className="form-control"
                       style={{ width: "70px" }}
                       id=""
