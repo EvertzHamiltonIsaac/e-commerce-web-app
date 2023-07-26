@@ -51,6 +51,8 @@ const SingleProduct = () => {
   const uploadCart = () => {
     if (selectedColorId === null) {
       toast.error("Please Choose a Color");
+    } else if (productState?.quantity - productState?.sold === 0) {
+      toast.error("Product is Out of Stock");
     } else {
       dispatch(
         addProdToCart({
