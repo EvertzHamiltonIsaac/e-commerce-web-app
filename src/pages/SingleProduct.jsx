@@ -153,7 +153,7 @@ const SingleProduct = () => {
                   <p className="product-data">In Stock</p>
                 </div>
                 <div className="d-flex gap-10 flex-column mt-2 mb-3">
-                  <h3 className="product-heading">Size :</h3>
+                  {/* <h3 className="product-heading">Size :</h3>
                   <div className="d-flex flex-wrap gap-15">
                     <span className="badge border border-1 bg-white text-dark border-secondary">
                       S
@@ -169,7 +169,7 @@ const SingleProduct = () => {
                     </span>
                   </div>
                 </div>
-                <div className="d-flex gap-10 flex-column mt-2 mb-3">
+                <div className="d-flex gap-10 flex-column mt-2 mb-3"> */}
                   <h3 className="product-heading">Color :</h3>
                   <Color setColor={setColor} colorData={productState?.color} />
                 </div>
@@ -241,6 +241,7 @@ const SingleProduct = () => {
           </div>
         </div>
       </Container>
+
       <Container class1="description-wrapper py-5 home-wrapper-2">
         <div className="row">
           <div className="col-12">
@@ -253,6 +254,7 @@ const SingleProduct = () => {
           </div>
         </div>
       </Container>
+
       <Container class1="reviews-wrapper home-wrapper-2">
         <div className="row">
           <div className="col-12">

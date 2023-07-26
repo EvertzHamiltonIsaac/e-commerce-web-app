@@ -3,7 +3,6 @@ import ReactStars from "react-rating-stars-component";
 import { Link, useLocation } from "react-router-dom";
 import prodcompare from "../images/prodcompare.svg";
 import wish from "../images/wish.svg";
-import watch2 from "../images/watch-1.avif";
 import addcart from "../images/add-cart.svg";
 import view from "../images/view.svg";
 import PropTypes from "prop-types";
@@ -36,6 +35,7 @@ const ProductCard = (props) => {
     <>
       {data?.map((item, index) => {
         const imageSrc = item.images[0]?.url || defaultImage;
+        const imageSrc2 = item.images[1]?.url || defaultImage;
         return (
           <div
             key={index}
@@ -61,7 +61,7 @@ const ProductCard = (props) => {
                   height={269}
                 />
                 <img
-                  src={watch2}
+                  src={imageSrc2}
                   className="mx-auto"
                   alt="product image"
                   width={269}

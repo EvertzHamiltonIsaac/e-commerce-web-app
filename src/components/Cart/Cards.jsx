@@ -18,14 +18,15 @@ const Cards = () => {
 
   const handleCheckboxClick = () => {
     setChecked((prevState) => !prevState);
-    setStockStatus(checked ? "In Stock" : "Out of Stock");
+    setStockStatus((prevState) => (prevState ? "Out of Stock" : "In Stock"));
   };
 
   return (
     <div className="container-cart">
       {userCartState &&
         userCartState?.map((item, index) => {
-          return (
+          if (item && item.productId && item.productId.title) {
+            return (
             <div key={index} className="container-cards">
               <div className="img-container">
                 <img src={famouswrapper04} alt="Product" />
@@ -74,6 +75,9 @@ const Cards = () => {
               </div>
             </div>
           );
+    } else {
+      return null; 
+    }
         })}
     </div>
   );

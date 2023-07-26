@@ -17,7 +17,6 @@ import ReactStars from "react-rating-stars-component";
 import { useNavigate } from "react-router-dom";
 import prodcompare from "../images/prodcompare.svg";
 import wish from "../images/wish.svg";
-import watch2 from "../images/watch-1.avif";
 import addcart from "../images/add-cart.svg";
 import view from "../images/view.svg";
 
@@ -59,6 +58,7 @@ const Home = () => {
           <div className="d-flex gap-15">
           {productState?.map((item, index) => {
             const imageSrc = item.images[0]?.url || defaultImage;
+            const imageSrc2 = item.images[1]?.url || defaultImage;
             if (item?.tags === "featured") {
               return (
                 <div key={index}>
@@ -79,7 +79,7 @@ const Home = () => {
                         height={269}
                       />
                       <img
-                        src={watch2}
+                        src={imageSrc2}
                         className="mx-auto"
                         alt="product image"
                         width={269}
@@ -104,7 +104,7 @@ const Home = () => {
                           <img src={prodcompare} alt="compare" />
                         </button>
                         <button className="border-0 bg-transparent">
-                          <img onClick={()=>navigate("/product/:" + item?._id)} src={view} alt="view" />
+                          <img onClick={()=>navigate("/product/" + item?._id)} src={view} alt="view" />
                         </button>
                         <button className="border-0 bg-transparent">
                           <img src={addcart} alt="addcart" />
@@ -165,6 +165,7 @@ const Home = () => {
          <div className="d-flex gap-15 ">
          {productState?.map((item, index) => {
             const imageSrc = item.images[0]?.url || defaultImage;
+            const imageSrc2 = item.images[1]?.url || defaultImage;
             if (item?.tags === "popular") {
               return (
                 <div key={index}>
@@ -183,7 +184,7 @@ const Home = () => {
                         height={269}
                       />
                       <img
-                        src={watch2}
+                        src={imageSrc2}
                         className="mx-auto"
                         alt="product image"
                         width={269}
@@ -208,7 +209,7 @@ const Home = () => {
                           <img src={prodcompare} alt="compare" />
                         </button>
                         <button className="border-0 bg-transparent">
-                          <img onClick={()=>navigate("/product/:" + item?._id)} src={view} alt="view" />
+                          <img onClick={()=>navigate("/product/" + item?._id)} src={view} alt="view" />
                         </button>
                         <button className="border-0 bg-transparent">
                           <img src={addcart} alt="addcart" />
