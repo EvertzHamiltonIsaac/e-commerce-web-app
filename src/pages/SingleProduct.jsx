@@ -64,7 +64,7 @@ const SingleProduct = () => {
       );
     }
   };
-
+  
   const copyToClipboard = (text) => {
     var textField = document.createElement("textarea");
     textField.innerText = text;
@@ -75,7 +75,7 @@ const SingleProduct = () => {
   };
 
   const closeModal = () => {};
-
+  
 
   if (isLoading) {
     return (
@@ -354,42 +354,25 @@ const SingleProduct = () => {
       >
         <div className="modal-dialog modal-dialog-centered ">
           <div className="modal-content">
-            <div className="modal-header py-0 border-0">
+            <div className="modal-header py-1 border-0">
               <button
                 type="button"
-                className="btn-close"
+                className="btn-close btn-close-white mt-2"
                 data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
             </div>
-            <div className="modal-body py-0">
-              <div className="d-flex align-items-center">
-                <div className="flex-grow-1 w-50">
-                  <img
-                    src="images/watch.jpg"
-                    className="img-fluid"
-                    alt="product imgae"
-                  />
-                </div>
-                <div className="d-flex flex-column flex-grow-1 w-50">
-                  <h6 className="mb-3">Apple Watch</h6>
-                  <p className="mb-1">Quantity: asgfd</p>
-                  <p className="mb-1">Color: asgfd</p>
-                  <p className="mb-1">Size: asgfd</p>
-                </div>
-              </div>
-            </div>
             <div className="modal-footer border-0 py-0 justify-content-center gap-30">
-              <button type="button" className="button" data-bs-dismiss="modal">
+              <button type="button" className="btn Primary-btn" data-bs-dismiss="modal">
                 View My Cart
               </button>
-              <button type="button" className="button signup">
+              <button type="button" className="btn signup-btn">
                 Checkout
               </button>
             </div>
             <div className="d-flex justify-content-center py-3">
               <Link
-                className="text-dark"
+                className="text-dark btn"
                 to="/product"
                 onClick={() => {
                   closeModal();
