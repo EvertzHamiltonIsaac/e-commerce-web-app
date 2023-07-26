@@ -1,6 +1,6 @@
-import  { useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import ReactStars from "react-rating-stars-component";
-import {  Link, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import prodcompare from "../images/prodcompare.svg";
 import wish from "../images/wish.svg";
 import watch2 from "../images/watch-1.avif";
@@ -10,7 +10,7 @@ import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { addToWishlist } from "../features/products/productSlice";
 import DOMPurify from "dompurify";
-import defaultImage from "../images/defaultImage.png"
+import defaultImage from "../images/defaultImage.png";
 
 const ProductCard = (props) => {
   const { grid, data } = props;
@@ -37,14 +37,13 @@ const ProductCard = (props) => {
       {data?.map((item, index) => {
         const imageSrc = item.images[0]?.url || defaultImage;
         return (
-          
           <div
             key={index}
             className={` ${
               location.pathname === "/product" ? `gr-${grid}` : "col-3"
             } `}
           >
-            <div className="product-card position-relative" >
+            <div className="product-card position-relative">
               <div className="wishlist-icon position-absolute">
                 <button
                   className="border-0 bg-transparent"
@@ -92,8 +91,11 @@ const ProductCard = (props) => {
                   <button className="border-0 bg-transparent">
                     <img src={prodcompare} alt="compare" />
                   </button>
-                  <Link to={'/product/'+ item?._id} className="border-0 bg-transparent">
-                    <img  src={view} alt="view" />
+                  <Link
+                    to={"/product/" + item?._id}
+                    className="border-0 bg-transparent"
+                  >
+                    <img src={view} alt="view" />
                   </Link>
                   <button className="border-0 bg-transparent">
                     <img src={addcart} alt="addcart" />

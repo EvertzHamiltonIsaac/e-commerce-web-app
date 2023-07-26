@@ -14,15 +14,18 @@ import defaultImage from "../images/defaultImage.png";
 import Zoom from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
 import Spinner from "react-bootstrap/Spinner";
+import { toast } from "react-toastify";
+import { addProdToCart } from "../features/user/userSlice";
 
 const SingleProduct = () => {
+  const [color, setColor] = useState(null);
+  const [quantity, setQuantity] = useState(1);
+
   const location = useLocation();
-  console.log(location);
 
   const getProductId = location.pathname.split("/")[2];
   const dispatch = useDispatch();
   const productState = useSelector((state) => state.product.product.data);
-  console.log(productState);
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -32,8 +35,22 @@ const SingleProduct = () => {
 
   const [orderedProduct] = useState(true);
 
+  const uploadCart = () => {
+    if (color === null) {
+      toast.error("Please Choose a Color");
+    } else {
+      dispatch(
+        addProdToCart({
+          productId: productState?._id,
+          quantity,
+          color,
+          price: productState?.price,
+        })
+      );
+    }
+  };
+
   const copyToClipboard = (text) => {
-    console.log("text", text);
     var textField = document.createElement("textarea");
     textField.innerText = text;
     document.body.appendChild(textField);
@@ -47,17 +64,16 @@ const SingleProduct = () => {
   if (isLoading) {
     return (
       <div className="my-5">
-       <div className="d-flex justify-content-center my-3">
-       {" "}
-        <Spinner animation="border" variant="primary" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </Spinner>
-       </div>
-       <div className="d-flex justify-content-center ">
-       <p>Loading...</p>
-       </div>
+        <div className="d-flex justify-content-center my-3">
+          {" "}
+          <Spinner animation="border" variant="primary" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </Spinner>
+        </div>
+        <div className="d-flex justify-content-center ">
+          <p>Loading...</p>
+        </div>
       </div>
-      
     );
   }
 
@@ -78,13 +94,20 @@ const SingleProduct = () => {
               </div>
             </div>
             <div className="other-product-images d-flex flex-wrap gap-15">
-            {productState?.images.map((item, index) => {
-              return <div key={index}>
-                <Zoom>
-                <img src={item?.url} width="400" alt=""  className="img-fluid"/>
-                </Zoom>
-              </div>
-            }) }
+              {productState?.images.map((item, index) => {
+                return (
+                  <div key={index}>
+                    <Zoom>
+                      <img
+                        src={item?.url}
+                        width="400"
+                        alt=""
+                        className="img-fluid"
+                      />
+                    </Zoom>
+                  </div>
+                );
+              })}
             </div>
           </div>
           <div className="col-6">
@@ -148,7 +171,7 @@ const SingleProduct = () => {
                 </div>
                 <div className="d-flex gap-10 flex-column mt-2 mb-3">
                   <h3 className="product-heading">Color :</h3>
-                  <Color />
+                  <Color setColor={setColor} colorData={productState?.color} />
                 </div>
                 <div className="d-flex align-items-center gap-15 flex-row mt-2 mb-3">
                   <h3 className="product-heading">Quantity :</h3>
@@ -161,6 +184,8 @@ const SingleProduct = () => {
                       className="form-control"
                       style={{ width: "70px" }}
                       id=""
+                      onChange={(e) => setQuantity(e.target.value)}
+                      value={quantity}
                     />
                   </div>
                   <div className="d-flex align-items-center gap-30 ms-5">
@@ -169,6 +194,9 @@ const SingleProduct = () => {
                       data-bs-toggle="modal"
                       data-bs-target="#staticBackdrop"
                       type="button"
+                      onClick={() => {
+                        uploadCart();
+                      }}
                     >
                       Add to Cart
                     </button>
