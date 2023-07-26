@@ -14,7 +14,7 @@ const Cards = () => {
   const userCartState = useSelector((state) => state?.auth?.cartProducts?.data);
   useEffect(() => {
     dispatch(getUserCart());
-  }, []);
+  }, [dispatch]);
 
   const handleCheckboxClick = () => {
     setChecked((prevState) => !prevState);
