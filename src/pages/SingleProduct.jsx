@@ -18,16 +18,24 @@ import { toast } from "react-toastify";
 import { addProdToCart } from "../features/user/userSlice";
 
 const SingleProduct = () => {
-  const [color, setColor] = useState(null);
+  
+  // const [color, setColor] = useState(null);
   const [quantity, setQuantity] = useState(1);
-
   const location = useLocation();
-
   const getProductId = location.pathname.split("/")[2];
   const dispatch = useDispatch();
   const productState = useSelector((state) => state.product.product.data);
-
   const [isLoading, setIsLoading] = useState(true);
+
+
+  const [selectedColorId, setSelectedColorId] = useState(null);
+  const [selectedColorName, setSelectedColorName] = useState("");
+
+  const setColor = (colorId) => {
+    setSelectedColorId(colorId);
+    const selectedColor = productState?.color.find((color) => color._id === colorId);
+    setSelectedColorName(selectedColor ? selectedColor.name : "");
+  };
 
   useEffect(() => {
     dispatch(getAProduct(getProductId)).then(() => setIsLoading(false));
@@ -36,14 +44,14 @@ const SingleProduct = () => {
   const [orderedProduct] = useState(true);
 
   const uploadCart = () => {
-    if (color === null) {
+    if (selectedColorId === null) {
       toast.error("Please Choose a Color");
     } else {
       dispatch(
         addProdToCart({
           productId: productState?._id,
           quantity,
-          color,
+          selectedColorId,
           price: productState?.price,
         })
       );
@@ -168,9 +176,9 @@ const SingleProduct = () => {
                       XXL
                     </span>
                   </div>
-                </div>
+                </div>s
                 <div className="d-flex gap-10 flex-column mt-2 mb-3"> */}
-                  <h3 className="product-heading">Color :</h3>
+                  <h3 className="product-heading">Color: {selectedColorName}  </h3>
                   <Color setColor={setColor} colorData={productState?.color} />
                 </div>
                 <div className="d-flex align-items-center gap-15 flex-row mt-2 mb-3">
@@ -180,7 +188,6 @@ const SingleProduct = () => {
                       type="number"
                       name=""
                       min={1}
-                      max={10}
                       className="form-control"
                       style={{ width: "70px" }}
                       id=""
