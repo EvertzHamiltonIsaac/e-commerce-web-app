@@ -7,8 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserCart } from "../../features/user/userSlice";
 
 const Cards = () => {
-  const [checked, setChecked] = useState();
-  const [stockStatus, setStockStatus] = useState("In stock");
+  const [checked, setChecked] = useState(false);
+  const [stockStatus, setStockStatus] = useState("Out of Stock");
 
   const dispatch = useDispatch();
   const userCartState = useSelector((state) => state?.auth?.cartProducts?.data);
@@ -18,7 +18,7 @@ const Cards = () => {
 
   const handleCheckboxClick = () => {
     setChecked((prevState) => !prevState);
-    setStockStatus(checked ?  "In Stock":"Out of Stock" );
+    setStockStatus(checked ? "In Stock" : "Out of Stock");
   };
 
   return (
@@ -28,7 +28,7 @@ const Cards = () => {
           return (
             <div key={index} className="container-cards">
               <div className="img-container">
-                <img src={item?.productId.images[0]?.url} alt="Product" />
+                <img src={famouswrapper04} alt="Product" />
               </div>
 
               <div className="d-flex">
