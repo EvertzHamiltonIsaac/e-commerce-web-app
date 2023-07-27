@@ -68,9 +68,7 @@ const SingleProduct = () => {
           quantity,
           color: selectedColor,
           price: productState?.price,
-          brand: productState?.brand,
-          images: productState?.images?.[0]?.url || defaultImage,
-          
+          brand: productState?.brand,          
         })
       );
     }

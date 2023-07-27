@@ -6,15 +6,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserCart } from "../../features/user/userSlice";
 
 const Cards = () => {
-
   const dispatch = useDispatch();
   const userCartState = useSelector((state) => state?.auth?.cartProducts?.data);
 
   useEffect(() => {
     dispatch(getUserCart());
   }, [dispatch]);
-
-
 
   return (
     <div className="container-cart">
@@ -32,19 +29,20 @@ const Cards = () => {
                     <div className="func-class">
                       <h4>{item?.productId.title}</h4>
                       <div className="clasify d-flex text-secondary">
-                        <p className="d-flex gap-3">Size</p>
-                        <p className="d-flex gap-3">
+                        <p className="d-flex gap-2">
+                          {" "}
                           Color:
                           <ul className="colors ps-0">
                             <li style={{ background: item?.color?.code }}></li>
                           </ul>
                         </p>
+                        <div className="vl"></div>
+                        <p>{item?.brand}</p>
                       </div>
                       <p className="price">
                         <span className="red-p">$ {item?.price}</span> &nbsp;
                       </p>
-                      <div className="d-flex">
-                      </div>
+                      <div className="d-flex"></div>
                     </div>
                   </div>
                   <input
