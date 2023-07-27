@@ -1,5 +1,5 @@
 import  { useEffect, useState } from "react";
-import {Link, useLocation } from "react-router-dom";
+import {useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import ReactStars from "react-rating-stars-component";
 import Zoom from "react-medium-image-zoom";
@@ -74,7 +74,6 @@ const SingleProduct = () => {
     textField.remove();
   };
 
-  const closeModal = () => {};
   
 
   if (isLoading) {
@@ -192,8 +191,6 @@ const SingleProduct = () => {
                     <div className="d-flex align-items-center gap-30 ms-5">
                       <button
                         className="btn Primary-btn"
-                        data-bs-toggle="modal"
-                        data-bs-target="#staticBackdrop"
                         type="button"
                         onClick={() => {
                           uploadCart();
@@ -342,48 +339,7 @@ const SingleProduct = () => {
           <ProductCard />
         </div>
       </Container>
-
-      <div
-        className="modal fade"
-        id="staticBackdrop"
-        data-bs-backdrop="static"
-        data-bs-keyboard="false"
-        tabIndex="-1"
-        aria-labelledby="staticBackdropLabel"
-        aria-hidden="true"
-      >
-        <div className="modal-dialog modal-dialog-centered ">
-          <div className="modal-content">
-            <div className="modal-header py-1 border-0">
-              <button
-                type="button"
-                className="btn-close btn-close-white mt-2"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div className="modal-footer border-0 py-0 justify-content-center gap-30">
-              <button type="button" className="btn Primary-btn" data-bs-dismiss="modal">
-                View My Cart
-              </button>
-              <button type="button" className="btn signup-btn">
-                Checkout
-              </button>
-            </div>
-            <div className="d-flex justify-content-center py-3">
-              <Link
-                className="text-dark btn"
-                to="/product"
-                onClick={() => {
-                  closeModal();
-                }}
-              >
-                Continue To Shopping
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
+     
     </>
   );
 };
