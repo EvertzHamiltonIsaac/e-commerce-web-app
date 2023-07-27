@@ -1,5 +1,5 @@
-import  { useEffect, useState } from "react";
-import {useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import ReactStars from "react-rating-stars-component";
 import Zoom from "react-medium-image-zoom";
@@ -28,16 +28,22 @@ const SingleProduct = () => {
   const [selectedColorName, setSelectedColorName] = useState("");
   const [selectedImage, setSelectedImage] = useState();
   const colorData = productState?.color || [];
-  const isColorDataValid = colorData.length > 0 && colorData[0].name !== undefined;
-  const availablity = productState?.quantity - productState?.sold === 0 ? "Out of Stock" : "In Stock";
+  const isColorDataValid =
+    colorData.length > 0 && colorData[0].name !== undefined;
+  const availablity =
+    productState?.quantity - productState?.sold === 0
+      ? "Out of Stock"
+      : "In Stock";
 
   const setColor = (colorId) => {
     setSelectedColorId(colorId);
-    const selectedColor = productState?.color.find((color) => color._id === colorId);
+    const selectedColor = productState?.color.find(
+      (color) => color._id === colorId
+    );
     setSelectedColorName(selectedColor ? selectedColor.name : "");
   };
-  
-   useEffect(() => {
+
+  useEffect(() => {
     dispatch(getAProduct(getProductId))
       .then(() => setIsLoading(false))
       .catch((error) => {
@@ -47,7 +53,9 @@ const SingleProduct = () => {
   }, [dispatch, getProductId]);
 
   const [orderedProduct] = useState(true);
-
+  const selectedColor = colorData.find(
+    (color) => color._id === selectedColorId
+  );
   const uploadCart = () => {
     if (selectedColorId === null) {
       toast.error("Please Choose a Color");
@@ -58,13 +66,16 @@ const SingleProduct = () => {
         addProdToCart({
           productId: productState?._id,
           quantity,
-          selectedColorId,
+          color: selectedColor,
           price: productState?.price,
+          brand: productState?.brand,
+          images: productState?.images?.[0]?.url || defaultImage,
+          
         })
       );
     }
   };
-  
+
   const copyToClipboard = (text) => {
     var textField = document.createElement("textarea");
     textField.innerText = text;
@@ -73,8 +84,6 @@ const SingleProduct = () => {
     document.execCommand("copy");
     textField.remove();
   };
-
-  
 
   if (isLoading) {
     return (
@@ -103,7 +112,15 @@ const SingleProduct = () => {
               <div className="main-product-image">
                 <div>
                   <Zoom>
-                    <img src={selectedImage || productState?.images?.[0]?.url || defaultImage} width="500" alt="" />
+                    <img
+                      src={
+                        selectedImage ||
+                        productState?.images?.[0]?.url ||
+                        defaultImage
+                      }
+                      width="500"
+                      alt=""
+                    />
                   </Zoom>
                 </div>
               </div>
@@ -144,10 +161,6 @@ const SingleProduct = () => {
                   </a>
                 </div>
                 <div className="py-3">
-                  <div className="d-flex gap-10 align-items-center my-2">
-                    <h3 className="product-heading">Type :</h3>
-                    <p className="product-data">Watch</p>
-                  </div>
                   <div className="d-flex gap-10 align-items-center my-2">
                     <h3 className="product-heading">Brand :</h3>
                     <p className="product-data">{productState?.brand}</p>
@@ -215,8 +228,9 @@ const SingleProduct = () => {
                   <div className="d-flex gap-10 flex-column my-3">
                     <h3 className="product-heading">Shipping & Returns :</h3>
                     <p className="product-data">
-                      Free shipping and returns available on all orders! <br /> We
-                      ship all US domestic orders within <b>5-10 business days!</b>
+                      Free shipping and returns available on all orders! <br />{" "}
+                      We ship all US domestic orders within{" "}
+                      <b>5-10 business days!</b>
                     </p>
                   </div>
                   <div className="d-flex gap-10 align-items-center my-3">
@@ -244,7 +258,9 @@ const SingleProduct = () => {
           <div className="col-12">
             <h4>Description</h4>
             <div className="bg-white p-3">
-              <p dangerouslySetInnerHTML={{ __html: productState?.description }} />
+              <p
+                dangerouslySetInnerHTML={{ __html: productState?.description }}
+              />
             </div>
           </div>
         </div>
@@ -339,7 +355,6 @@ const SingleProduct = () => {
           <ProductCard />
         </div>
       </Container>
-     
     </>
   );
 };
