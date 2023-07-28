@@ -22,6 +22,7 @@ const SingleProduct = () => {
   const getProductId = location.pathname.split("/")[2];
   const dispatch = useDispatch();
   const productState = useSelector((state) => state.product.product.data);
+  const cartState = useSelector((state) => state.auth?.cartProducts?.data);
   const [isLoading, setIsLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
   const [selectedColorId, setSelectedColorId] = useState(null);
@@ -51,11 +52,25 @@ const SingleProduct = () => {
         setIsLoading(false);
       });
   }, [dispatch, getProductId]);
+  
+  const [alreadyAdded, setAlreadyAdded] = useState(false);
+
+  useEffect(() => {
+    if (cartState && cartState.length > 0) {
+      const isProductAdded = cartState.some(
+        (item) => item?.productId?._id === getProductId
+      );
+      setAlreadyAdded(isProductAdded);
+    } else {
+      setAlreadyAdded(false);
+    }
+  }, [cartState, getProductId]);
 
   const [orderedProduct] = useState(true);
   const selectedColor = colorData.find(
     (color) => color._id === selectedColorId
   );
+
   const uploadCart = () => {
     if (selectedColorId === null) {
       toast.error("Please Choose a Color");
@@ -124,9 +139,9 @@ const SingleProduct = () => {
                 </div>
               </div>
               <div className="other-product-images d-flex flex-wrap gap-10">
-                {productState?.images.map((item, index) => {
+                {productState?.images?.map((item, index) => {
                   return (
-                    <div key={index} onClick={() => setSelectedImage(item.url)}>
+                    <div key={index} onClick={() => setSelectedImage(item?.url)}>
                       <img
                         src={item?.url}
                         width="500"
@@ -177,29 +192,40 @@ const SingleProduct = () => {
                     <p className="product-data">{availablity}</p>
                   </div>
                   <div className="d-flex gap-10 flex-column mt-1 mb-1">
-                    <div className="d-flex gap-10 align-items-center my-1">
-                      <h3 className="product-heading">Color: </h3>
-                      <p className="product-data mx-2"> {selectedColorName} </p>
-                    </div>
-                    {isColorDataValid && (
-                      <Color setColor={setColor} colorData={colorData} />
+                    {alreadyAdded === false && (
+                      <>
+                        <div className="d-flex gap-10 align-items-center my-1">
+                          <h3 className="product-heading">Color: </h3>
+                          <p className="product-data mx-2">
+                            {" "}
+                            {selectedColorName}{" "}
+                          </p>
+                        </div>
+                        {isColorDataValid && (
+                          <Color setColor={setColor} colorData={colorData} />
+                        )}
+                      </>
                     )}
                   </div>
                   <div className="d-flex align-items-center gap-15 flex-row mt-2 mb-3">
-                    <h3 className="product-heading">Quantity :</h3>
-                    <div className="">
-                      <input
-                        type="number"
-                        name=""
-                        min={0}
-                        max={productState?.quantity - productState?.sold}
-                        className="form-control"
-                        style={{ width: "70px" }}
-                        id=""
-                        onChange={(e) => setQuantity(e.target.value)}
-                        value={quantity}
-                      />
-                    </div>
+                    {alreadyAdded === false && (
+                      <>
+                        <h3 className="product-heading">Quantity :</h3>
+                        <div className="">
+                          <input
+                            type="number"
+                            name=""
+                            min={0}
+                            max={productState?.quantity - productState?.sold}
+                            className="form-control"
+                            style={{ width: "70px" }}
+                            id=""
+                            onChange={(e) => setQuantity(e.target.value)}
+                            value={quantity}
+                          />
+                        </div>
+                      </>
+                    )}
                     <div className="d-flex align-items-center gap-30 ms-5">
                       <button
                         className="btn Primary-btn"
@@ -208,7 +234,7 @@ const SingleProduct = () => {
                           uploadCart();
                         }}
                       >
-                        Add to Cart
+                        {alreadyAdded?"Go To Cart" : "Add to Cart"}
                       </button>
                     </div>
                   </div>

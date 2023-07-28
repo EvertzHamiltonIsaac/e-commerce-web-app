@@ -30,13 +30,13 @@ const Cards = () => {
                     <div className="func-class">
                       <h4>{item?.productId.title}</h4>
                       <div className="clasify d-flex text-secondary">
-                        <p className="d-flex gap-2">
+                        <div className="d-flex gap-2">
                           {" "}
                           Color:
                           <ul className="colors ps-0">
                             <li style={{ background: item?.color?.code }}></li>
                           </ul>
-                        </p>
+                        </div>
                         <div className="vl"></div>
                         <p>{item?.productId?.brand}</p>
                       </div>
@@ -50,7 +50,7 @@ const Cards = () => {
                     className="card-input"
                     type="number"
                     min={1}
-                    value={item?.quantity}
+                    defaultValue={item?.quantity}
                   />
                   <div data-bs-theme="dark">
                     <CloseButton />

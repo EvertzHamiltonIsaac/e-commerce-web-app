@@ -713,6 +713,12 @@ header .nav-link {
   cursor: pointer;
 }
 
+.img-container img {
+  width: 200px;
+  margin: 0px 23px;
+  height: 200px;
+}
+
 /* Main Product Page */
 
 /* Shippping Page..................................................................................................................... */
@@ -734,6 +740,9 @@ header .nav-link {
 .container-cards {
   margin-right: 100px !important;
   justify-content: space-around !important;
+  margin-bottom: 20px;
+  background-color: #ffffff63;
+  padding: 51px !important;
 }
 .blog-container {
   display: grid;
