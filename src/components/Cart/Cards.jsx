@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import "../styles/Cart.css";
-import famouswrapper04 from "../../images/famouswrapper04.png";
 import CloseButton from "react-bootstrap/CloseButton";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserCart } from "../../features/user/userSlice";
+import defaultImage from "../../images/defaultImage.png";
 
 const Cards = () => {
   const dispatch = useDispatch();
@@ -18,10 +18,11 @@ const Cards = () => {
       {userCartState &&
         userCartState?.map((item, index) => {
           if (item && item.productId && item.productId.title) {
+            const imageUrl = item?.productId?.images?.[0]?.url || defaultImage;
             return (
               <div key={index} className="container-cards">
                 <div className="img-container">
-                  <img src={famouswrapper04} alt="Product" />
+                  <img src={imageUrl} alt="Product" />
                 </div>
 
                 <div className="d-flex">
@@ -37,7 +38,7 @@ const Cards = () => {
                           </ul>
                         </p>
                         <div className="vl"></div>
-                        <p>{item?.brand}</p>
+                        <p>{item?.productId?.brand}</p>
                       </div>
                       <p className="price">
                         <span className="red-p">$ {item?.price}</span> &nbsp;

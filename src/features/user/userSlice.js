@@ -51,7 +51,7 @@ export const getUserCart = createAsyncThunk(
   "user/cart/get",
   async (cartData, thunkAPI) => {
     try {
-      return await authService.getCart();
+      return await authService.getCart(cartData);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }

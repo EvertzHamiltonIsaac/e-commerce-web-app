@@ -65,10 +65,11 @@ const SingleProduct = () => {
       dispatch(
         addProdToCart({
           productId: productState?._id,
+          images: productState?.images?.[0]?.url,
           quantity,
           color: selectedColor,
           price: productState?.price,
-          brand: productState?.brand,          
+          brand: productState?.brand,
         })
       );
     }
