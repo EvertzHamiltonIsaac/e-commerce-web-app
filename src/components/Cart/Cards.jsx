@@ -13,14 +13,17 @@ const Cards = () => {
   const dispatch = useDispatch();
   const userCartState = useSelector((state) => state?.auth?.cartProducts?.data);
   const [isDeleting, setIsDeleting] = useState(false);
-  const [productUpdateDetails, setProductUpdateDetails] = useState(null);
+  const [productUpdateDetails, setProductUpdateDetails] = useState({
+    newQuantity: 0,
+    id: "",
+  });
 
   console.log(productUpdateDetails);
   useEffect(() => {
     dispatch(getUserCart());
   }, [dispatch, isDeleting]);
 
-  useEffect(() => {
+  /*useEffect(() => {
     dispatch(
       updateCartProduct({
         cartItemId: productUpdateDetails?.cartItemId,
@@ -29,7 +32,7 @@ const Cards = () => {
     ).then(() => {
       dispatch(getUserCart());
     });
-  }, [dispatch, productUpdateDetails]);
+  }, [dispatch, productUpdateDetails]);*/
 
   const handleDeleteProduct = async (id) => {
     try {
@@ -39,6 +42,18 @@ const Cards = () => {
     } catch (error) {
       console.error("Error deleting product:", error);
     }
+  };
+
+  const handleUpdateProductQuantity = async (e, item) => {
+    setProductUpdateDetails({ newQuantity: +e.target.value, id: item?._id });
+    dispatch(
+      updateCartProduct({
+        newQuantity: +e.target.value,
+        cartItemId: item?._id,
+      })
+    ).then(() => {
+      dispatch(getUserCart());
+    });
   };
 
   return (
@@ -79,16 +94,11 @@ const Cards = () => {
                     type="number"
                     min={1}
                     value={
-                      productUpdateDetails?.quantity
-                        ? productUpdateDetails?.quantity
+                      productUpdateDetails?.newQuantity
+                        ? productUpdateDetails?.newQuantity
                         : item?.quantity
                     }
-                    onChange={(e) => {
-                      setProductUpdateDetails({
-                        cartItemId: item?._id,
-                        quantity: e.target.value,
-                      });
-                    }}
+                    onChange={(e) => handleUpdateProductQuantity(e, item)}
                   />
                   <div data-bs-theme="dark">
                     <CloseButton

@@ -62,7 +62,8 @@ const removeProductFromCart = async (cartItemId) => {
   try {
     const response = await axios.delete(
       `${base_url}user/deleteFromCart/${cartItemId}`,
-      config, cartItemId
+      config,
+      cartItemId
     );
     return response.data;
   } catch (error) {
@@ -74,10 +75,12 @@ const removeProductFromCart = async (cartItemId) => {
 const updateProductFromCart = async (cartDetail) => {
   try {
     const response = await axios.put(
-      `${base_url}user/updateFromCart/${cartDetail.cartItemId}/${cartDetail.newQuantity}`, {}, config, cartDetail
+      `${base_url}user/updateFromCart/${cartDetail.cartItemId}`,
+      { newQuantity: cartDetail.newQuantity },
+      config
     );
     // console.log(cartDetail.newQuantity)
-    console.log(response.data)
+    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error("Error removing product from cart:", error);
@@ -92,5 +95,5 @@ export const authService = {
   addToCart,
   getCart,
   removeProductFromCart,
-  updateProductFromCart
+  updateProductFromCart,
 };

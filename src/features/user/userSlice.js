@@ -81,7 +81,6 @@ export const updateCartProduct = createAsyncThunk(
   }
 );
 
-
 const getCustomerfromLocalStorage = localStorage.getItem("customer")
   ? JSON.parse(localStorage.getItem("customer"))
   : null;
@@ -199,8 +198,8 @@ export const authSlice = createSlice({
         state.isError = false;
         state.isSuccess = true;
         state.deleteCartProducts = action.payload;
-        if (state.isSuccess){
-          toast.success("Product Deleted From Cart Successfully")
+        if (state.isSuccess) {
+          toast.success("Product Deleted From Cart Successfully");
         }
       })
       .addCase(deleteCartProduct.rejected, (state, action) => {
@@ -208,8 +207,8 @@ export const authSlice = createSlice({
         state.isError = true;
         state.isSuccess = false;
         state.message = action.error;
-        if (state.isSuccess===false){
-          toast.error("Somthing went wrong!")
+        if (state.isSuccess === false) {
+          toast.error("Somthing went wrong!");
         }
       })
       .addCase(updateCartProduct.pending, (state) => {
@@ -220,17 +219,14 @@ export const authSlice = createSlice({
         state.isError = false;
         state.isSuccess = true;
         state.updateCartProduct = action.payload;
-        if (state.isSuccess){
-          toast.success("Product Updated From Cart Successfully")
-        }
       })
       .addCase(updateCartProduct.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.isSuccess = false;
         state.message = action.error;
-        if (state.isSuccess===false){
-          toast.error("Somthing went wrong!!")
+        if (state.isSuccess === false) {
+          toast.error("Somthing went wrong!!");
         }
       });
   },
