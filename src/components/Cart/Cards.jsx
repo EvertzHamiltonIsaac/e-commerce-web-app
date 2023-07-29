@@ -1,17 +1,38 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "../styles/Cart.css";
 import CloseButton from "react-bootstrap/CloseButton";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserCart } from "../../features/user/userSlice";
+import { deleteCartProduct, getUserCart, updateCartProduct } from "../../features/user/userSlice";
 import defaultImage from "../../images/defaultImage.png";
 
 const Cards = () => {
   const dispatch = useDispatch();
   const userCartState = useSelector((state) => state?.auth?.cartProducts?.data);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [productUpdateDetails, setProductUpdateDetails] = useState(null);
 
+  console.log(productUpdateDetails)
   useEffect(() => {
     dispatch(getUserCart());
-  }, [dispatch]);
+  }, [dispatch, isDeleting]);
+
+  useEffect (() => {
+    dispatch(updateCartProduct({cartItemId:productUpdateDetails?.cartItemId,quantity:productUpdateDetails?.quantity})).then(() => {
+      dispatch(getUserCart());
+    });
+  }, [dispatch, productUpdateDetails])
+
+
+
+  const handleDeleteProduct = async (id) => {
+    try {
+      setIsDeleting(true); 
+      await dispatch(deleteCartProduct(id));
+      setIsDeleting(false); 
+    } catch (error) {
+      console.error("Error deleting product:", error);
+    }
+  };
 
   return (
     <div className="container-cart">
@@ -50,10 +71,11 @@ const Cards = () => {
                     className="card-input"
                     type="number"
                     min={1}
-                    defaultValue={item?.quantity}
+                    value={productUpdateDetails?.quantity ? productUpdateDetails?.quantity : item?.quantity}
+                    onChange={(e) => {setProductUpdateDetails({cartItemId:item?._id, quantity:e.target.value})}}
                   />
                   <div data-bs-theme="dark">
-                    <CloseButton />
+                    <CloseButton onClick={() => handleDeleteProduct(item?._id)} />
                   </div>
                 </div>
               </div>
