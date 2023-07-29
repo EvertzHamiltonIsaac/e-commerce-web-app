@@ -12,14 +12,17 @@ import Navbar from "react-bootstrap/Navbar";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import InputGroup from "react-bootstrap/InputGroup";
 import Dropdown from "react-bootstrap/Dropdown";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { useEffect } from "react";
 
 const Header = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const cartState = useSelector((state) => state?.auth?.cartProducts?.data);
-  const [subtotal, setTotal] = useState(null);
+  const subTotalGlobalState = useSelector(state => state.subTotal);
+  console.log(subTotalGlobalState);
+  // const [subtotal, setTotal] = useState(null);
+
 
   useEffect(() => {
     let sum = 0;
@@ -28,7 +31,7 @@ const Header = () => {
         sum +
         Number(cartState[index].quantity) * Number(cartState[index].price);
     }
-    setTotal(sum);
+    dispatch({ type: 'SET_SUBTOTAL', payload: sum });
   }, [cartState]);
 
   return (
@@ -117,8 +120,8 @@ const Header = () => {
                       <p className="mb-0 size-60">
                         {" "}
                         ${" "}
-                        {subtotal
-                          ? subtotal.toLocaleString(undefined, {
+                        {subTotalGlobalState
+                          ? subTotalGlobalState.toLocaleString(undefined, {
                               minimumFractionDigits: 2,
                               maximumFractionDigits: 2,
                             })
