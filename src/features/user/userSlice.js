@@ -74,7 +74,7 @@ export const updateCartProduct = createAsyncThunk(
   "user/cart/product/update",
   async (cartDetail, thunkAPI) => {
     try {
-      return await authService.updateCartProduct(cartDetail);
+      return await authService.updateProductFromCart(cartDetail);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

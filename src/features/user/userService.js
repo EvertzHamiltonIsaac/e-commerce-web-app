@@ -74,8 +74,10 @@ const removeProductFromCart = async (cartItemId) => {
 const updateProductFromCart = async (cartDetail) => {
   try {
     const response = await axios.put(
-      `${base_url}user/updateFromCart/${cartDetail.cartItemId}/${cartDetail.newQuantity}`, config
+      `${base_url}user/updateFromCart/${cartDetail.cartItemId}/${cartDetail.newQuantity}`, {}, config, cartDetail
     );
+    // console.log(cartDetail.newQuantity)
+    console.log(response.data)
     return response.data;
   } catch (error) {
     console.error("Error removing product from cart:", error);
