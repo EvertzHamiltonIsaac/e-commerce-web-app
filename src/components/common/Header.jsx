@@ -17,7 +17,6 @@ import { useState } from "react";
 import { useEffect } from "react";
 
 const Header = () => {
-
   // const dispatch = useDispatch();
   const cartState = useSelector((state) => state?.auth?.cartProducts?.data);
   const [subtotal, setTotal] = useState(null);
@@ -25,7 +24,9 @@ const Header = () => {
   useEffect(() => {
     let sum = 0;
     for (let index = 0; index < cartState?.length; index++) {
-      sum = sum + (Number(cartState[index].quantity) * Number(cartState[index].price));
+      sum =
+        sum +
+        Number(cartState[index].quantity) * Number(cartState[index].price);
     }
     setTotal(sum);
   }, [cartState]);
@@ -36,7 +37,11 @@ const Header = () => {
         <Navbar key={expand} expand={expand} className="nav-bar-container ">
           <Container xxl="true">
             <Navbar.Brand href="/" className="logo">
-              <img alt="" src="/logowhite.png" width="30" height="30"
+              <img
+                alt=""
+                src="/logowhite.png"
+                width="30"
+                height="30"
                 className="d-inline-block align-center mb-2"
               />
               {"  "}
@@ -106,8 +111,19 @@ const Header = () => {
                   >
                     <img src={cart} alt="cart" className="links-img" />
                     <div className="d-flex flex-column gap-15">
-                      <span className="badge bg-white text-dark">{cartState?.length ? cartState?.length: 0}</span>
-                      <p  className="mb-0 size-60"> $ {subtotal ? subtotal.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : '0.00' }</p>
+                      <span className="badge bg-white text-dark">
+                        {cartState?.length ? cartState?.length : 0}
+                      </span>
+                      <p className="mb-0 size-60">
+                        {" "}
+                        ${" "}
+                        {subtotal
+                          ? subtotal.toLocaleString(undefined, {
+                              minimumFractionDigits: 2,
+                              maximumFractionDigits: 2,
+                            })
+                          : "0.00"}
+                      </p>
                     </div>
                   </Nav.Link>
                 </Nav>
