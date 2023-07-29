@@ -4,16 +4,43 @@ import Image from "react-bootstrap/Image";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import icon from "../../images/IconsQuestion02.png";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useState } from "react";
 
 const Orden = () => {
+  const userCartState = useSelector((state) => state?.auth?.cartProducts?.data);
+  const [totalAmount, setTotalAmount] = useState(null);
+  useEffect(() => {
+    let sum = 0;
+    for (let index = 0; index < userCartState?.length; index++) {
+      sum =
+        sum +
+        Number(userCartState[index].quantity) * userCartState[index].price;
+      setTotalAmount(sum);
+    }
+  }, [userCartState]);
+
   return (
     <div className="order-container">
       <h4>Orden Summary</h4>
       <div className="items-order ">
         <p>Subtotal </p>
-        <p>
-          <span>$100</span> &nbsp;
-        </p>
+        <div>
+          {totalAmount !== null && (
+            <div>
+              {" "}
+              <span>
+                ${" "}
+                {totalAmount.toLocaleString(undefined, {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                })}
+              </span>{" "}
+              &nbsp;
+            </div>
+          )}
+        </div>
       </div>
       <div className="items-order  ">
         <div className="d-flex align-items-center">

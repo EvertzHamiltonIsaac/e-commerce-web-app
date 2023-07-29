@@ -151,7 +151,7 @@ const SingleProduct = () => {
                   <h3 className="title">{productState?.title}</h3>
                 </div>
                 <div className="border-bottom py-3">
-                  <p className="price">$ {productState?.price}</p>
+                  <p className="price">$ {productState?.price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }</p>
                   <div className="d-flex align-items-center gap-10">
                     <ReactStars
                       count={5}

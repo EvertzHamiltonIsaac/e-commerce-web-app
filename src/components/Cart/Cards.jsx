@@ -18,21 +18,10 @@ const Cards = () => {
     id: "",
   });
 
-  console.log(productUpdateDetails);
   useEffect(() => {
     dispatch(getUserCart());
   }, [dispatch, isDeleting]);
 
-  /*useEffect(() => {
-    dispatch(
-      updateCartProduct({
-        cartItemId: productUpdateDetails?.cartItemId,
-        quantity: productUpdateDetails?.quantity,
-      })
-    ).then(() => {
-      dispatch(getUserCart());
-    });
-  }, [dispatch, productUpdateDetails]);*/
 
   const handleDeleteProduct = async (id) => {
     try {
@@ -62,6 +51,7 @@ const Cards = () => {
         userCartState?.map((item, index) => {
           if (item && item.productId && item.productId.title) {
             const imageUrl = item?.productId?.images?.[0]?.url || defaultImage;
+            const totalPriceForProducts = item?.price * item?.quantity;
             return (
               <div key={index} className="container-cards">
                 <div className="img-container">
@@ -84,7 +74,12 @@ const Cards = () => {
                         <p>{item?.productId?.brand}</p>
                       </div>
                       <p className="price">
-                        <span className="red-p">$ {item?.price}</span> &nbsp;
+                        <span className="red-p">$ {item?.price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }</span> &nbsp;
+                      </p>
+                      <p className="text-secondary">
+                      Subtotal:
+                      <span className="red-p"> $ {totalPriceForProducts.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+
                       </p>
                       <div className="d-flex"></div>
                     </div>

@@ -84,7 +84,7 @@ const ProductCard = (props) => {
                   }`}
                   ref={(el) => (descriptionRef.current[index] = el)}
                 ></p>
-                <p className="price">$ {item?.price}</p>
+                <p className="price">$ {item?.price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }</p>
               </div>
               <div className="action-bar position-absolute">
                 <div className="d-flex flex-column gap-15">

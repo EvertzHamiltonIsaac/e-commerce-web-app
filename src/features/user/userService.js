@@ -79,8 +79,6 @@ const updateProductFromCart = async (cartDetail) => {
       { newQuantity: cartDetail.newQuantity },
       config
     );
-    // console.log(cartDetail.newQuantity)
-    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error("Error removing product from cart:", error);
