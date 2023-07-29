@@ -2,7 +2,11 @@ import { useEffect, useState } from "react";
 import "../styles/Cart.css";
 import CloseButton from "react-bootstrap/CloseButton";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteCartProduct, getUserCart, updateCartProduct } from "../../features/user/userSlice";
+import {
+  deleteCartProduct,
+  getUserCart,
+  updateCartProduct,
+} from "../../features/user/userSlice";
 import defaultImage from "../../images/defaultImage.png";
 
 const Cards = () => {
@@ -11,24 +15,27 @@ const Cards = () => {
   const [isDeleting, setIsDeleting] = useState(false);
   const [productUpdateDetails, setProductUpdateDetails] = useState(null);
 
-  console.log(productUpdateDetails)
+  console.log(productUpdateDetails);
   useEffect(() => {
     dispatch(getUserCart());
   }, [dispatch, isDeleting]);
 
-  useEffect (() => {
-    dispatch(updateCartProduct({cartItemId:productUpdateDetails?.cartItemId,quantity:productUpdateDetails?.quantity})).then(() => {
+  useEffect(() => {
+    dispatch(
+      updateCartProduct({
+        cartItemId: productUpdateDetails?.cartItemId,
+        quantity: productUpdateDetails?.quantity,
+      })
+    ).then(() => {
       dispatch(getUserCart());
     });
-  }, [dispatch, productUpdateDetails])
-
-
+  }, [dispatch, productUpdateDetails]);
 
   const handleDeleteProduct = async (id) => {
     try {
-      setIsDeleting(true); 
+      setIsDeleting(true);
       await dispatch(deleteCartProduct(id));
-      setIsDeleting(false); 
+      setIsDeleting(false);
     } catch (error) {
       console.error("Error deleting product:", error);
     }
@@ -71,11 +78,22 @@ const Cards = () => {
                     className="card-input"
                     type="number"
                     min={1}
-                    value={productUpdateDetails?.quantity ? productUpdateDetails?.quantity : item?.quantity}
-                    onChange={(e) => {setProductUpdateDetails({cartItemId:item?._id, quantity:e.target.value})}}
+                    value={
+                      productUpdateDetails?.quantity
+                        ? productUpdateDetails?.quantity
+                        : item?.quantity
+                    }
+                    onChange={(e) => {
+                      setProductUpdateDetails({
+                        cartItemId: item?._id,
+                        quantity: e.target.value,
+                      });
+                    }}
                   />
                   <div data-bs-theme="dark">
-                    <CloseButton onClick={() => handleDeleteProduct(item?._id)} />
+                    <CloseButton
+                      onClick={() => handleDeleteProduct(item?._id)}
+                    />
                   </div>
                 </div>
               </div>
