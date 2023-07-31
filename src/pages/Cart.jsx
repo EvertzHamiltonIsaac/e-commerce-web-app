@@ -3,9 +3,9 @@ import Meta from "../components/common/Meta";
 import Container from "../components/Container";
 import Cards from "../components/Cart/Cards";
 import Orden from "../components/Cart/Orden";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { getUserCart } from "../features/user/userSlice";
+// import { useDispatch, useSelector } from "react-redux";
+// import { useEffect } from "react";
+// import { getUserCart } from "../features/user/userSlice";
 
 const Cart = () => {
   return (

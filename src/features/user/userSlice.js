@@ -226,7 +226,7 @@ export const authSlice = createSlice({
         state.isSuccess = false;
         state.message = action.error;
         if (state.isSuccess === false) {
-          toast.error("Somthing went wrong!!");
+          toast.error("Somthing went wrong!");
         }
       });
   },
