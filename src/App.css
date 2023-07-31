@@ -68,6 +68,10 @@ a {
   color: white !important;
 }
 
+.subtotal .badge{
+  width: 50px !important;
+}
+
 /* Header Part.............................................................................................................................. */
 
 .nav-bar-container {
@@ -179,7 +183,11 @@ header .nav-link {
 }
 
 .size-60{
-  width: 70px;
+  width: 100px;
+}
+
+.badges{
+  width: 50px;
 }
 /* Footer Part Ends Here */
 
@@ -755,6 +763,16 @@ header .nav-link {
 
 .img-blog-card {
   height: 300px !important;
+}
+
+
+.checkout-img{
+  width: 90px;
+  height: 100px;
+}
+
+.color{
+  background-color: var(--color-secundary);
 }
 
 @media (max-width: 950px) {

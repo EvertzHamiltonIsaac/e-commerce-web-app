@@ -12,28 +12,33 @@ import Navbar from "react-bootstrap/Navbar";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import InputGroup from "react-bootstrap/InputGroup";
 import Dropdown from "react-bootstrap/Dropdown";
-import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useMemo } from "react";
+
 
 const Header = () => {
-  const dispatch = useDispatch();
-  const cartState = useSelector((state) => state?.auth?.cartProducts?.data);
-  const subTotalGlobalState = useSelector(state => state.subTotal);
-  console.log(subTotalGlobalState);
-  // const [subtotal, setTotal] = useState(null);
+  const cartItems = useSelector((state) => state.auth.cartProducts?.data || []);
 
+  const { uniqueProductIds, subtotal } = useMemo(() => {
+    const uniqueIds = {};
+    let totalItems = 0;
+    let subtotal = 0;
 
-  useEffect(() => {
-    let sum = 0;
-    for (let index = 0; index < cartState?.length; index++) {
-      sum =
-        sum +
-        Number(cartState[index].quantity) * Number(cartState[index].price);
-    }
-    dispatch({ type: 'SET_SUBTOTAL', payload: sum });
-  }, [cartState]);
+    cartItems.forEach(item => {
+      if (!uniqueIds[item.productId._id]) {
+        uniqueIds[item.productId._id] = true;
+      }
+      totalItems += item.quantity;
+      subtotal += item.quantity * item.price;
+    });
 
+    return {
+      uniqueProductIds: Object.keys(uniqueIds).length,
+      totalItems,
+      subtotal,
+    };
+  }, [cartItems]);
+  
   return (
     <>
       {["xxl"].map((expand) => (
@@ -108,27 +113,37 @@ const Header = () => {
                     <img src={user} alt="user" className="links-img" />
                     Log in /<br /> Account
                   </Nav.Link>
-                  <Nav.Link
-                    href="/cart"
-                    className="nav-links d-flex justify-content-center links-active"
-                  >
-                    <img src={cart} alt="cart" className="links-img" />
-                    <div className="d-flex flex-column gap-15">
-                      <span className="badge bg-white text-dark">
-                        {cartState?.length ? cartState?.length : 0}
-                      </span>
-                      <p className="mb-0 size-60">
-                        {" "}
-                        ${" "}
-                        {subTotalGlobalState
-                          ? subTotalGlobalState.toLocaleString(undefined, {
-                              minimumFractionDigits: 2,
-                              maximumFractionDigits: 2,
-                            })
-                          : "0.00"}
-                      </p>
-                    </div>
-                  </Nav.Link>
+                  {cartItems.length > 0 ? (
+                    <Nav.Link
+                      href="/cart"
+                      className="nav-links d-flex justify-content-center links-active"
+                    >
+                      <img src={cart} alt="cart" className="links-img" />
+                      <div className="d-flex flex-column subtotal">
+                        <p className="badge bg-white text-dark">
+                          {uniqueProductIds}
+                        </p>
+                        <p className="mb-0 size-60">
+                          ${" "}
+                          {subtotal.toLocaleString(undefined, {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2,
+                          })}
+                        </p>
+                      </div>
+                    </Nav.Link>
+                  ) : (
+                    <Nav.Link
+                      href="/cart"
+                      className="nav-links d-flex justify-content-center links-active"
+                    >
+                      <img src={cart} alt="cart" className="links-img" />
+                      <div className="d-flex flex-column gap-15">
+                        <span className="badge bg-white text-dark">0</span>
+                        <p className="mb-0 size-60">$ 0.00</p>
+                      </div>
+                    </Nav.Link>
+                  )}
                 </Nav>
               </Offcanvas.Body>
             </Navbar.Offcanvas>
