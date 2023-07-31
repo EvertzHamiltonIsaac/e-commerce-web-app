@@ -12,15 +12,44 @@ import Navbar from "react-bootstrap/Navbar";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import InputGroup from "react-bootstrap/InputGroup";
 import Dropdown from "react-bootstrap/Dropdown";
+import { useSelector } from "react-redux";
+import { useMemo } from "react";
+
 
 const Header = () => {
+  const cartItems = useSelector((state) => state.auth.cartProducts?.data || []);
+
+  const { uniqueProductIds, subtotal } = useMemo(() => {
+    const uniqueIds = {};
+    let totalItems = 0;
+    let subtotal = 0;
+
+    cartItems.forEach(item => {
+      if (!uniqueIds[item.productId._id]) {
+        uniqueIds[item.productId._id] = true;
+      }
+      totalItems += item.quantity;
+      subtotal += item.quantity * item.price;
+    });
+
+    return {
+      uniqueProductIds: Object.keys(uniqueIds).length,
+      totalItems,
+      subtotal,
+    };
+  }, [cartItems]);
+  
   return (
     <>
       {["xxl"].map((expand) => (
         <Navbar key={expand} expand={expand} className="nav-bar-container ">
           <Container xxl="true">
             <Navbar.Brand href="/" className="logo">
-              <img alt="" src="/logowhite.png" width="30" height="30"
+              <img
+                alt=""
+                src="/logowhite.png"
+                width="30"
+                height="30"
                 className="d-inline-block align-center mb-2"
               />
               {"  "}
@@ -84,16 +113,37 @@ const Header = () => {
                     <img src={user} alt="user" className="links-img" />
                     Log in /<br /> Account
                   </Nav.Link>
-                  <Nav.Link
-                    href="/cart"
-                    className="nav-links d-flex justify-content-center links-active"
-                  >
-                    <img src={cart} alt="cart" className="links-img" />
-                    <div className="d-flex flex-column gap-15">
-                      <span className="badge bg-white text-dark">0</span>
-                      <p className="mb-0">$500</p>
-                    </div>
-                  </Nav.Link>
+                  {cartItems.length > 0 ? (
+                    <Nav.Link
+                      href="/cart"
+                      className="nav-links d-flex justify-content-center links-active"
+                    >
+                      <img src={cart} alt="cart" className="links-img" />
+                      <div className="d-flex flex-column subtotal">
+                        <p className="badge bg-white text-dark">
+                          {uniqueProductIds}
+                        </p>
+                        <p className="mb-0 size-60">
+                          ${" "}
+                          {subtotal.toLocaleString(undefined, {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2,
+                          })}
+                        </p>
+                      </div>
+                    </Nav.Link>
+                  ) : (
+                    <Nav.Link
+                      href="/cart"
+                      className="nav-links d-flex justify-content-center links-active"
+                    >
+                      <img src={cart} alt="cart" className="links-img" />
+                      <div className="d-flex flex-column gap-15">
+                        <span className="badge bg-white text-dark">0</span>
+                        <p className="mb-0 size-60">$ 0.00</p>
+                      </div>
+                    </Nav.Link>
+                  )}
                 </Nav>
               </Offcanvas.Body>
             </Navbar.Offcanvas>

@@ -4,16 +4,48 @@ import Image from "react-bootstrap/Image";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import icon from "../../images/IconsQuestion02.png";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useState } from "react";
 
 const Orden = () => {
+  const userCartState = useSelector((state) => state?.auth?.cartProducts?.data);
+  const [totalAmount, setTotalAmount] = useState(null);
+
+  useEffect(() => {
+    let sum = 0;
+    for (let index = 0; index < userCartState?.length; index++) {
+      sum =
+        sum +
+        Number(userCartState[index].quantity) * userCartState[index].price;
+      setTotalAmount(sum);
+    }
+  }, [userCartState]);
+
+  const Shipping = totalAmount * 0.01 * 2.5;
+  const tax = totalAmount * 0.2;
+  const TotalOrder = totalAmount + Shipping + tax;
+
   return (
     <div className="order-container">
       <h4>Orden Summary</h4>
       <div className="items-order ">
         <p>Subtotal </p>
-        <p>
-          <span>$100</span> &nbsp;
-        </p>
+        <div>
+          {totalAmount !== null && (
+            <div>
+              {" "}
+              <span>
+                ${" "}
+                {totalAmount.toLocaleString(undefined, {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                })}
+              </span>{" "}
+              &nbsp;
+            </div>
+          )}
+        </div>
       </div>
       <div className="items-order  ">
         <div className="d-flex align-items-center">
@@ -37,7 +69,14 @@ const Orden = () => {
           </OverlayTrigger>
         </div>
         <p>
-          <span>$100</span> &nbsp;
+          <span>
+            ${" "}
+            {Shipping.toLocaleString(undefined, {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            })}
+          </span>{" "}
+          &nbsp;
         </p>
       </div>
       <div className="items-order  ">
@@ -61,13 +100,27 @@ const Orden = () => {
           </OverlayTrigger>
         </div>
         <p>
-          <span>$ 100</span> &nbsp;
+          <span>
+            ${" "}
+            {tax.toLocaleString(undefined, {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            })}
+          </span>{" "}
+          &nbsp;
         </p>
       </div>
       <div className="order-total">
         <h5>Order Total</h5>
         <p className="price">
-          <span>$ 2040.0</span> &nbsp;
+          <span>
+            ${" "}
+            {TotalOrder.toLocaleString(undefined, {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            })}
+          </span>{" "}
+          &nbsp;
         </p>
       </div>
       <Link to="/checkout" className="btn-link btn Primary-btn">

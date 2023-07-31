@@ -11,7 +11,6 @@
   --color-brands: #bf4800;
   --color-Grimmy: #777777;
   --color-wrapper: #f5f5f7;
-  
 }
 
 .section-heading {
@@ -51,28 +50,29 @@ a {
   gap: 30px;
 }
 
-.text-color-white{
+.text-color-white {
   color: white !important;
 }
 
-.error{
+.error {
   color: red;
 }
 
-.Primary-btn{
+.Primary-btn {
   border: 2px solid #021e43 !important;
   color: #021e43 !important;
 }
 
-.Primary-btn:hover{
+.Primary-btn:hover {
   background-color: #021e43 !important;
   color: white !important;
 }
 
+.subtotal .badge{
+  width: 50px !important;
+}
 
 /* Header Part.............................................................................................................................. */
-
-
 
 .nav-bar-container {
   background-color: var(--color-main);
@@ -105,11 +105,11 @@ a {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath  stroke='rgba(255, 255, 255, 0.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 
-.navbar-toggle{
+.navbar-toggle {
   background-color: var(--color-main) !important;
 }
 
-.btn-close{
+.btn-close {
   --bs-btn-close-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='rgba(255, 255, 255, 1)'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e") !important;
 }
 
@@ -118,24 +118,23 @@ a {
   margin-top: 6px;
 }
 
-
-.links-active:hover{
+.links-active:hover {
   color: var(--color-hover) !important;
 }
 
-.InputGroup{
+.InputGroup {
   margin: 20px 15px;
 }
 
-header{
+header {
   background-color: var(--color-secundary);
 }
 
-header .nav-link{
+header .nav-link {
   text-transform: uppercase;
 }
 
-.Dropdown-Toggle{
+.Dropdown-Toggle {
   background: transparent !important;
   border: none !important;
   padding: 10px !important;
@@ -143,11 +142,11 @@ header .nav-link{
   font-weight: 400 !important;
 }
 
-.dropdown button{
+.dropdown button {
   text-transform: uppercase;
 }
 
-.dropdown button:focus{
+.dropdown button:focus {
   box-shadow: none !important;
 }
 
@@ -157,11 +156,11 @@ header .nav-link{
   padding: 15px !important;
 }
 
-.dropdown-item:hover{
+.dropdown-item:hover {
   background-color: rgba(255, 255, 255, 0.2) !important;
 }
 
-.dropdown-menu.show{
+.dropdown-menu.show {
   width: 100%;
   transform: translate3d(0px, 57px, 0px) !important;
   background-color: var(--color-main);
@@ -169,23 +168,27 @@ header .nav-link{
 
 /* Header Part End Here */
 
-
-
 /* Footer Part.......................................................................................................... */
 
 .footer-container {
   background-color: var(--color-main);
 }
 
-.link-footer{
+.link-footer {
   color: white;
 }
 
-.link-footer:hover{
+.link-footer:hover {
   color: white;
 }
 
+.size-60{
+  width: 100px;
+}
 
+.badges{
+  width: 50px;
+}
 /* Footer Part Ends Here */
 
 /* Home Page....................................................................................................... */
@@ -196,8 +199,9 @@ header .nav-link{
 
 /* categories section................................................................................................... */
 
-.categories{
-  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+.categories {
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
   gap: 0;
@@ -205,8 +209,8 @@ header .nav-link{
   background-color: white;
 }
 
-.categories .items{
-  border: 1px  solid #bbbbbb42;
+.categories .items {
+  border: 1px solid #bbbbbb42;
   padding: 20px;
   display: flex;
   align-items: center;
@@ -214,24 +218,21 @@ header .nav-link{
 }
 /* categories section ends here */
 
-
 /* Special Products........................................................................ */
 
-
-.special-Product{
+.special-Product {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
   gap: 20px;
 }
 
-
 /* Special Products End */
 
-.Blog-card-items{
+.Blog-card-items {
   margin: 5px;
 }
 
-.container-wrapper-famous{
+.container-wrapper-famous {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
   gap: 30px;
@@ -246,7 +247,6 @@ header .nav-link{
   background-color: white;
   border-radius: 10px;
 }
-
 
 .blog-card img {
   border-top-left-radius: 10px;
@@ -343,7 +343,6 @@ header .nav-link{
   right: 15px;
 }
 /* Product Card ends here */
-
 
 /* Our Store............................................................................................................................ */
 .filter-card {
@@ -481,7 +480,7 @@ header .nav-link{
   color: var(--color-Grimmy);
 }
 
-.contact-btn{
+.contact-btn {
   width: 100% !important;
 }
 
@@ -491,7 +490,7 @@ header .nav-link{
 
 .wishlist-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr ); /* 4 products per column */
+  grid-template-columns: repeat(4, 1fr); /* 4 products per column */
   grid-gap: 20px;
 }
 
@@ -557,7 +556,9 @@ header .nav-link{
   max-width: 500px;
   margin: 30px auto;
   border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em,
+    rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
+    rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
 }
 
 .auth-card h3 {
@@ -572,23 +573,23 @@ header .nav-link{
   color: var(--color-main);
 }
 
-.signup-btn{
+.signup-btn {
   background-color: #021e43 !important;
   color: white !important;
   font-size: 16px !important;
 }
 
-.signup-btn:hover{
+.signup-btn:hover {
   border: 2px solid #021e43 !important;
   color: #021e43 !important;
   background-color: white !important;
 }
 
-.btn-Forgot-pass{
+.btn-Forgot-pass {
   color: #00377a;
 }
 
-.btn-Forgot-pass:hover{
+.btn-Forgot-pass:hover {
   color: #bf4800;
   cursor: pointer;
 }
@@ -667,8 +668,8 @@ header .nav-link{
   padding: 20px;
 }
 .other-product-images > div {
-  padding: 20px;
-  width: 48%;
+  padding: 10px;
+  width: 15%;
   border: 1px solid rgba(0, 0, 0, 0.25);
 }
 
@@ -718,38 +719,18 @@ header .nav-link{
   font-size: 14px;
   color: var(--color-Grimmy);
 }
-/* Main Product Page */
 
-/* Cart Page................................................................................................................ */
-.cart-header,
-.cart-data {
-  border-bottom: 1px solid #eaeaea;
+.img-product {
+  cursor: pointer;
 }
-.cart-header h4 {
-  font-size: 13px;
-  color: var(--color-Grimmy);
+
+.img-container img {
+  width: 200px;
+  margin: 0px 23px;
+  height: 200px;
 }
-.cart-col-1 {
-  width: 40%;
-}
-.cart-col-1 p {
-  color: var(--color-Grimmy);
-  font-size: 14px;
-}
-.cart-col-2 {
-  width: 10%;
-}
-.cart-col-3 {
-  width: 15%;
-}
-.cart-col-4 {
-  width: 15%;
-}
-.cart-data h5.price {
-  font-size: 14px;
-  color: var(--color-1c1c1b);
-}
-/* Cart Page Ends here */
+
+/* Main Product Page */
 
 /* Shippping Page..................................................................................................................... */
 
@@ -763,30 +744,47 @@ header .nav-link{
 }
 /* Shipping page ends here */
 
+.order-container {
+  height: fit-content;
+}
 
-.blog-container{
+.container-cards {
+  margin-right: 100px !important;
+  justify-content: space-around !important;
+  margin-bottom: 20px;
+  background-color: #ffffff63;
+  padding: 51px !important;
+}
+.blog-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); 
+  grid-template-columns: repeat(4, 1fr);
   gap: 15px;
 }
 
-.img-blog-card{
+.img-blog-card {
   height: 300px !important;
 }
 
+
+.checkout-img{
+  width: 90px;
+  height: 100px;
+}
+
+.color{
+  background-color: var(--color-secundary);
+}
+
 @media (max-width: 950px) {
-  
-  .blog-container{
-    grid-template-columns: repeat(2, 1fr); 
+  .blog-container {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 550px) {
-  
-  .blog-container{
-    grid-template-columns: repeat(1, 1fr); 
+  .blog-container {
+    grid-template-columns: repeat(1, 1fr);
   }
 }
 
 /* ...................................................................... */
-

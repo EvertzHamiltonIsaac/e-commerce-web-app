@@ -16,10 +16,20 @@ const BlogCard = (props) => {
   descriptionElement.innerHTML = sanitizedDescription;
   const sanitizedDescriptionText = descriptionElement.textContent;
 
+  const sanitizedTitle = DOMPurify.sanitize(title);
+  const titleElement = document.createElement("div");
+  titleElement.innerHTML = sanitizedTitle;
+  const sanitizedTitleText = titleElement.textContent;
+
   const truncatedDescription =
-    sanitizedDescriptionText.length > 20
-      ? sanitizedDescriptionText.substring(0, 20) + "..."
+    sanitizedDescriptionText.length > 30
+      ? sanitizedDescriptionText.substring(0, 30) + "..."
       : sanitizedDescriptionText;
+
+  const truncatedTitle =
+    sanitizedTitleText.length > 24
+      ? sanitizedTitleText.substring(0, 24) + "..."
+      : sanitizedTitleText;
   return (
     <MDBCard className="card-padding">
       <MDBCardImage
@@ -33,7 +43,7 @@ const BlogCard = (props) => {
           {" "}
           <small className="text-muted">{date}</small>
         </MDBCardText>
-        <MDBCardTitle>{title}</MDBCardTitle>
+        <MDBCardTitle>{truncatedTitle}</MDBCardTitle>
         <MDBCardText>{truncatedDescription}</MDBCardText>
         <Link to={"/blog/" + id} className="btn Primary-btn">
           Read More
