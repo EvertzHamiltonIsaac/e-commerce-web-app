@@ -12,28 +12,14 @@ import Navbar from "react-bootstrap/Navbar";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import InputGroup from "react-bootstrap/InputGroup";
 import Dropdown from "react-bootstrap/Dropdown";
-import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
-import { useEffect } from "react";
 
-const Header = () => {
-  const dispatch = useDispatch();
-  const cartState = useSelector((state) => state?.auth?.cartProducts?.data);
-  const subTotalGlobalState = useSelector(state => state.subTotal);
-  console.log(subTotalGlobalState);
-  // const [subtotal, setTotal] = useState(null);
-
-
-  useEffect(() => {
-    let sum = 0;
-    for (let index = 0; index < cartState?.length; index++) {
-      sum =
-        sum +
-        Number(cartState[index].quantity) * Number(cartState[index].price);
-    }
-    dispatch({ type: 'SET_SUBTOTAL', payload: sum });
-  }, [cartState]);
-
+/**
+ * @typedef {Object} IHeader
+ * @property {Number} CartSubTotal
+ * @property {Number} cartState
+ * @param {IHeader} props
+ */
+const Header = ({ CartSubTotal, cartState }) => {
   return (
     <>
       {["xxl"].map((expand) => (
@@ -115,17 +101,15 @@ const Header = () => {
                     <img src={cart} alt="cart" className="links-img" />
                     <div className="d-flex flex-column gap-15">
                       <span className="badge bg-white text-dark">
-                        {cartState?.length ? cartState?.length : 0}
+                        {cartState ? cartState : 0}
                       </span>
                       <p className="mb-0 size-60">
                         {" "}
                         ${" "}
-                        {subTotalGlobalState
-                          ? subTotalGlobalState.toLocaleString(undefined, {
-                              minimumFractionDigits: 2,
-                              maximumFractionDigits: 2,
-                            })
-                          : "0.00"}
+                        {CartSubTotal.toLocaleString(undefined, {
+                          minimumFractionDigits: 2,
+                          maximumFractionDigits: 2,
+                        })}
                       </p>
                     </div>
                   </Nav.Link>
