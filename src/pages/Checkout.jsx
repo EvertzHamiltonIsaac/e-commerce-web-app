@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import axios from 'axios';
-// import { base_url, config } from "../../utils/axiosConfig";
+import { config } from "../utils/axiosConfig";
 
 
 
@@ -72,6 +72,8 @@ const Checkout = () => {
   const tax = totalAmount * 0.2;
   const TotalOrder = totalAmount + Shipping + tax;
 
+  const TotalPrice = Math.round(TotalOrder)
+
   const [shippingInfo, setShippingInfo] = useState(null);
   const formik = useFormik({
     initialValues: {
@@ -90,23 +92,26 @@ const Checkout = () => {
     },
   });
 
-  const sendShippingDetails = async (shippingInfo) => {
-    try {
-      const response = await axios.post(``, shippingInfo);
-      return response.data;
-    } catch (error) {
-      throw new Error(error);
-    }
-  };
-
   const checkOutHandler = async () => {
+    const data = {
+      idempotencyKey: 'OSDASDJOIAJDOIAJDOIA', // Reemplaza con un valor único
+      sourceId: 'cnon:card-nonce-ok',
+      amountMoney: {
+        amount: parseInt(TotalPrice), 
+        currency: 'USD', 
+      },
+    };
+
     try {
-      const response = await sendShippingDetails(shippingInfo);
-      console.log(response);
+      const response = await axios.post(
+        'https://ginger-final-project.onrender.com/api/v1/payments/checkout', data, config
+      );
+      console.log(response.data);
     } catch (error) {
       console.error(error);
     }
   };
+
   
   return (
     <>
@@ -371,7 +376,7 @@ const Checkout = () => {
             <div className="border-bottom py-4">
               <div className="d-flex justify-content-between align-items-center">
                 <p className="mb-0 total">Subtotal</p>
-                <p className="mb-0 total-price">
+                <div className="mb-0 total-price">
                   {totalAmount !== null && (
                     <div>
                       {" "}
@@ -385,7 +390,7 @@ const Checkout = () => {
                       &nbsp;
                     </div>
                   )}
-                </p>
+                </div>
               </div>
               <div className="d-flex justify-content-between align-items-center">
                 <p className="mb-0 total">Shipping estimate</p>
