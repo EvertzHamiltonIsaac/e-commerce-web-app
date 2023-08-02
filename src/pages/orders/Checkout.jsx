@@ -7,7 +7,7 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import axios from "axios";
 import { config } from "../../utils/axiosConfig";
-import { createAnOrden } from "../../features/user/userSlice";
+import { createAnOrder } from "../../features/user/userSlice";
 // import CircularJSON from 'circular-json';
 
 const shippingSchema = yup.object({
@@ -158,7 +158,7 @@ const Checkout = () => {
         },
       };
 
-      dispatch(createAnOrden(orderDetail));
+      dispatch(createAnOrder(orderDetail));
       console.log("Order created:", orderDetail);
     } catch (error) {
       console.error(error);

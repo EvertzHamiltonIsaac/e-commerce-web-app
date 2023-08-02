@@ -186,6 +186,11 @@ const Header = () => {
               </Nav.Link>
             </li>
             <li className="nav-item">
+              <Nav.Link className="nav-link text-white" href="/my-orders">
+                My Orders
+              </Nav.Link>
+            </li>
+            <li className="nav-item">
               <Nav.Link className="nav-link text-white" href="/blogs">
                 Blogs
               </Nav.Link>
