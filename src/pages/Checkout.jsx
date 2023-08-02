@@ -1,18 +1,18 @@
 import { Link } from "react-router-dom";
 import { BiArrowBack } from "react-icons/bi";
 import Container from "../components/Container";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import axios from 'axios';
+import axios from "axios";
 import { config } from "../utils/axiosConfig";
-
-
+import { createAnOrden } from "../features/user/userSlice";
+// import CircularJSON from 'circular-json';
 
 const shippingSchema = yup.object({
-  fristName: yup.string().required("First Name is Required!"),
-  lastname: yup.string().required("Last Name is Required!"),
+  firstName: yup.string().required("First Name is Required!"),
+  lastName: yup.string().required("Last Name is Required!"),
   address: yup.string().required("Address Details is Required!"),
   state: yup.string().required("State is Required!"),
   city: yup.string().required("City is Required!"),
@@ -56,6 +56,7 @@ const stateRD = [
 ];
 
 const Checkout = () => {
+  const dispatch = useDispatch();
   const CartState = useSelector((state) => state?.auth?.cartProducts?.data);
 
   const [totalAmount, setTotalAmount] = useState(null);
@@ -72,13 +73,13 @@ const Checkout = () => {
   const tax = totalAmount * 0.2;
   const TotalOrder = totalAmount + Shipping + tax;
 
-  const TotalPrice = Math.round(TotalOrder)
+  const TotalPrice = Math.round(TotalOrder);
 
-  const [shippingInfo, setShippingInfo] = useState(null);
+  // const [shippingInfo, setShippingInfo] = useState(null);
   const formik = useFormik({
     initialValues: {
-      fristName: "",
-      lastname: "",
+      firstName: "",
+      lastName: "",
       address: "",
       state: "",
       city: "",
@@ -87,32 +88,83 @@ const Checkout = () => {
     },
     validationSchema: shippingSchema,
     onSubmit: (values) => {
-      // dispatch(loginUser(values));
-      setShippingInfo(values)
+      const shippingInfo = {
+        firstName: values.firstName,
+        lastName: values.lastName,
+        address: values.address,
+        state: values.state,
+        city: values.city,
+        country: values.country,
+        pincode: values.pincode,
+        other: "Hola me quiero acostar"
+      };
+      checkOutHandler(shippingInfo);
     },
   });
 
-  const checkOutHandler = async () => {
+  const checkOutHandler = async (values) => {
     const data = {
-      idempotencyKey: 'OSDASDJOIAJDOIAJDOIA', // Reemplaza con un valor único
-      sourceId: 'cnon:card-nonce-ok',
+      idempotencyKey: "HAHAUJASJAJSKAJJS", // Reemplaza con un valor único
+      sourceId: "cnon:card-nonce-ok",
       amountMoney: {
-        amount: parseInt(TotalPrice), 
-        currency: 'USD', 
+        amount: parseInt(TotalPrice),
+        currency: "USD",
       },
     };
 
+    // const jsonData = CircularJSON.stringify(data);
     try {
       const response = await axios.post(
-        'https://ginger-final-project.onrender.com/api/v1/payments/checkout', data, config
+        "https://ginger-final-project.onrender.com/api/v1/payments/checkout",
+        data,
+        config
       );
-      console.log(response.data);
+
+      const paymentInfo = response.data.paymentInformation;
+      console.log(paymentInfo);
+      const orderDetail = {
+        totalPrice: TotalPrice,
+        totalPriceAfterDiscount: TotalPrice,
+        shippingInfo: values,
+        orderItems: CartState.map((item) => ({
+          product: item.productId._id,
+          quantity: item.quantity,
+          price: item.price,
+          color: item.color._id,
+        })),
+        paymentInfo: {
+          paymentId: paymentInfo.id,
+          amountMoney: {
+            amount: paymentInfo.amountMoney.amount,
+            currency: paymentInfo.amountMoney.currency,
+          },
+          paymentStatus: paymentInfo.status,
+          cardDetails: {
+            cardDetailsStatus: paymentInfo.cardDetails.status,
+            card: {
+              cardBrand: paymentInfo.cardDetails.card.cardBrand,
+              expMonth: paymentInfo.cardDetails.card.expMonth,
+              fingerprint: paymentInfo.cardDetails.card.fingerprint,
+              cardType: paymentInfo.cardDetails.card.cardType,
+              bin: paymentInfo.cardDetails.card.bin,
+            },
+          },
+          cardPaymentTimeLine: {
+            authorizedAt:
+              paymentInfo.cardDetails.cardPaymentTimeline.authorizedAt,
+            capturedAt: paymentInfo.cardDetails.cardPaymentTimeline.capturedAt,
+          },
+          receiptNumber: paymentInfo.receiptNumber,
+        },
+      };
+
+      dispatch(createAnOrden(orderDetail));
+      console.log("Order created:", orderDetail);
     } catch (error) {
       console.error(error);
     }
   };
 
-  
   return (
     <>
       <Container class1="checkout-wrapper py-5 home-wrapper-2">
@@ -185,13 +237,13 @@ const Checkout = () => {
                     type="text"
                     placeholder="First Name"
                     className="form-control"
-                    name="fristName"
-                    value={formik.values.fristName}
-                    onChange={formik.handleChange("fristName")}
-                    onBlur={formik.handleBlur("fristName")}
+                    name="firstName"
+                    value={formik.values.firstName}
+                    onChange={formik.handleChange("firstName")}
+                    onBlur={formik.handleBlur("firstName")}
                   />
                   <div className="error ms-2 my-1">
-                    {formik.touched.fristName && formik.errors.fristName}
+                    {formik.touched.firstName && formik.errors.firstName}
                   </div>
                 </div>
 
@@ -200,13 +252,13 @@ const Checkout = () => {
                     type="text"
                     placeholder="Last Name"
                     className="form-control"
-                    name="lastname"
-                    value={formik.values.lastname}
-                    onChange={formik.handleChange("lastname")}
-                    onBlur={formik.handleBlur("lastname")}
+                    name="lastName"
+                    value={formik.values.lastName}
+                    onChange={formik.handleChange("lastName")}
+                    onBlur={formik.handleBlur("lastName")}
                   />
                   <div className="error ms-2 my-1">
-                    {formik.touched.lastname && formik.errors.lastname}
+                    {formik.touched.lastName && formik.errors.lastName}
                   </div>
                 </div>
                 <div className="w-100 my-2">
@@ -270,10 +322,8 @@ const Checkout = () => {
                     ))}
                   </select>
                   <div className="error ms-2 my-1">
-                    {
-                      formik.touched.state && formik.errors.state
-                    }
-                    </div>
+                    {formik.touched.state && formik.errors.state}
+                  </div>
                 </div>
                 <div className="flex-grow-1 my-2 ms-2">
                   <input
@@ -285,11 +335,9 @@ const Checkout = () => {
                     onChange={formik.handleChange("pincode")}
                     onBlur={formik.handleBlur("pincode")}
                   />
-                   <div className="error ms-2 my-1">
-                    {
-                      formik.touched.city && formik.errors.city
-                    }
-                    </div>
+                  <div className="error ms-2 my-1">
+                    {formik.touched.city && formik.errors.city}
+                  </div>
                 </div>
                 <div className="w-100">
                   <div className="d-flex justify-content-between align-items-center">
@@ -300,7 +348,11 @@ const Checkout = () => {
                     <Link to="/cart" className="btn Primary-btn">
                       Continue to Shipping
                     </Link>
-                    <button onClick={checkOutHandler}  className="btn Primary-btn" type="submit">
+                    <button
+                      onClick={checkOutHandler}
+                      className="btn Primary-btn"
+                      type="submit"
+                    >
                       Place Order
                     </button>
                   </div>
@@ -331,8 +383,7 @@ const Checkout = () => {
                             src={item?.productId?.images?.[0]?.url}
                             alt="product"
                           />
-                        </div>
-                        {" "}
+                        </div>{" "}
                         <div>
                           <h5 className="total-price">
                             {item?.productId?.title}
