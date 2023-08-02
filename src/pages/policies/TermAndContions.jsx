@@ -1,6 +1,6 @@
-import BreadCrumb from "../components/common/BreadCrumb";
-import Meta from "../components/common/Meta";
-import Container from "../components/Container";
+import BreadCrumb from "../../components/common/BreadCrumb";
+import Meta from "../../components/common/Meta";
+import Container from "../../components/Container";
 
 const TermAndContions = () => {
   return (

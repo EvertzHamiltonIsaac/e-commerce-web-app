@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 import { BiArrowBack } from "react-icons/bi";
-import Container from "../components/Container";
+import Container from "../../components/Container";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import axios from "axios";
-import { config } from "../utils/axiosConfig";
-import { createAnOrden } from "../features/user/userSlice";
+import { config } from "../../utils/axiosConfig";
+import { createAnOrden } from "../../features/user/userSlice";
 // import CircularJSON from 'circular-json';
 
 const shippingSchema = yup.object({

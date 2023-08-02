@@ -1,10 +1,10 @@
-import BreadCrumb from "../components/common/BreadCrumb";
-import Meta from "../components/common/Meta";
-import BlogCard from "../components/BlogCard";
-import Container from "../components/Container";
+import BreadCrumb from "../../components/common/BreadCrumb";
+import Meta from "../../components/common/Meta";
+import BlogCard from "../../components/BlogCard";
+import Container from "../../components/Container";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getAllBlogs } from "../features/blogs/blogSlice";
+import { getAllBlogs } from "../../features/blogs/blogSlice";
 import moment from "moment";
 import defaultImage from "../images/defaultImage.png";
 

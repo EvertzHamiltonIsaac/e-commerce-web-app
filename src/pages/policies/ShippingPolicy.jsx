@@ -1,6 +1,6 @@
-import BreadCrumb from "../components/common/BreadCrumb";
-import Container from "../components/Container";
-import Meta from "../components/common/Meta";
+import BreadCrumb from "../../components/common/BreadCrumb";
+import Container from "../../components/Container";
+import Meta from "../../components/common/Meta";
 
 const ShippingPolicy = () => {
   return (

@@ -7,21 +7,21 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import OurStore from './pages/OurStore';
-import Blog from './pages/Blog';
+import Blog from './pages/blog/Blog';
 import CompareProduct from './pages/CompareProducts'
 import Wishlist from './pages/Wishlist';
-import Login from "./pages/Login";
-import Forgotpassword from "./pages/Forgotpassword";
-import Signup from "./pages/Signup";
+import Login from "./pages/auth/Login";
+import Forgotpassword from "./pages/auth/Forgotpassword";
+import Signup from "./pages/auth/Signup";
 import Resetpassword from "./pages/Resetpassword";
-import SingleBlog from "./pages/SingleBlog";
-import PrivacyPolicy from "./pages/PrivacyPolicy";
-import RefundPloicy from "./pages/RefundPloicy";
-import ShippingPolicy from "./pages/ShippingPolicy";
-import TermAndContions from "./pages/TermAndContions";
+import SingleBlog from "./pages/blog/SingleBlog";
+import PrivacyPolicy from "./pages/policies/PrivacyPolicy";
+import RefundPloicy from "./pages/policies/RefundPolicy";
+import ShippingPolicy from "./pages/policies/ShippingPolicy";
+import TermAndContions from "./pages/policies/TermAndContions";
 import SingleProduct from "./pages/SingleProduct";
 import Cart from "./pages/Cart";
-import Checkout from "./pages/Checkout";
+import Checkout from "./pages/orders/Checkout";
 
 function App() {
 

@@ -1,8 +1,8 @@
-import BreadCrumb from "../components/common/BreadCrumb";
-import Meta from "../components/common/Meta";
-import Container from "../components/Container";
+import BreadCrumb from "../../components/common/BreadCrumb";
+import Meta from "../../components/common/Meta";
+import Container from "../../components/Container";
 
-const RefundPloicy = () => {
+const RefundPolicy = () => {
   return (
     <>
       <Meta title={"Refund Policy"} />
@@ -18,4 +18,4 @@ const RefundPloicy = () => {
   );
 };
 
-export default RefundPloicy;
+export default RefundPolicy;

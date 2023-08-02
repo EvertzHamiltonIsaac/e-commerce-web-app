@@ -1,11 +1,11 @@
 import { Link, useLocation } from "react-router-dom";
-import BreadCrumb from "../components/common/BreadCrumb";
+import BreadCrumb from "../../components/common/BreadCrumb";
 import { HiOutlineArrowLeft } from "react-icons/hi";
-import Meta from "../components/common/Meta";
-import Container from "../components/Container";
+import Meta from "../../components/common/Meta";
+import Container from "../../components/Container";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getABlog } from "../features/blogs/blogSlice";
+import { getABlog } from "../../features/blogs/blogSlice";
 import defaultImage from "../images/defaultImage.png";
 import DOMPurify from 'dompurify';
 
