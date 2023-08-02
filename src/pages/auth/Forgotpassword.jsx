@@ -3,7 +3,7 @@ import Meta from "../../components/common/Meta";
 import { Link } from "react-router-dom";
 import Container from "../../components/Container";
 import CustomInput from "../../components/CustomInput";
-import logo from "../images/mmlogo.png"
+import logo from "../../images/mmlogo.png"
 
 
 const Forgotpassword = () => {

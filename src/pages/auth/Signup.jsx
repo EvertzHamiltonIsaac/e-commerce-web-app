@@ -6,7 +6,7 @@ import { useFormik } from "formik";
 import * as yup from 'yup';
 import { useDispatch } from "react-redux";
 import { registerUser } from "../../features/user/userSlice";
-import logo from "../images/mmlogo.png"
+import logo from "../../images/mmlogo.png"
 
 
 const signUpSchema = yup.object({

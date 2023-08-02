@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getAllBlogs } from "../../features/blogs/blogSlice";
 import moment from "moment";
-import defaultImage from "../images/defaultImage.png";
+import defaultImage from "../../images/defaultImage.png";
 
 const Blog = () => {
   const blogState = useSelector((state) => state?.blog?.blogs?.data);
