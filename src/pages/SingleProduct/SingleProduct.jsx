@@ -16,6 +16,7 @@ import Container from "../../components/Container/Container";
 import { getAProduct } from "../../features/products/productSlice";
 import { addProdToCart } from "../../features/user/userSlice";
 import defaultImage from "../../images/defaultImage.png";
+import "./SingleProduct.css"
 
 const SingleProduct = () => {
   const location = useLocation();

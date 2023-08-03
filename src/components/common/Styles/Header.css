@@ -1,0 +1,92 @@
+
+.nav-bar-container {
+    background-color: var(--color-main);
+  }
+  
+  .logo {
+    font-family: "Oswald", sans-serif !important;
+    text-transform: uppercase !important;
+    color: rgb(255, 255, 255) !important;
+    font-size: 30px !important;
+    font-weight: 500;
+  }
+  
+  .links-img {
+    margin-right: 10px;
+  }
+  
+  .nav-links {
+    color: white !important;
+    align-items: center;
+    margin: 5px 10px;
+  }
+  
+  .navbar-light .navbar-toggler {
+    border: 2px rgba(255, 255, 255, 0.2) solid !important;
+    height: 45px;
+  }
+  
+  .navbar-light .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath  stroke='rgba(255, 255, 255, 0.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+  }
+  
+  .navbar-toggle {
+    background-color: var(--color-main) !important;
+  }
+  
+  .btn-close {
+    --bs-btn-close-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='rgba(255, 255, 255, 1)'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e") !important;
+  }
+  
+  .link-logo {
+    text-transform: uppercase;
+    margin-top: 6px;
+  }
+  
+  .links-active:hover {
+    color: var(--color-hover) !important;
+  }
+  
+  .InputGroup {
+    margin: 20px 15px;
+  }
+  
+  header {
+    background-color: var(--color-secundary);
+  }
+  
+  header .nav-link {
+    text-transform: uppercase;
+  }
+  
+  .Dropdown-Toggle {
+    background: transparent !important;
+    border: none !important;
+    padding: 10px !important;
+    font-size: 17px !important;
+    font-weight: 400 !important;
+  }
+  
+  .dropdown button {
+    text-transform: uppercase;
+  }
+  
+  .dropdown button:focus {
+    box-shadow: none !important;
+  }
+  
+  .dropdown-item {
+    color: white !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.075) !important;
+    padding: 15px !important;
+  }
+  
+  .dropdown-item:hover {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+  }
+  
+  .dropdown-menu.show {
+    width: 100%;
+    transform: translate3d(0px, 57px, 0px) !important;
+    background-color: var(--color-main);
+  }

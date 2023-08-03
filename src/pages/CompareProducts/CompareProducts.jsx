@@ -2,6 +2,7 @@ import BreadCrumb from "../../components/common/BreadCrumb";
 import Color from "../../components/Color/Color";
 import Meta from "../../components/common/Meta";
 import Container from "../../components/Container/Container";
+import "./CompareProducts.css"
 
 const CompareProduct = () => {
   return (

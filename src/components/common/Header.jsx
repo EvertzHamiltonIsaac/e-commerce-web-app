@@ -14,6 +14,7 @@ import InputGroup from "react-bootstrap/InputGroup";
 import Dropdown from "react-bootstrap/Dropdown";
 import { useSelector } from "react-redux";
 import { useMemo } from "react";
+import "./Styles/Header.css"
 
 
 const Header = () => {

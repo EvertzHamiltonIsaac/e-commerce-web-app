@@ -8,6 +8,7 @@ import { getUserProductWishlist } from "../../features/user/userSlice";
 import { addToWishlist } from "../../features/products/productSlice";
 import defaultImage from "../../images/defaultImage.png";
 import { Link } from "react-router-dom";
+import "./Wishlist.css"
 
 const Wishlist = () => {
   const dispatch = useDispatch();

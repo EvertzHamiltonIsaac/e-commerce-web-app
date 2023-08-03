@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Container from "../../components/Container/Container";
 import CustomInput from "../../components/Custom/CustomInput";
 import logo from "../../images/mmlogo.png"
+import "./Styles/auth.css"
 
 
 const Forgotpassword = () => {

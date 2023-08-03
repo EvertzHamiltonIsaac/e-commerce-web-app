@@ -19,6 +19,7 @@ import prodcompare from "../../images/prodcompare.svg";
 import wish from "../../images/wish.svg";
 import addcart from "../../images/add-cart.svg";
 import view from "../../images/view.svg";
+import "./Home.css"
 
 
 const Home = () => {

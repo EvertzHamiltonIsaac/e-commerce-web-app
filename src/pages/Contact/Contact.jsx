@@ -7,6 +7,7 @@ import * as yup from "yup";
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
 import { createQuery } from "../../features/contact/contactSlice";
+import "./Contact.css"
 
 const contactSchema = yup.object({
   name: yup.string().required("Name is Required"),
