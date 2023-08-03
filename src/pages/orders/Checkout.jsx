@@ -8,7 +8,6 @@ import * as yup from "yup";
 import axios from "axios";
 import { config } from "../../utils/axiosConfig";
 import { createAnOrder } from "../../features/user/userSlice";
-// import CircularJSON from 'circular-json';
 
 const shippingSchema = yup.object({
   firstName: yup.string().required("First Name is Required!"),
@@ -75,7 +74,6 @@ const Checkout = () => {
 
   const TotalPrice = Math.round(TotalOrder);
 
-  // const [shippingInfo, setShippingInfo] = useState(null);
   const formik = useFormik({
     initialValues: {
       firstName: "",
@@ -96,7 +94,7 @@ const Checkout = () => {
         city: values.city,
         country: values.country,
         pincode: values.pincode,
-        other: "Hola me quiero acostar"
+        other: "Esto no esta registrado"
       };
       checkOutHandler(shippingInfo);
     },
@@ -112,7 +110,6 @@ const Checkout = () => {
       },
     };
 
-    // const jsonData = CircularJSON.stringify(data);
     try {
       const response = await axios.post(
         "https://ginger-final-project.onrender.com/api/v1/payments/checkout",
@@ -121,7 +118,6 @@ const Checkout = () => {
       );
 
       const paymentInfo = response.data.paymentInformation;
-      console.log(paymentInfo);
       const orderDetail = {
         totalPrice: TotalPrice,
         totalPriceAfterDiscount: TotalPrice,
@@ -159,7 +155,6 @@ const Checkout = () => {
       };
 
       dispatch(createAnOrder(orderDetail));
-      console.log("Order created:", orderDetail);
     } catch (error) {
       console.error(error);
     }
@@ -403,26 +398,6 @@ const Checkout = () => {
                     </div>
                   );
                 })}
-              {/* <div className="d-flex gap-10 mb-2 align-align-items-center">
-                <div className="w-75 d-flex gap-10">
-                  <div className="w-25 position-relative">
-                    <span
-                      style={{ top: "-10px", right: "2px" }}
-                      className="badge bg-secondary text-white rounded-circle p-2 position-absolute"
-                    >
-                      1
-                    </span>
-                    <img className="img-fluid" src={watch} alt="product" />
-                  </div>
-                  <div>
-                    <h5 className="total-price">gfdhgf</h5>
-                    <p className="total-price">s / #agfgfd</p>
-                  </div>
-                </div>
-                <div className="flex-grow-1">
-                  <h5 className="total">$ 100</h5>
-                </div>
-              </div> */}
             </div>
             <div className="border-bottom py-4">
               <div className="d-flex justify-content-between align-items-center">

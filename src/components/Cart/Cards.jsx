@@ -22,7 +22,6 @@ const Cards = () => {
     dispatch(getUserCart());
   }, [dispatch, isDeleting]);
 
-
   const handleDeleteProduct = async (id) => {
     try {
       setIsDeleting(true);
@@ -74,12 +73,25 @@ const Cards = () => {
                         <p>{item?.productId?.brand}</p>
                       </div>
                       <p className="price">
-                        <span className="red-p">$ {item?.price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }</span> &nbsp;
+                        <span className="red-p">
+                          ${" "}
+                          {item?.price.toLocaleString(undefined, {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2,
+                          })}
+                        </span>{" "}
+                        &nbsp;
                       </p>
                       <p className="text-secondary">
-                      Subtotal:
-                      <span className="red-p"> $ {totalPriceForProducts.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
-
+                        Subtotal:
+                        <span className="red-p">
+                          {" "}
+                          ${" "}
+                          {totalPriceForProducts.toLocaleString(undefined, {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2,
+                          })}
+                        </span>
                       </p>
                       <div className="d-flex"></div>
                     </div>
