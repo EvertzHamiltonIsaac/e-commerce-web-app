@@ -1,5 +1,5 @@
 import BreadCrumb from "../../components/common/BreadCrumb";
-import Container from "../../components/Container";
+import Container from "../../components/Container/Container";
 import Meta from "../../components/common/Meta";
 
 const ShippingPolicy = () => {

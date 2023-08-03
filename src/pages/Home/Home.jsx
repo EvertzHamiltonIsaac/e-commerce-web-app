@@ -1,24 +1,24 @@
 import Marquee from "react-fast-marquee";
-import BlogCard from "../components/Blogs/BlogCard";
-import SpecialProduct from "../components/SpecialProduct/SpecialProduct";
-import Container from "../components/Container";
-import Services from "../components/Home/Services";
-import Meta from "../components/common/Meta";
-import CarouselSlider from "../components/Home/CarouselSlider";
-import ItemCategories from "../components/Home/ItemCategories";
-import FamousWrapper from "../components/Home/FamousWrapper";
+import BlogCard from "../../components/Blogs/BlogCard";
+import SpecialProduct from "../../components/SpecialProduct/SpecialProduct";
+import Container from "../../components/Container/Container";
+import Services from "../../components/Home/Services";
+import Meta from "../../components/common/Meta";
+import CarouselSlider from "../../components/Home/CarouselSlider";
+import ItemCategories from "../../components/Home/ItemCategories";
+import FamousWrapper from "../../components/Home/FamousWrapper";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getAllBlogs } from "../features/blogs/blogSlice";
+import { getAllBlogs } from "../../features/blogs/blogSlice";
 import moment from "moment";
-import defaultImage from "../images/defaultImage.png";
-import { getAllProducts } from "../features/products/productSlice";
+import defaultImage from "../../images/defaultImage.png";
+import { getAllProducts } from "../../features/products/productSlice";
 import ReactStars from "react-rating-stars-component";
 import { useNavigate } from "react-router-dom";
-import prodcompare from "../images/prodcompare.svg";
-import wish from "../images/wish.svg";
-import addcart from "../images/add-cart.svg";
-import view from "../images/view.svg";
+import prodcompare from "../../images/prodcompare.svg";
+import wish from "../../images/wish.svg";
+import addcart from "../../images/add-cart.svg";
+import view from "../../images/view.svg";
 
 
 const Home = () => {

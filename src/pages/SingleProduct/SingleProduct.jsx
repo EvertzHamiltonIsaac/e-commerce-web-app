@@ -8,14 +8,14 @@ import Spinner from "react-bootstrap/Spinner";
 import { toast } from "react-toastify";
 import { TbGitCompare } from "react-icons/tb";
 import { AiOutlineHeart } from "react-icons/ai";
-import BreadCrumb from "../components/common/BreadCrumb";
-import Meta from "../components/common/Meta";
-import ProductCard from "../components/ProductCard";
-import Color from "../components/Color";
-import Container from "../components/Container";
-import { getAProduct } from "../features/products/productSlice";
-import { addProdToCart } from "../features/user/userSlice";
-import defaultImage from "../images/defaultImage.png";
+import BreadCrumb from "../../components/common/BreadCrumb";
+import Meta from "../../components/common/Meta";
+import ProductCard from "../../components/ProductCard/ProductCard";
+import Color from "../../components/Color/Color";
+import Container from "../../components/Container/Container";
+import { getAProduct } from "../../features/products/productSlice";
+import { addProdToCart } from "../../features/user/userSlice";
+import defaultImage from "../../images/defaultImage.png";
 
 const SingleProduct = () => {
   const location = useLocation();

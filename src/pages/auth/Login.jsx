@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import BreadCrumb from "../../components/common/BreadCrumb";
 import Meta from "../../components/common/Meta";
-import Container from "../../components/Container";
-import CustomInput from "../../components/CustomInput";
+import Container from "../../components/Container/Container";
+import CustomInput from "../../components/Custom/CustomInput";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { useDispatch } from "react-redux";

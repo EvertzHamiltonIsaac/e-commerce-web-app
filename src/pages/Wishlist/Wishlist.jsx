@@ -1,12 +1,12 @@
 import { useState } from "react";
-import BreadCrumb from "../components/common/BreadCrumb";
-import Meta from "../components/common/Meta";
-import Container from "../components/Container";
+import BreadCrumb from "../../components/common/BreadCrumb";
+import Meta from "../../components/common/Meta";
+import Container from "../../components/Container/Container";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getUserProductWishlist } from "../features/user/userSlice";
-import { addToWishlist } from "../features/products/productSlice";
-import defaultImage from "../images/defaultImage.png";
+import { getUserProductWishlist } from "../../features/user/userSlice";
+import { addToWishlist } from "../../features/products/productSlice";
+import defaultImage from "../../images/defaultImage.png";
 import { Link } from "react-router-dom";
 
 const Wishlist = () => {

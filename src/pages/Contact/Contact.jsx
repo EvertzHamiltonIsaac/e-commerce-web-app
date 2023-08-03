@@ -1,12 +1,12 @@
-import BreadCrumb from "../components/common/BreadCrumb";
-import Meta from "../components/common/Meta";
+import BreadCrumb from "../../components/common/BreadCrumb";
+import Meta from "../../components/common/Meta";
 import { AiOutlineHome, AiOutlineMail } from "react-icons/ai";
 import { BiPhoneCall, BiInfoCircle } from "react-icons/bi";
-import Container from "../components/Container";
+import Container from "../../components/Container/Container";
 import * as yup from "yup";
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
-import { createQuery } from "../features/contact/contactSlice";
+import { createQuery } from "../../features/contact/contactSlice";
 
 const contactSchema = yup.object({
   name: yup.string().required("Name is Required"),

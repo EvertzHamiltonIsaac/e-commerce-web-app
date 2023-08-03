@@ -1,15 +1,15 @@
 import { useRef, useEffect } from "react";
 import ReactStars from "react-rating-stars-component";
 import { Link, useLocation } from "react-router-dom";
-import prodcompare from "../images/prodcompare.svg";
-import wish from "../images/wish.svg";
-import addcart from "../images/add-cart.svg";
-import view from "../images/view.svg";
+import prodcompare from "../../images/prodcompare.svg";
+import wish from "../../images/wish.svg";
+import addcart from "../../images/add-cart.svg";
+import view from "../../images/view.svg";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
-import { addToWishlist } from "../features/products/productSlice";
+import { addToWishlist } from "../../features/products/productSlice";
 import DOMPurify from "dompurify";
-import defaultImage from "../images/defaultImage.png";
+import defaultImage from "../../images/defaultImage.png";
 
 const ProductCard = (props) => {
   const { grid, data } = props;

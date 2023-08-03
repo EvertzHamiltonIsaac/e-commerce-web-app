@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { BiArrowBack } from "react-icons/bi";
-import Container from "../../components/Container";
+import Container from "../../components/Container/Container";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useFormik } from "formik";
