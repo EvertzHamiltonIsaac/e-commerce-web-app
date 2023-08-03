@@ -8,6 +8,8 @@ import * as yup from "yup";
 import axios from "axios";
 import { config } from "../../utils/axiosConfig";
 import { createAnOrder } from "../../features/user/userSlice";
+import { v4 as uuidv4 } from 'uuid';
+
 
 const shippingSchema = yup.object({
   firstName: yup.string().required("First Name is Required!"),
@@ -102,7 +104,7 @@ const Checkout = () => {
 
   const checkOutHandler = async (values) => {
     const data = {
-      idempotencyKey: "HAHAUJASJAJSKAJJS", // Reemplaza con un valor único
+      idempotencyKey:uuidv4(), // Reemplaza con un valor único
       sourceId: "cnon:card-nonce-ok",
       amountMoney: {
         amount: parseInt(TotalPrice),
