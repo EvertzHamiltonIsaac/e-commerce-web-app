@@ -25,8 +25,8 @@ const Header = () => {
     let subtotal = 0;
 
     cartItems.forEach(item => {
-      if (!uniqueIds[item.productId._id]) {
-        uniqueIds[item.productId._id] = true;
+      if (!uniqueIds[item?.productId?._id]) {
+        uniqueIds[item?.productId?._id] = true;
       }
       totalItems += item.quantity;
       subtotal += item.quantity * item.price;

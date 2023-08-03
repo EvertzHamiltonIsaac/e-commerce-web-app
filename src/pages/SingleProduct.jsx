@@ -121,8 +121,8 @@ const SingleProduct = () => {
                         productState?.images?.[0]?.url ||
                         defaultImage
                       }
-                      width="500"
                       alt=""
+                      style={{ objectFit: "contain" }}
                     />
                   </Zoom>
                 </div>
@@ -136,9 +136,8 @@ const SingleProduct = () => {
                     >
                       <img
                         src={item?.url}
-                        width="500"
                         alt=""
-                        className="img-fluid img-product"
+                        className="img-product"
                       />
                     </div>
                   );

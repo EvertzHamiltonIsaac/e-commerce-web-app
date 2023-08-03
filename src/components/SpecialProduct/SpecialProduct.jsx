@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import ReactStars from "react-rating-stars-component";
-import "./styles/SpecialProduct.css";
-import watch from "../../src/images/famouswrapper04.png";
+import "./SpecialProduct.css";
+import watch from "../../../src/images/famouswrapper04.png";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import { Button, Container } from "react-bootstrap";
 import PropTypes from "prop-types";

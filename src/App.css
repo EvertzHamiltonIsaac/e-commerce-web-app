@@ -243,7 +243,7 @@ header .nav-link {
 
 /* BLog Part........................................................................................................................ */
 
-.blog-card {
+/* .blog-card {
   background-color: white;
   border-radius: 10px;
 }
@@ -272,21 +272,8 @@ header .nav-link {
   font-size: 13px;
   line-height: 22px;
   color: var(--color-Grimmy);
-}
-.single-blog-card a {
-  font-size: 18px;
-  color: var(--color-Grimmy);
-  margin-bottom: 20px;
-}
-.single-blog-card h3 {
-  font-size: 24px;
-  font-weight: 600;
-  color: var(--color-1c1c1b);
-}
-.single-blog-card p {
-  color: var(--color-Grimmy);
-  font-size: 14px;
-}
+} */
+
 /*  Blog Part ends here */
 
 /* Product Card.............................................................................. */
@@ -671,6 +658,9 @@ header .nav-link {
   padding: 10px;
   width: 15%;
   border: 1px solid rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .main-product-image .js-image-zoom__zoomed-image {
@@ -722,6 +712,9 @@ header .nav-link {
 
 .img-product {
   cursor: pointer;
+  object-fit: contain;
+  width: 2rem;
+  height: 3rem;
 }
 
 .img-container img {
@@ -755,6 +748,7 @@ header .nav-link {
   background-color: #ffffff63;
   padding: 51px !important;
 }
+
 .blog-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "../styles/Cart.css";
+import "./styles/Cart.css";
 import CloseButton from "react-bootstrap/CloseButton";
 import { useDispatch, useSelector } from "react-redux";
 import {

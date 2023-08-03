@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { getABlog } from "../../features/blogs/blogSlice";
 import defaultImage from "../../images/defaultImage.png";
 import DOMPurify from 'dompurify';
+import "./styles/SingleBlog.css"
 
 const SingleBlog = () => {
   const blogState = useSelector((state) => state?.blog?.singleBlog?.data);
