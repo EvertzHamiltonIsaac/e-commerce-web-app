@@ -3,26 +3,26 @@ import "./Resposive.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layaout from "./components/common/Layout";
-import Home from "./pages/Home";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
-import OurStore from "./pages/OurStore";
-import Blog from "./pages/Blog";
-import CompareProduct from "./pages/CompareProducts";
-import Wishlist from "./pages/Wishlist";
-import Login from "./pages/Login";
-import Forgotpassword from "./pages/Forgotpassword";
-import Signup from "./pages/Signup";
-import Resetpassword from "./pages/Resetpassword";
-import SingleBlog from "./pages/SingleBlog";
-import PrivacyPolicy from "./pages/PrivacyPolicy";
-import RefundPloicy from "./pages/RefundPloicy";
-import ShippingPolicy from "./pages/ShippingPolicy";
-import TermAndContions from "./pages/TermAndContions";
-import SingleProduct from "./pages/SingleProduct";
-import Cart from "./pages/Cart";
-import Checkout from "./pages/Checkout";
-import Profile from "./pages/Profile";
+import Home from "./pages/Home/Home";
+import About from "./pages/About/About";
+import Contact from "./pages/Contact/Contact";
+import OurStore from "./pages/OurStore/OurStore";
+import Blog from "./pages/blog/Blog";
+import CompareProduct from "./pages/CompareProducts/CompareProducts";
+import Wishlist from "./pages/Wishlist/Wishlist";
+import Login from "./pages/auth/Login";
+import Forgotpassword from "./pages/auth/Forgotpassword";
+import Signup from "./pages/auth/Signup";
+import Resetpassword from "./pages/auth/Resetpassword";
+import SingleBlog from "./pages/blog/SingleBlog";
+import PrivacyPolicy from "./pages/policies/PrivacyPolicy";
+import RefundPloicy from "./pages/policies/RefundPolicy";
+import ShippingPolicy from "./pages/policies/ShippingPolicy";
+import TermAndContions from "./pages/policies/TermAndContions";
+import SingleProduct from "./pages/SingleProduct/SingleProduct";
+import Cart from "./pages/Cart/Cart";
+import Checkout from "./pages/orders/Checkout";
+import Orders from "./pages/orders/Orders";
 
 function App() {
   return (
@@ -35,11 +35,12 @@ function App() {
             <Route path="contact" element={<Contact />} />
             <Route path="product" element={<OurStore />} />
             <Route path="product/:id" element={<SingleProduct />} />
-            <Route path="blogs" element={<Blog />} />
+            a <Route path="blogs" element={<Blog />} />
             <Route path="blog/:id" element={<SingleBlog />} />
             <Route path="cart" element={<Cart />} />
             <Route path="profile" element={<Profile />} />
             <Route path="checkout" element={<Checkout />} />
+            <Route path="my-orders" element={<Orders />} />
             <Route path="compare-product" element={<CompareProduct />} />
             <Route path="wishlist" element={<Wishlist />} />
             <Route path="login" element={<Login />} />

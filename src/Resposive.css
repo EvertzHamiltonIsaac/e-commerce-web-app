@@ -1,12 +1,3 @@
-:root {
-  --color-main: #021e43;
-  --color-hover: #b8cee3;
-  --color-secundary: #00377a;
-  --color-brands: #bf4800;
-  --color-Grimmy: #777777;
-}
-
-
 /* Tablets en horizonal y escritorios normales */
 @media (max-width: 1399px) {
   

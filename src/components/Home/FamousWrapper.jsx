@@ -1,5 +1,5 @@
 import Container from "react-bootstrap/Container";
-import "../styles/FamousWrapper.css";
+import "./styles/FamousWrapper.css";
 import famouswrapper01 from "../../images/famouswrapper01.png";
 
 

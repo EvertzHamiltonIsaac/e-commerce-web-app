@@ -12,7 +12,7 @@ const Layaout = () => {
   const cartState = useSelector((state) => state?.auth?.cartProducts?.data);
   const subTotalGlobalState = useSelector((state) => state.subTotal);
   // const [subtotal, setTotal] = useState(null);
-  console.log(subTotalGlobalState);
+  // console.log(subTotalGlobalState);
 
   useEffect(() => {
     let sum = 0;
@@ -22,7 +22,7 @@ const Layaout = () => {
         Number(cartState[index].quantity) * Number(cartState[index].price);
     }
     dispatch({ type: "SET_SUBTOTAL", payload: sum });
-  }, [cartState]);
+  }, [dispatch, cartState]);
 
   return (
     <>

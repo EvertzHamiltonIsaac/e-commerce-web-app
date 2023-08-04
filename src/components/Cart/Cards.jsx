@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "../styles/Cart.css";
+import "./styles/Cart.css";
 import CloseButton from "react-bootstrap/CloseButton";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -21,7 +21,6 @@ const Cards = () => {
   useEffect(() => {
     dispatch(getUserCart());
   }, [dispatch, isDeleting]);
-
 
   const handleDeleteProduct = async (id) => {
     try {
@@ -74,12 +73,25 @@ const Cards = () => {
                         <p>{item?.productId?.brand}</p>
                       </div>
                       <p className="price">
-                        <span className="red-p">$ {item?.price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }</span> &nbsp;
+                        <span className="red-p">
+                          ${" "}
+                          {item?.price.toLocaleString(undefined, {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2,
+                          })}
+                        </span>{" "}
+                        &nbsp;
                       </p>
                       <p className="text-secondary">
-                      Subtotal:
-                      <span className="red-p"> $ {totalPriceForProducts.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
-
+                        Subtotal:
+                        <span className="red-p">
+                          {" "}
+                          ${" "}
+                          {totalPriceForProducts.toLocaleString(undefined, {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2,
+                          })}
+                        </span>
                       </p>
                       <div className="d-flex"></div>
                     </div>

@@ -11,7 +11,6 @@ const getProducts = async () => {
   }
 };
 
-
 const getSingleProduct = async (id) => {
   try {
     const response = await axios.get(`${base_url}product/${id}`);
@@ -36,8 +35,19 @@ const addToWishlist = async (productId) => {
   }
 };
 
+const rateProduct = async (data) => {
+  try {
+    const response = await axios.put(`${base_url}product/rating`, data, config);
+    return response.data;
+  } catch (error) {
+    console.error("Error retrieving wishlist:", error);
+    throw error;
+  }
+};
+
 export const productService = {
   getProducts,
   addToWishlist,
-  getSingleProduct
+  getSingleProduct,
+  rateProduct,
 };

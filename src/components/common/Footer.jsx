@@ -11,6 +11,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import { Container } from "react-bootstrap";
 import newsletter from "../../images/newsletter.png";
 import { Link } from "react-router-dom";
+import "./Styles/Footer.css"
 
 const Footer = () => {
   return (

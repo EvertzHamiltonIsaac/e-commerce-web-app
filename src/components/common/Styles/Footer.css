@@ -1,0 +1,20 @@
+
+.footer-container {
+    background-color: var(--color-main);
+  }
+  
+  .link-footer {
+    color: white;
+  }
+  
+  .link-footer:hover {
+    color: white;
+  }
+  
+  .size-60{
+    width: 100px;
+  }
+  
+  .badges{
+    width: 50px;
+  }

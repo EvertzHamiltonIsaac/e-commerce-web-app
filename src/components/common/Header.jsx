@@ -14,6 +14,7 @@ import InputGroup from "react-bootstrap/InputGroup";
 import Dropdown from "react-bootstrap/Dropdown";
 import { useSelector } from "react-redux";
 import { useMemo } from "react";
+import "./Styles/Header.css";
 
 const Header = () => {
   const cartItems = useSelector((state) => state.auth.cartProducts?.data || []);
@@ -26,8 +27,8 @@ const Header = () => {
     let subtotal = 0;
 
     cartItems.forEach((item) => {
-      if (!uniqueIds[item.productId._id]) {
-        uniqueIds[item.productId._id] = true;
+      if (!uniqueIds[item?.productId?._id]) {
+        uniqueIds[item?.productId?._id] = true;
       }
       totalItems += item.quantity;
       subtotal += item.quantity * item.price;
@@ -193,6 +194,11 @@ const Header = () => {
             <li className="nav-item">
               <Nav.Link className="nav-link text-white" href="/product">
                 Our Store
+              </Nav.Link>
+            </li>
+            <li className="nav-item">
+              <Nav.Link className="nav-link text-white" href="/my-orders">
+                My Orders
               </Nav.Link>
             </li>
             <li className="nav-item">

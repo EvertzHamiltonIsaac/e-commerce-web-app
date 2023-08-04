@@ -89,7 +89,7 @@ const updateProfile = async () => {
   try {
     const response = await axios.put(
       `${base_url}user/updateUser`,
-      da - ta,
+      data,
       config
     );
     return response.data;
@@ -98,7 +98,31 @@ const updateProfile = async () => {
     throw error;
   }
 };
-//
+
+const createOrder = async (orderDetail) => {
+  try {
+    const response = await axios.post(
+      `${base_url}order/create-order`,
+      orderDetail,
+      config
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error creating order:", error);
+    throw error;
+  }
+};
+
+const getUserOrders = async () => {
+  try {
+    const response = await axios.get(`${base_url}order/get-my-orders`, config);
+    return response.data;
+  } catch (error) {
+    console.error("Error creating order:", error);
+    throw error;
+  }
+};
+
 export const authService = {
   register,
   login,
@@ -108,4 +132,6 @@ export const authService = {
   removeProductFromCart,
   updateProductFromCart,
   updateProfile,
+  createOrder,
+  getUserOrders,
 };

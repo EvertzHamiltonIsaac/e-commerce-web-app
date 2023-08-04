@@ -7,6 +7,7 @@ import icon from "../../images/IconsQuestion02.png";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useState } from "react";
+import "./styles/Orden.css"
 
 const Orden = () => {
   const userCartState = useSelector((state) => state?.auth?.cartProducts?.data);
