@@ -1,14 +1,13 @@
 import { Link, useNavigate } from "react-router-dom";
-import BreadCrumb from "../components/common/BreadCrumb";
-import Meta from "../components/common/Meta";
-import Container from "../components/Container";
-import CustomInput from "../components/CustomInput";
+import BreadCrumb from "../../components/common/BreadCrumb";
+import Meta from "../../components/common/Meta";
+import Container from "../../components/Container/Container";
+import CustomInput from "../../components/Custom/CustomInput";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "../features/user/userSlice";
-import logo from "../images/mmlogo.png";
-import { useSSRSafeId } from "@react-aria/ssr";
+import { loginUser } from "../../features/user/userSlice";
+import logo from "../../images/mmlogo.png";
 
 const loginSchema = yup.object({
   email: yup

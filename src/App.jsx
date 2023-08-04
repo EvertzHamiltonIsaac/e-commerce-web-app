@@ -23,6 +23,7 @@ import SingleProduct from "./pages/SingleProduct/SingleProduct";
 import Cart from "./pages/Cart/Cart";
 import Checkout from "./pages/orders/Checkout";
 import Orders from "./pages/orders/Orders";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
@@ -35,7 +36,7 @@ function App() {
             <Route path="contact" element={<Contact />} />
             <Route path="product" element={<OurStore />} />
             <Route path="product/:id" element={<SingleProduct />} />
-            a <Route path="blogs" element={<Blog />} />
+            <Route path="blogs" element={<Blog />} />
             <Route path="blog/:id" element={<SingleBlog />} />
             <Route path="cart" element={<Cart />} />
             <Route path="profile" element={<Profile />} />
