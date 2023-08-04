@@ -15,16 +15,17 @@ import Dropdown from "react-bootstrap/Dropdown";
 import { useSelector } from "react-redux";
 import { useMemo } from "react";
 
-
 const Header = () => {
   const cartItems = useSelector((state) => state.auth.cartProducts?.data || []);
+
+  const authState = useSelector((state) => state?.auth);
 
   const { uniqueProductIds, subtotal } = useMemo(() => {
     const uniqueIds = {};
     let totalItems = 0;
     let subtotal = 0;
 
-    cartItems.forEach(item => {
+    cartItems.forEach((item) => {
       if (!uniqueIds[item.productId._id]) {
         uniqueIds[item.productId._id] = true;
       }
@@ -38,7 +39,7 @@ const Header = () => {
       subtotal,
     };
   }, [cartItems]);
-  
+
   return (
     <>
       {["xxl"].map((expand) => (
@@ -100,18 +101,27 @@ const Header = () => {
                     </p>
                   </Nav.Link>
                   <Nav.Link
-                    href="/wishlist"
+                    href={authState?.user === null ? "/login" : "/wishlist"}
                     className="nav-links d-flex justify-content-center links-active"
                   >
                     <img src={wishlist} alt="wishlist" className="links-img" />
                     Favourite <br /> Wishlist
                   </Nav.Link>
                   <Nav.Link
-                    href="/login"
+                    href={authState?.user === null ? "/login" : "/profile"}
                     className="nav-links d-flex justify-content-center links-active"
                   >
                     <img src={user} alt="user" className="links-img" />
-                    Log in /<br /> Account
+                    {authState?.user === null ? (
+                      <p className="mb-0">
+                        Log in /<br /> Account
+                      </p>
+                    ) : (
+                      <p className="mb-0">
+                        {authState?.user?.data?.firstName} <br />
+                        {authState?.user?.data?.lastName}
+                      </p>
+                    )}
                   </Nav.Link>
                   {cartItems.length > 0 ? (
                     <Nav.Link
@@ -134,7 +144,7 @@ const Header = () => {
                     </Nav.Link>
                   ) : (
                     <Nav.Link
-                      href="/cart"
+                      href={authState?.user === null ? "/login" : "/cart"}
                       className="nav-links d-flex justify-content-center links-active"
                     >
                       <img src={cart} alt="cart" className="links-img" />

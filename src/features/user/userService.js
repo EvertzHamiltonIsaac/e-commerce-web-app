@@ -85,7 +85,20 @@ const updateProductFromCart = async (cartDetail) => {
     throw error;
   }
 };
-
+const updateProfile = async () => {
+  try {
+    const response = await axios.put(
+      `${base_url}user/updateUser`,
+      da - ta,
+      config
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error Updating User:", error);
+    throw error;
+  }
+};
+//
 export const authService = {
   register,
   login,
@@ -94,4 +107,5 @@ export const authService = {
   getCart,
   removeProductFromCart,
   updateProductFromCart,
+  updateProfile,
 };
