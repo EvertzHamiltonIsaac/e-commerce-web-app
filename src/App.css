@@ -214,12 +214,6 @@ a {
   padding: 51px !important;
 }
 
-.blog-container {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 15px;
-}
-
 .img-blog-card {
   height: 300px !important;
 }
