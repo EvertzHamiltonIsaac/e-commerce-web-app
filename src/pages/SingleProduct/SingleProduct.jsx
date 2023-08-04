@@ -104,8 +104,8 @@ const SingleProduct = () => {
     }
   }, [productsState]);
 
-  const [stars, setStar] = useState(null);
-  const [comment, seComment] = useState(null);
+  const [stars, setStars] = useState(null);
+  const [comment, setComment] = useState(null);
 
   const addRatingToProduct = () => {
     if (stars === null) {
@@ -118,6 +118,8 @@ const SingleProduct = () => {
       dispatch(
         addRating({ stars: stars, productId: getProductId, comment: comment })
       );
+      setStars(0); // Reset the rating to 0
+      setComment(""); 
       return false;
     }
   };
@@ -349,7 +351,7 @@ const SingleProduct = () => {
                     edit={true}
                     activeColor="#ffd700"
                     onChange={(e) => {
-                      setStar(e);
+                      setStars(e);
                     }}
                   />
                 </div>
@@ -362,7 +364,7 @@ const SingleProduct = () => {
                     rows="4"
                     placeholder="Comments"
                     onChange={(e) => {
-                      seComment(e.target.value);
+                      setComment(e.target.value);
                     }}
                   ></textarea>
                 </div>
@@ -390,9 +392,7 @@ const SingleProduct = () => {
                             activeColor="#ffd700"
                           />
                         </div>
-                        <p className="mt-3">
-                          {item?.comment}
-                        </p>
+                        <p className="mt-3">{item?.comment}</p>
                       </div>
                     );
                   })}
