@@ -19,13 +19,12 @@ import prodcompare from "../../images/prodcompare.svg";
 import wish from "../../images/wish.svg";
 import addcart from "../../images/add-cart.svg";
 import view from "../../images/view.svg";
-import "./Home.css"
-
+import "./Home.css";
 
 const Home = () => {
   const blogState = useSelector((state) => state?.blog?.blogs?.data);
   const productState = useSelector((state) => state?.product?.product?.data);
-  const  navigate=useNavigate();
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
@@ -36,7 +35,7 @@ const Home = () => {
     const getProducts = () => {
       dispatch(getAllProducts());
     };
-  
+
     getBlogs();
     getProducts();
   }, [dispatch]);
@@ -56,67 +55,75 @@ const Home = () => {
           <div className="col-12">
             <h3 className="section-heading">Featured Collection</h3>
           </div>
-          <div className="d-flex gap-15">
-          {productState?.map((item, index) => {
-            const imageSrc = item.images[0]?.url || defaultImage;
-            const imageSrc2 = item.images[1]?.url || defaultImage;
-            if (item?.tags === "featured") {
-              return (
-                <div key={index}>
-                  <div
-                    className="product-card position-relative"
-                  >
-                    <div className="wishlist-icon position-absolute">
-                      <button className="border-0 bg-transparent">
-                        <img src={wish} alt="wishlist" />
-                      </button>
-                    </div>
-                    <div className="product-image d-flex justify-content-center align-items-center">
-                      <img
-                        src={imageSrc}
-                        className="mx-auto "
-                        alt="product image"
-                        width={269}
-                        height={269}
-                      />
-                      <img
-                        src={imageSrc2}
-                        className="mx-auto"
-                        alt="product image"
-                        width={269}
-                        height={269}
-                      />
-                    </div>
-                    <div className="product-details">
-                      <h6 className="brand">{item?.brand}</h6>
-                      <h5 className="product-title">{item?.title}</h5>
-                      <ReactStars
-                        count={5}
-                        size={24}
-                        value={parseFloat(item?.totalrating)}
-                        edit={false}
-                        activeColor="#ffd700"
-                      />
-                      <p className="price">$ {item?.price}</p>
-                    </div>
-                    <div className="action-bar position-absolute">
-                      <div className="d-flex flex-column gap-15">
-                        <button className="border-0 bg-transparent">
-                          <img src={prodcompare} alt="compare" />
-                        </button>
-                        <button className="border-0 bg-transparent">
-                          <img onClick={()=>navigate("/product/" + item?._id)} src={view} alt="view" />
-                        </button>
-                        <button className="border-0 bg-transparent">
-                          <img src={addcart} alt="addcart" />
-                        </button>
+          <div className="container-grid">
+            {productState
+              ?.filter((item) => item.tags === "featured")
+              .sort((a, b) => b.createdAt - a.createdAt) 
+              .slice(0, 4) 
+              .map((item, index) => {
+                const imageSrc = item.images[0]?.url || defaultImage;
+                const imageSrc2 = item.images[1]?.url || defaultImage;
+                {
+                  return (
+                    <div key={index}>
+                      <div className="product-card position-relative">
+                        <div className="wishlist-icon position-absolute">
+                          <button className="border-0 bg-transparent">
+                            <img src={wish} alt="wishlist" />
+                          </button>
+                        </div>
+                        <div className="product-image d-flex justify-content-center align-items-center">
+                          <img
+                            src={imageSrc}
+                            className="mx-auto "
+                            alt="product image"
+                            width={269}
+                            height={269}
+                          />
+                          <img
+                            src={imageSrc2}
+                            className="mx-auto"
+                            alt="product image"
+                            width={269}
+                            height={269}
+                          />
+                        </div>
+                        <div className="product-details">
+                          <h6 className="brand">{item?.brand}</h6>
+                          <h5 className="product-title">{item?.title}</h5>
+                          <ReactStars
+                            count={5}
+                            size={24}
+                            value={parseFloat(item?.totalrating)}
+                            edit={false}
+                            activeColor="#ffd700"
+                          />
+                          <p className="price">$ {item?.price}</p>
+                        </div>
+                        <div className="action-bar position-absolute">
+                          <div className="d-flex flex-column gap-15">
+                            <button className="border-0 bg-transparent">
+                              <img src={prodcompare} alt="compare" />
+                            </button>
+                            <button className="border-0 bg-transparent">
+                              <img
+                                onClick={() =>
+                                  navigate("/product/" + item?._id)
+                                }
+                                src={view}
+                                alt="view"
+                              />
+                            </button>
+                            <button className="border-0 bg-transparent">
+                              <img src={addcart} alt="addcart" />
+                            </button>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-              );
-            }
-          })}
+                  );
+                }
+              })}
           </div>
         </div>
       </Container>
@@ -137,22 +144,23 @@ const Home = () => {
           </div>
         </div>
         <div className="special-Product">
-          {productState?.map((item, index) => {
-            if (item?.tags === "special") {
-              return (
-                <SpecialProduct
-                  key={index}
-                  id={item?._id}
-                  brand={item?.brand}
-                  title={item?.title}
-                  totalrating={item?.totalrating.toString()}
-                  price={item?.price}
-                  sold={item?.sold}
-                  quantity={item?.quantity}
-                />
-              );
-            }
-          })}
+          {productState
+            ?.filter((item) => item?.tags === "special")
+            .sort((a, b) => new Date(b.dateAdded) - new Date(a.dateAdded))
+            .slice(0, 4)
+            .map((item, index) => (
+              <SpecialProduct
+                key={index}
+                id={item?._id}
+                image={item?.images?.[0]?.url}
+                brand={item?.brand}
+                title={item?.title}
+                totalrating={item?.totalrating.toString()}
+                price={item?.price}
+                sold={item?.sold}
+                quantity={item?.quantity}
+              />
+            ))}
         </div>
       </Container>
 
@@ -163,66 +171,76 @@ const Home = () => {
           </div>
         </div>
         <div className="row">
-         <div className="d-flex gap-15 ">
-         {productState?.map((item, index) => {
-            const imageSrc = item.images[0]?.url || defaultImage;
-            const imageSrc2 = item.images[1]?.url || defaultImage;
-            if (item?.tags === "popular") {
-              return (
-                <div key={index}>
-                  <div className="product-card position-relative">
-                    <div className="wishlist-icon position-absolute">
-                      <button className="border-0 bg-transparent">
-                        <img src={wish} alt="wishlist" />
-                      </button>
-                    </div>
-                    <div className="product-image d-flex justify-content-center align-items-center">
-                      <img
-                        src={imageSrc}
-                        className="mx-auto "
-                        alt="product image"
-                        width={269}
-                        height={269}
-                      />
-                      <img
-                        src={imageSrc2}
-                        className="mx-auto"
-                        alt="product image"
-                        width={269}
-                        height={269}
-                      />
-                    </div>
-                    <div className="product-details">
-                      <h6 className="brand">{item?.brand}</h6>
-                      <h5 className="product-title">{item?.title}</h5>
-                      <ReactStars
-                        count={5}
-                        size={24}
-                        value={parseFloat(item?.totalrating)}
-                        edit={false}
-                        activeColor="#ffd700"
-                      />
-                      <p className="price">$ {item?.price}</p>
-                    </div>
-                    <div className="action-bar position-absolute">
-                      <div className="d-flex flex-column gap-15">
-                        <button className="border-0 bg-transparent">
-                          <img src={prodcompare} alt="compare" />
-                        </button>
-                        <button className="border-0 bg-transparent">
-                          <img onClick={()=>navigate("/product/" + item?._id)} src={view} alt="view" />
-                        </button>
-                        <button className="border-0 bg-transparent">
-                          <img src={addcart} alt="addcart" />
-                        </button>
+          <div className="container-grid">
+            {productState
+              ?.filter((item) => item.tags === "popular")
+              .sort((a, b) => b.createdAt - a.createdAt)
+              .slice(0, 4)
+              .map((item, index) => {
+                const imageSrc = item.images[0]?.url || defaultImage;
+                const imageSrc2 = item.images[1]?.url || defaultImage;
+                {
+                  return (
+                    <div key={index}>
+                      <div className="product-card position-relative">
+                        <div className="wishlist-icon position-absolute">
+                          <button className="border-0 bg-transparent">
+                            <img src={wish} alt="wishlist" />
+                          </button>
+                        </div>
+                        <div className="product-image d-flex justify-content-center align-items-center">
+                          <img
+                            src={imageSrc}
+                            className="mx-auto "
+                            alt="product image"
+                            width={269}
+                            height={269}
+                          />
+                          <img
+                            src={imageSrc2}
+                            className="mx-auto"
+                            alt="product image"
+                            width={269}
+                            height={269}
+                          />
+                        </div>
+                        <div className="product-details">
+                          <h6 className="brand">{item?.brand}</h6>
+                          <h5 className="product-title">{item?.title}</h5>
+                          <ReactStars
+                            count={5}
+                            size={24}
+                            value={parseFloat(item?.totalrating)}
+                            edit={false}
+                            activeColor="#ffd700"
+                          />
+                          <p className="price">$ {item?.price}</p>
+                        </div>
+                        <div className="action-bar position-absolute">
+                          <div className="d-flex flex-column gap-15">
+                            <button className="border-0 bg-transparent">
+                              <img src={prodcompare} alt="compare" />
+                            </button>
+                            <button className="border-0 bg-transparent">
+                              <img
+                                onClick={() =>
+                                  navigate("/product/" + item?._id)
+                                }
+                                src={view}
+                                alt="view"
+                              />
+                            </button>
+                            <button className="border-0 bg-transparent">
+                              <img src={addcart} alt="addcart" />
+                            </button>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-              );
-            }
-          })}
-         </div>
+                  );
+                }
+              })}
+          </div>
         </div>
       </Container>
 
@@ -268,25 +286,27 @@ const Home = () => {
           </div>
         </div>
         <div className="blog-container">
-         {blogState
+          {blogState
             ?.slice()
-            .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) 
+            .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
             .map((item, index) => {
-            if (index < 4) {
-              const imageSrc = item?.images[0]?.url || defaultImage;
-              return (
-                <div className=''  key={index}>
-                  <BlogCard
-                    id={item?._id}
-                    title={item?.title}
-                    description={item?.description}
-                    image={imageSrc}
-                    date={moment(item?.createdAt).format("MMMM Do YYYY, h:mm")}
-                  />
-                </div>
-              );
-            }
-          })}
+              if (index < 4) {
+                const imageSrc = item?.images[0]?.url || defaultImage;
+                return (
+                  <div className="" key={index}>
+                    <BlogCard
+                      id={item?._id}
+                      title={item?.title}
+                      description={item?.description}
+                      image={imageSrc}
+                      date={moment(item?.createdAt).format(
+                        "MMMM Do YYYY, h:mm"
+                      )}
+                    />
+                  </div>
+                );
+              }
+            })}
         </div>
       </Container>
     </>

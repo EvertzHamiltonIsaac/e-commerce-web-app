@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 import { addToWishlist } from "../../features/products/productSlice";
 import DOMPurify from "dompurify";
 import defaultImage from "../../images/defaultImage.png";
+import "./ProductCard.css"
 
 const ProductCard = (props) => {
   const { grid, data } = props;

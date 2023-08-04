@@ -10,6 +10,8 @@
   }
   .product-card .product-image img {
     object-fit: contain;
+    height: 300px;
+    width: 300px;
   }
   .product-card .product-image > img:last-child {
     display: none;
@@ -30,6 +32,10 @@
   .product-card .product-details h5 {
     font-size: 15px;
     color: var(--color-1c1c1b);
+    overflow: hidden !important;
+    white-space: nowrap !important;
+    text-overflow: ellipsis !important;
+    max-width: 200px !important; 
   }
   .product-card .product-details p.price {
     font-size: 16px;

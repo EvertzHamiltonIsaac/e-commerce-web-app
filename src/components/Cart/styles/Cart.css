@@ -9,6 +9,7 @@
 
 .img-container img {
   width: 140px;
+  object-fit: contain;
 }
 
 .card-input {

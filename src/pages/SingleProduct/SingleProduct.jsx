@@ -25,6 +25,7 @@ const SingleProduct = () => {
   const productState = useSelector(
     (state) => state?.product?.singleProduct?.data
   );
+
   const productsState = useSelector((state) => state?.product?.product?.data);
   const [isLoading, setIsLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
@@ -93,6 +94,7 @@ const SingleProduct = () => {
   };
 
   const [popularProduct, setPopularProduct] = useState([]);
+
   useEffect(() => {
     let data = [];
     for (let index = 0; index < productsState?.length; index++) {
@@ -106,8 +108,7 @@ const SingleProduct = () => {
 
   const [stars, setStars] = useState(null);
   const [comment, setComment] = useState(null);
-
-  const addRatingToProduct = () => {
+  const addRatingToProduct = async () => {
     if (stars === null) {
       toast.error("Please add star rating");
       return false;
@@ -118,10 +119,13 @@ const SingleProduct = () => {
       dispatch(
         addRating({ stars: stars, productId: getProductId, comment: comment })
       );
-      setStars(0); // Reset the rating to 0
-      setComment(""); 
-      return false;
+      setTimeout(() => {
+        dispatch(getAProduct(getProductId)).then(() => {
+          window.location.reload();
+        });
+      }, 500);
     }
+    return false;
   };
 
   if (isLoading) {
@@ -347,7 +351,7 @@ const SingleProduct = () => {
                   <ReactStars
                     count={5}
                     size={24}
-                    value={0}
+                    value={null}
                     edit={true}
                     activeColor="#ffd700"
                     onChange={(e) => {
@@ -379,7 +383,7 @@ const SingleProduct = () => {
               </div>
               <div className="reviews mt-4">
                 {productState &&
-                  productState?.ratings?.map((item, index) => {
+                  productState?.ratings.map((item, index) => {
                     return (
                       <div key={index} className="review">
                         <div className="d-flex gap-10 align-items-center">
@@ -387,9 +391,9 @@ const SingleProduct = () => {
                           <ReactStars
                             count={5}
                             size={24}
-                            value={item?.stars}
                             edit={false}
                             activeColor="#ffd700"
+                            value={item?.stars}
                           />
                         </div>
                         <p className="mt-3">{item?.comment}</p>
