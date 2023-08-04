@@ -6,18 +6,17 @@ import Services from "../../components/Home/Services";
 import Meta from "../../components/common/Meta";
 import CarouselSlider from "../../components/Home/CarouselSlider";
 import ItemCategories from "../../components/Home/ItemCategories";
-import FamousWrapper from "../../components/Home/FamousWrapper";
+// import FamousWrapper from "../../components/Home/FamousWrapper";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getAllBlogs } from "../../features/blogs/blogSlice";
 import moment from "moment";
 import defaultImage from "../../images/defaultImage.png";
-import { getAllProducts } from "../../features/products/productSlice";
+import { addToWishlist, getAllProducts } from "../../features/products/productSlice";
 import ReactStars from "react-rating-stars-component";
 import { useNavigate } from "react-router-dom";
 import prodcompare from "../../images/prodcompare.svg";
 import wish from "../../images/wish.svg";
-import addcart from "../../images/add-cart.svg";
 import view from "../../images/view.svg";
 import "./Home.css";
 
@@ -27,6 +26,12 @@ const Home = () => {
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
+
+  
+  const addToWish = (id) => {
+    dispatch(addToWishlist(id));
+  };
+
 
   useEffect(() => {
     const getBlogs = () => {
@@ -68,7 +73,7 @@ const Home = () => {
                     <div key={index}>
                       <div className="product-card position-relative">
                         <div className="wishlist-icon position-absolute">
-                          <button className="border-0 bg-transparent">
+                          <button onClick={() => addToWish(item?._id)} className="border-0 bg-transparent">
                             <img src={wish} alt="wishlist" />
                           </button>
                         </div>
@@ -114,9 +119,6 @@ const Home = () => {
                                 alt="view"
                               />
                             </button>
-                            <button className="border-0 bg-transparent">
-                              <img src={addcart} alt="addcart" />
-                            </button>
                           </div>
                         </div>
                       </div>
@@ -128,14 +130,14 @@ const Home = () => {
         </div>
       </Container>
 
-      <Container class1="home-wrapper-2">
+      {/* <Container class1="home-wrapper-2">
         <div className="container-wrapper-famous">
           <FamousWrapper />
           <FamousWrapper />
           <FamousWrapper />
           <FamousWrapper />
         </div>
-      </Container>
+      </Container> */}
 
       <Container class1="special-wrapper py-5 home-wrapper-2">
         <div className="row">
@@ -185,7 +187,7 @@ const Home = () => {
                       <div className="product-card position-relative">
                         <div className="wishlist-icon position-absolute">
                           <button className="border-0 bg-transparent">
-                            <img src={wish} alt="wishlist" />
+                            <img onClick={() => addToWish(item?._id)} src={wish} alt="wishlist" />
                           </button>
                         </div>
                         <div className="product-image d-flex justify-content-center align-items-center">
@@ -229,9 +231,6 @@ const Home = () => {
                                 src={view}
                                 alt="view"
                               />
-                            </button>
-                            <button className="border-0 bg-transparent">
-                              <img src={addcart} alt="addcart" />
                             </button>
                           </div>
                         </div>

@@ -3,7 +3,6 @@ import ReactStars from "react-rating-stars-component";
 import { Link, useLocation } from "react-router-dom";
 import prodcompare from "../../images/prodcompare.svg";
 import wish from "../../images/wish.svg";
-import addcart from "../../images/add-cart.svg";
 import view from "../../images/view.svg";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
@@ -98,9 +97,6 @@ const ProductCard = (props) => {
                   >
                     <img src={view} alt="view" />
                   </Link>
-                  <button className="border-0 bg-transparent">
-                    <img src={addcart} alt="addcart" />
-                  </button>
                 </div>
               </div>
             </div>

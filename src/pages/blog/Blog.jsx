@@ -20,7 +20,6 @@ const Blog = () => {
     };
     getBlogs();
   }, [dispatch]);
-  console.log(blogState);
   
   return (
     <>
@@ -28,7 +27,7 @@ const Blog = () => {
       <BreadCrumb title="Blogs" />
       <Container class1="blog-wrapper home-wrapper-2 py-5">
         <div className="container-xxl">
-          <div className="row">
+          <div className="container-blog-page">
             <div className="col-3">
               <div className="filter-card mb-3">
                 <h3 className="filter-title">Find By Categories</h3>
@@ -43,7 +42,7 @@ const Blog = () => {
               </div>
             </div>
             <div className="">
-              <div className="">
+              <div className="container-blog">
                 {blogState?.map((item, index) => {
                   const imageSrc = item.images[0]?.url || defaultImage;
                   return (
