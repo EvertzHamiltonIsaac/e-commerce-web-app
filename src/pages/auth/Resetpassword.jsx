@@ -1,4 +1,4 @@
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import BreadCrumb from "../../components/common/BreadCrumb";
 import Meta from "../../components/common/Meta";
 import Container from "../../components/Container/Container";
@@ -11,14 +11,13 @@ import { resetPassword } from "../../features/auth/authSlice";
 
 const Resetpassword = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const { token } = useParams();
 
   const resetPasswordSchema = yup.object({
     password: yup.string().required("Password is Required!"),
-    confirmPassword: yup
-      .string()
-      .required("This Field Is Required!"),
+    confirmPassword: yup.string().required("This Field Is Required!"),
   });
 
   const formik = useFormik({
@@ -28,9 +27,13 @@ const Resetpassword = () => {
     },
     validationSchema: resetPasswordSchema,
     onSubmit: (values) => {
-      if(values.password === values.confirmPassword){
-        dispatch(resetPassword({token: token, password: values.password}));
-      } 
+      if (values.password === values.confirmPassword) {
+        dispatch(
+          resetPassword({ token: token, password: values.password })
+        ).then(() => {
+          navigate("/login");
+        });
+      }
     },
   });
 
@@ -43,7 +46,10 @@ const Resetpassword = () => {
           <div className="col-12">
             <div className="auth-card">
               <h3 className="text-center mb-3">Reset Password</h3>
-              <form onSubmit={formik.handleSubmit} className="d-flex flex-column gap-15">
+              <form
+                onSubmit={formik.handleSubmit}
+                className="d-flex flex-column gap-15"
+              >
                 <CustomInput
                   type="password"
                   name="password"
@@ -62,7 +68,9 @@ const Resetpassword = () => {
                 />
                 <div>
                   <div className="mt-3 d-flex justify-content-center gap-15 align-items-center">
-                    <button type="submit" className="btn Primary-btn">Reset</button>
+                    <button type="submit" className="btn Primary-btn">
+                      Reset
+                    </button>
                   </div>
                 </div>
               </form>
