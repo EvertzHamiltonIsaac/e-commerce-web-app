@@ -4,14 +4,21 @@ import Image from "react-bootstrap/Image";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import icon from "../../images/IconsQuestion02.png";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useState } from "react";
 import "./styles/Orden.css"
+import { getCart } from "../../features/cart/cartSlice";
 
 const Orden = () => {
-  const userCartState = useSelector((state) => state?.auth?.cartProducts?.data);
+  const dispatch = useDispatch();
   const [totalAmount, setTotalAmount] = useState(null);
+
+  const userCartState = useSelector((state) => state?.cart?.cartGetted?.data) || [];
+  
+  const Shipping = totalAmount * 0.01 * 2.5;
+  const tax = totalAmount * 0.2;
+  const TotalOrder = totalAmount + Shipping + tax;
 
   useEffect(() => {
     let sum = 0;
@@ -23,9 +30,9 @@ const Orden = () => {
     }
   }, [userCartState]);
 
-  const Shipping = totalAmount * 0.01 * 2.5;
-  const tax = totalAmount * 0.2;
-  const TotalOrder = totalAmount + Shipping + tax;
+  useEffect(() => {
+    dispatch(getCart());
+  }, []);
 
   return (
     <div className="order-container">

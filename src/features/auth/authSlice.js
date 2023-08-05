@@ -49,6 +49,17 @@ export const forgotPassword = createAsyncThunk(
   }
 );
 
+export const resetPassword = createAsyncThunk(
+  "auth/resetPassword/:token",
+  async (resetPasswordData, { rejectWithValue }) => {
+    try {
+      return await authService.resetPassword(resetPasswordData);
+    } catch (error) {
+      return rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
 const initialState = {
   userInfo: {},
   isError: false,
@@ -118,6 +129,27 @@ export const authSlice = createSlice({
         }
       })
       .addCase(forgotPassword.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.isSuccess = false;
+        state.message = action.payload;
+        if (state.isError) {
+          toast.error(action.payload);
+        }
+      })
+      .addCase(resetPassword.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(resetPassword.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.isSuccess = true;
+        state.passwordReset = action.payload;
+        // if (state.isSuccess) {
+        //   toast.info("User Registered Successfully");
+        // }
+      })
+      .addCase(resetPassword.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.isSuccess = false;

@@ -16,7 +16,7 @@ import Container from "../../components/Container/Container";
 import { addRating, getAProduct } from "../../features/products/productSlice";
 import defaultImage from "../../images/defaultImage.png";
 import "./SingleProduct.css";
-import { addToCart } from "../../features/cart/cartSlice";
+import { addToCart, getCart } from "../../features/cart/cartSlice";
 
 const SingleProduct = () => {
   const location = useLocation();
@@ -26,7 +26,7 @@ const SingleProduct = () => {
     (state) => state?.product?.singleProduct?.data
   );
 
-  const productsState = useSelector((state) => state?.product?.product?.data);
+  const productsState = useSelector((state) => state?.product?.singleProduct?.data);
   const [isLoading, setIsLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
   const [selectedColorId, setSelectedColorId] = useState(null);
@@ -79,7 +79,7 @@ const SingleProduct = () => {
           price: productState?.price,
           brand: productState?.brand,
         })
-      );
+      ).then(() => dispatch(getCart()));
       setAlreadyAdded(true);
     }
   };
@@ -119,11 +119,7 @@ const SingleProduct = () => {
       dispatch(
         addRating({ stars: stars, productId: getProductId, comment: comment })
       );
-      setTimeout(() => {
-        dispatch(getAProduct(getProductId)).then(() => {
-          window.location.reload();
-        });
-      }, 500);
+      dispatch(getAProduct(getProductId));
     }
     return false;
   };
@@ -143,7 +139,7 @@ const SingleProduct = () => {
       </div>
     );
   }
-
+  
   return (
     <>
       <Meta title={productState?.title || "Product Name"} />
@@ -334,7 +330,7 @@ const SingleProduct = () => {
                       edit={false}
                       activeColor="#ffd700"
                     />
-                    <p className="mb-0">Based on 2 Reviews</p>
+                    <p className="mb-0">{`Based on ${productsState?.ratings?.length} Reviews`}</p>
                   </div>
                 </div>
                 {orderedProduct && (
@@ -387,7 +383,7 @@ const SingleProduct = () => {
                     return (
                       <div key={index} className="review">
                         <div className="d-flex gap-10 align-items-center">
-                          <h6 className="mb-0">Navdeep</h6>
+                          <h6 className="mb-0">{`${item?.postedby?.firstName} ${item?.postedby?.lastName}`}</h6>
                           <ReactStars
                             count={5}
                             size={24}

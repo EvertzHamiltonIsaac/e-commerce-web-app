@@ -12,21 +12,24 @@ import Navbar from "react-bootstrap/Navbar";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import InputGroup from "react-bootstrap/InputGroup";
 import Dropdown from "react-bootstrap/Dropdown";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useMemo } from "react";
 import "./Styles/Header.css";
 import useUser from "../../hooks/useUser";
+import { getCart } from "../../features/cart/cartSlice";
+import { useEffect } from "react";
 
 const Header = () => {
+  const { user, sessionToken, message } = useUser();
+  const dispatch = useDispatch();
 
-  const cartItems = useSelector((state) => state.auth.cartProducts?.data) || [];
   const authState = useSelector((state) => state?.auth);
-  const {user, sessionToken, message} = useUser();
+  const cartItems = useSelector((state) => state?.cart?.cartGetted?.data) || [];
 
   const { uniqueProductIds, subtotal } = useMemo(() => {
     const uniqueIds = {};
     let totalItems = 0;
-    let subtotal = 0;
+    let subtotal = 0; 
 
     cartItems.forEach((item) => {
       if (!uniqueIds[item?.productId?._id]) {
@@ -42,6 +45,10 @@ const Header = () => {
       subtotal,
     };
   }, [cartItems]);
+
+  useEffect(() => {
+    dispatch(getCart());
+  }, []);
 
   return (
     <>
@@ -111,7 +118,7 @@ const Header = () => {
                     <img src={wishlist} alt="wishlist" className="links-img" />
                     Favourite <br /> Wishlist
                   </Nav.Link>
-                  
+
                   <Nav.Link
                     href={sessionToken === null ? "/login" : "/profile"}
                     className="nav-links d-flex justify-content-center links-active"
@@ -128,7 +135,7 @@ const Header = () => {
                       </p>
                     )}
                   </Nav.Link>
-                  
+
                   {cartItems.length > 0 ? (
                     <Nav.Link
                       href="/cart"
@@ -141,7 +148,7 @@ const Header = () => {
                         </p>
                         <p className="mb-0 size-60">
                           ${" "}
-                          {subtotal.toLocaleString(undefined, {
+                          {subtotal?.toLocaleString(undefined, {
                             minimumFractionDigits: 2,
                             maximumFractionDigits: 2,
                           })}

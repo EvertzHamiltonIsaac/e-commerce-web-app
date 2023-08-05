@@ -43,9 +43,17 @@ const login = async (userData) => {
 };
 
 const forgotPassword = async (body) => {
-  console.log(body);
   try {
     const response = await axios.post(`${base_url}user/forgotPassword`, body);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+const resetPassword = async ({token, body}) => {
+  try {
+    const response = await axios.put(`${base_url}user/resetPassword/${token}`, body);
     return response.data;
   } catch (error) {
     throw error;
@@ -56,4 +64,5 @@ export const authService = {
   register,
   login,
   forgotPassword,
+  resetPassword
 };
