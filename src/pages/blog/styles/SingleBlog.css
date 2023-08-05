@@ -12,3 +12,48 @@
     color: var(--color-Grimmy);
     font-size: 14px;
   }
+
+  .img-single-blog{
+    object-fit: contain;
+    width: 40%;
+  }
+
+  .main-product-image-blog {
+    padding: 10px;
+    /* background-color: white; */
+    border-radius: 10px;
+  }
+  
+  .main-product-image-blog img {
+    width: 100% !important;
+    height: 600px !important;
+    object-fit: cover;
+  }
+
+  .main-product-image-blog .js-image-zoom__zoomed-image {
+    /* left: 50px !important; */
+    padding: 10px;
+    /* background-color: white; */
+    /* border-radius: 10px; */
+    z-index: 1000;
+  }
+
+  .img-product-blog {
+    cursor: pointer;
+    object-fit: contain;
+    width: 2rem;
+    height: 3rem;
+  }
+
+  .other-product-images-blog {
+    /* background-color: white; */
+    padding: 20px;
+    justify-content: center;
+  }
+  .other-product-images-blog > div {
+    width: 5%;
+    border: 1px solid rgba(4, 75, 207, 0.898);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

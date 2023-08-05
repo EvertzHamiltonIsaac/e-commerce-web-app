@@ -1,5 +1,51 @@
 .container-blog {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 10px;
+}
+.img-blog-card {
+  height: 300px !important;
+  object-fit: cover;
+}
+
+.container-blog {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+  gap: 20px;
+}
+
+.content-container{
+    display: flex;
+}
+
+.blog-pages-card{
+    margin-right: 20px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px 15px 25px;
+    width: 300px;
+    margin-bottom: 10px;
+}
+
+.blog-pages-card li{
+    list-style: none;
+}
+
+.blog-pages-title{
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 600;
+    color: var(--color-1c1c1b);
+    margin-bottom: 20px;
+}
+
+
+@media (max-width: 700px) {
+    .content-container{
+        display: inline-block;
+    }
+
+    .blog-pages-card{
+        width: 200px;
+    }
 }

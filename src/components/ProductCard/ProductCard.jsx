@@ -1,7 +1,7 @@
 import { useRef, useEffect } from "react";
 import ReactStars from "react-rating-stars-component";
 import { Link, useLocation } from "react-router-dom";
-import prodcompare from "../../images/prodcompare.svg";
+// import prodcompare from "../../images/prodcompare.svg";
 import wish from "../../images/wish.svg";
 import view from "../../images/view.svg";
 import PropTypes from "prop-types";
@@ -88,9 +88,9 @@ const ProductCard = (props) => {
               </div>
               <div className="action-bar position-absolute">
                 <div className="d-flex flex-column gap-15">
-                  <button className="border-0 bg-transparent">
+                  {/* <button className="border-0 bg-transparent">
                     <img src={prodcompare} alt="compare" />
-                  </button>
+                  </button> */}
                   <Link
                     to={"/product/" + item?._id}
                     className="border-0 bg-transparent"

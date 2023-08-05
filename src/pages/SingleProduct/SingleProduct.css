@@ -71,7 +71,7 @@
 .main-product-image .js-image-zoom__zoomed-image {
   left: 50px !important;
   padding: 10px;
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   border-radius: 10px;
   z-index: 1000;
 }
@@ -126,4 +126,8 @@
   width: 200px;
   margin: 0px 23px;
   height: 200px;
+}
+
+.blog-content{
+  margin: 20px 0px;
 }
