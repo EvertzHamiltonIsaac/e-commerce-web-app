@@ -145,9 +145,9 @@ export const authSlice = createSlice({
         state.isError = false;
         state.isSuccess = true;
         state.passwordReset = action.payload;
-        // if (state.isSuccess) {
-        //   toast.info("User Registered Successfully");
-        // }
+        if (state.isSuccess) {
+          toast.info("User Registered Successfully");
+        }
       })
       .addCase(resetPassword.rejected, (state, action) => {
         state.isLoading = false;

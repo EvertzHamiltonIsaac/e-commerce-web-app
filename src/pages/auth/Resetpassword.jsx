@@ -10,6 +10,8 @@ import * as yup from "yup";
 import { resetPassword } from "../../features/auth/authSlice";
 
 const Resetpassword = () => {
+  const dispatch = useDispatch();
+
   const { token } = useParams();
 
   const resetPasswordSchema = yup.object({
@@ -27,11 +29,11 @@ const Resetpassword = () => {
     validationSchema: resetPasswordSchema,
     onSubmit: (values) => {
       if(values.password === values.confirmPassword){
-        dispatch(resetPassword({token: token, body: password}));
+        dispatch(resetPassword({token: token, password: values.password}));
       } 
     },
   });
-  
+
   return (
     <>
       <Meta title={"Reset Password"} />
@@ -51,7 +53,7 @@ const Resetpassword = () => {
                   value={formik.values.password}
                 />
                 <CustomInput
-                  type="confirmPassword"
+                  type="Password"
                   name="confirmPassword"
                   placeholder="Confirm Password"
                   onChange={formik.handleChange("confirmPassword")}

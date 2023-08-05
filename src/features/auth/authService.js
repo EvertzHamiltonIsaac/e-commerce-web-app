@@ -51,9 +51,9 @@ const forgotPassword = async (body) => {
   }
 };
 
-const resetPassword = async ({token, body}) => {
+const resetPassword = async ({token, password}) => {
   try {
-    const response = await axios.put(`${base_url}user/resetPassword/${token}`, body);
+    const response = await axios.put(`${base_url}user/resetPassword/${token}`, {password: password});
     return response.data;
   } catch (error) {
     throw error;
