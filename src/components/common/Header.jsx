@@ -23,7 +23,6 @@ const Header = () => {
   const authState = useSelector((state) => state?.auth);
   const {user, sessionToken, message} = useUser();
 
-
   const { uniqueProductIds, subtotal } = useMemo(() => {
     const uniqueIds = {};
     let totalItems = 0;
