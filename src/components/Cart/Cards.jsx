@@ -2,47 +2,43 @@ import { useEffect, useState } from "react";
 import "./styles/Cart.css";
 import CloseButton from "react-bootstrap/CloseButton";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  deleteCartProduct,
-  getUserCart,
-  updateCartProduct,
-} from "../../features/user/userSlice";
 import defaultImage from "../../images/defaultImage.png";
+import {
+  getCart,
+  removeProductFromCart,
+  updateProductFromCart,
+} from "../../features/cart/cartSlice";
 
 const Cards = () => {
   const dispatch = useDispatch();
-  const userCartState = useSelector((state) => state?.auth?.cartProducts?.data);
-  const [isDeleting, setIsDeleting] = useState(false);
+  const userCartState = useSelector((state) => state?.cart?.cartGetted?.data);
+  // const [isDeleting, setIsDeleting] = useState(false);
   const [productUpdateDetails, setProductUpdateDetails] = useState({
     newQuantity: 0,
     id: "",
   });
 
-  useEffect(() => {
-    dispatch(getUserCart());
-  }, [dispatch, isDeleting]);
-
   const handleDeleteProduct = async (id) => {
-    try {
-      setIsDeleting(true);
-      await dispatch(deleteCartProduct(id));
-      setIsDeleting(false);
-    } catch (error) {
-      console.error("Error deleting product:", error);
-    }
+    dispatch(removeProductFromCart(id)).then(() => {
+      dispatch(getCart());
+    });
   };
 
   const handleUpdateProductQuantity = async (e, item) => {
     setProductUpdateDetails({ newQuantity: +e.target.value, id: item?._id });
     dispatch(
-      updateCartProduct({
+      updateProductFromCart({
         newQuantity: +e.target.value,
         cartItemId: item?._id,
       })
     ).then(() => {
-      dispatch(getUserCart());
+      dispatch(getCart());
     });
   };
+
+  useEffect(() => {
+    dispatch(getCart());
+  }, []);
 
   return (
     <div className="container-cart">

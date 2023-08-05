@@ -6,8 +6,9 @@ import CustomInput from "../../components/Custom/CustomInput";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "../../features/user/userSlice";
 import logo from "../../images/mmlogo.png";
+import { login } from "../../features/auth/authSlice";
+import React, { useEffect } from "react";
 
 const loginSchema = yup.object({
   email: yup
@@ -17,11 +18,13 @@ const loginSchema = yup.object({
     .required("Email is Required!"),
   password: yup.string().required("Password is Required!"),
 });
-
+  
 const Login = () => {
-  const authState = useSelector((state) => state?.auth?.user?.data);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const {isSuccess, isError, isLoading, userLogged} = useSelector(state => state.auth)
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -29,12 +32,18 @@ const Login = () => {
     },
     validationSchema: loginSchema,
     onSubmit: (values) => {
-      dispatch(loginUser(values));
-      navigate("/");
+      dispatch(login(values));
     },
   });
+
+  useEffect(() => {
+    if(isSuccess && userLogged){
+      navigate("/");
+    }
+  }, [isSuccess, userLogged])
+  
   return (
-    <>
+    <React.Fragment>
       <Meta title={"Login"} />
       <BreadCrumb title="Login" />
 
@@ -92,7 +101,7 @@ const Login = () => {
           </div>
         </div>
       </Container>
-    </>
+    </React.Fragment>
   );
 };
 

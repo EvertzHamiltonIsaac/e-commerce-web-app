@@ -3,56 +3,77 @@ import Meta from "../../components/common/Meta";
 import Container from "../../components/Container/Container";
 import CustomInput from "../../components/Custom/CustomInput";
 import { useFormik } from "formik";
-import * as yup from 'yup';
-import { useDispatch } from "react-redux";
-import { registerUser } from "../../features/user/userSlice";
-import logo from "../../images/mmlogo.png"
-import "./Styles/auth.css"
+import * as yup from "yup";
+import { useDispatch, useSelector } from "react-redux";
+import logo from "../../images/mmlogo.png";
+import "./Styles/auth.css";
+import { useNavigate } from "react-router";
 
+import { register, resetAuthState } from "../../features/auth/authSlice";
+import React, { useEffect } from "react";
 
 const signUpSchema = yup.object({
   firstName: yup.string().required("First Name is Required"),
   lastName: yup.string().required("Last Name is Required"),
-  email: yup.string().nullable().email("Email Should be valid").required("Email is Required"),
-  phone: yup.string().required("Mobile No is Required"),
-  address: yup.string().required("Address No is Required"),
-  postalCode: yup.string().required("Postal Code No is Required"),
+  email: yup
+    .string()
+    .nullable()
+    .email("Email Should be valid")
+    .required("Email is Required"),
+  phone: yup.string().required("Mobile is Required"),
+  address: yup.string().required("Address is Required"),
+  postalCode: yup.string().required("Postal Code is Required"),
   password: yup.string().required("Password is Required"),
-
 });
 
 const Signup = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const { isSuccess, isLoading, isError, userRegistered } = useSelector(
+    (state) => state.auth
+  );
+
   const formik = useFormik({
     initialValues: {
       firstName: "",
       lastName: "",
       email: "",
-      phone:"",
-      address:"",
-      postalCode:"",
-      password:"",
+      phone: "",
+      address: "",
+      postalCode: "",
+      password: "",
     },
     validationSchema: signUpSchema,
     onSubmit: (values) => {
-      dispatch(registerUser(values));
+      dispatch(register(values));
     },
   });
 
-  
+  useEffect(() => {
+    if (isSuccess && userRegistered) {
+      dispatch(resetAuthState());
+      navigate("/login");
+    }
+  }, [isSuccess, userRegistered]);
+
   return (
-    <>
+    <React.Fragment>
       <Meta title={"Sign Up"} />
       <BreadCrumb title="Sign Up" />
-      <Container class1="login-wrapper py-5 home-wrapper-2">
+      <Container className="login-wrapper py-5 home-wrapper-2">
         <div className="row">
           <div className="col-12">
             <div className="auth-card">
-            <div className="d-flex justify-content-center my-2">
-            <img src={logo} alt="logo" />
-            </div>
+              <div className="d-flex justify-content-center my-2">
+                <img src={logo} alt="logo" />
+              </div>
               <h3 className="text-center mb-3">Sign Up</h3>
-              <form action="" onSubmit={formik.handleSubmit} className="d-flex flex-column">
+              <form
+                action=""
+                onSubmit={formik.handleSubmit}
+                className="d-flex flex-column"
+              >
                 <CustomInput
                   type="text"
                   name="firstName"
@@ -75,7 +96,11 @@ const Signup = () => {
                 <div className="error">
                   {formik.touched.lastName && formik.errors.lastName}
                 </div>
-                <CustomInput type="email" name="email" placeholder="Email" value={formik.values.email}
+                <CustomInput
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  value={formik.values.email}
                   onChange={formik.handleChange("email")}
                   onBlur={formik.handleBlur("email")}
                 />
@@ -137,7 +162,9 @@ const Signup = () => {
                 </div>
                 <div>
                   <div className="mt-3 d-flex justify-content-center gap-15 align-items-center">
-                    <button className="btn Primary-btn">Sign Up</button>
+                    <button type="submit" className="btn Primary-btn">
+                      Sign Up
+                    </button>
                   </div>
                 </div>
               </form>
@@ -145,7 +172,7 @@ const Signup = () => {
           </div>
         </div>
       </Container>
-    </>
+    </React.Fragment>
   );
 };
 

@@ -1,7 +1,7 @@
 import { BsSearch } from "react-icons/bs";
 import compare from "../../images/compare.svg";
 import wishlist from "../../images/wishlist.svg";
-import user from "../../images/user.svg";
+import userIMG from "../../images/user.svg";
 import cart from "../../images/cart.svg";
 import menu from "../../images/menu.svg";
 import Button from "react-bootstrap/Button";
@@ -15,11 +15,14 @@ import Dropdown from "react-bootstrap/Dropdown";
 import { useSelector } from "react-redux";
 import { useMemo } from "react";
 import "./Styles/Header.css";
+import useUser from "../../hooks/useUser";
 
 const Header = () => {
-  const cartItems = useSelector((state) => state.auth.cartProducts?.data || []);
 
+  const cartItems = useSelector((state) => state.auth.cartProducts?.data) || [];
   const authState = useSelector((state) => state?.auth);
+  const {user, sessionToken, message} = useUser();
+
 
   const { uniqueProductIds, subtotal } = useMemo(() => {
     const uniqueIds = {};
@@ -101,6 +104,7 @@ const Header = () => {
                       Compare <br /> Products
                     </p>
                   </Nav.Link>
+
                   <Nav.Link
                     href={authState?.user === null ? "/login" : "/wishlist"}
                     className="nav-links d-flex justify-content-center links-active"
@@ -108,22 +112,24 @@ const Header = () => {
                     <img src={wishlist} alt="wishlist" className="links-img" />
                     Favourite <br /> Wishlist
                   </Nav.Link>
+                  
                   <Nav.Link
-                    href={authState?.user === null ? "/login" : "/profile"}
+                    href={sessionToken === null ? "/login" : "/profile"}
                     className="nav-links d-flex justify-content-center links-active"
                   >
-                    <img src={user} alt="user" className="links-img" />
-                    {authState?.user === null ? (
+                    <img src={userIMG} alt="user" className="links-img" />
+                    {sessionToken === null ? (
                       <p className="mb-0">
                         Log in /<br /> Account
                       </p>
                     ) : (
                       <p className="mb-0">
-                        {authState?.user?.data?.firstName} <br />
-                        {authState?.user?.data?.lastName}
+                        {user?.firstName} <br />
+                        {user?.lastName}
                       </p>
                     )}
                   </Nav.Link>
+                  
                   {cartItems.length > 0 ? (
                     <Nav.Link
                       href="/cart"

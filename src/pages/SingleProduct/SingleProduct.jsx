@@ -14,9 +14,9 @@ import ProductCard from "../../components/ProductCard/ProductCard";
 import Color from "../../components/Color/Color";
 import Container from "../../components/Container/Container";
 import { addRating, getAProduct } from "../../features/products/productSlice";
-import { addProdToCart } from "../../features/user/userSlice";
 import defaultImage from "../../images/defaultImage.png";
 import "./SingleProduct.css";
+import { addToCart } from "../../features/cart/cartSlice";
 
 const SingleProduct = () => {
   const location = useLocation();
@@ -71,7 +71,7 @@ const SingleProduct = () => {
       toast.error("Product is Out of Stock");
     } else {
       dispatch(
-        addProdToCart({
+        addToCart({
           productId: productState?._id,
           images: productState?.images?.[0]?.url,
           quantity,
