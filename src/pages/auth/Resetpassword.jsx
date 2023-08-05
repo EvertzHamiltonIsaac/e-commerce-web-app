@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { resetPassword } from "../../features/auth/authSlice";
+import logo from "../../images/mmlogo.png";
 
 const Resetpassword = () => {
   const dispatch = useDispatch();
@@ -45,6 +46,9 @@ const Resetpassword = () => {
         <div className="row">
           <div className="col-12">
             <div className="auth-card">
+              <div className="d-flex justify-content-center my-2">
+                <img src={logo} alt="logo" />
+              </div>
               <h3 className="text-center mb-3">Reset Password</h3>
               <form
                 onSubmit={formik.handleSubmit}
