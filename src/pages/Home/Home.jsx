@@ -15,7 +15,7 @@ import defaultImage from "../../images/defaultImage.png";
 import { addToWishlist, getAllProducts } from "../../features/products/productSlice";
 import ReactStars from "react-rating-stars-component";
 import { useNavigate } from "react-router-dom";
-import prodcompare from "../../images/prodcompare.svg";
+// import prodcompare from "../../images/prodcompare.svg";
 import wish from "../../images/wish.svg";
 import view from "../../images/view.svg";
 import "./Home.css";
@@ -107,9 +107,9 @@ const Home = () => {
                         </div>
                         <div className="action-bar position-absolute">
                           <div className="d-flex flex-column gap-15">
-                            <button className="border-0 bg-transparent">
+                            {/* <button className="border-0 bg-transparent">
                               <img src={prodcompare} alt="compare" />
-                            </button>
+                            </button> */}
                             <button className="border-0 bg-transparent">
                               <img
                                 onClick={() =>
@@ -220,9 +220,9 @@ const Home = () => {
                         </div>
                         <div className="action-bar position-absolute">
                           <div className="d-flex flex-column gap-15">
-                            <button className="border-0 bg-transparent">
+                            {/* <button className="border-0 bg-transparent">
                               <img src={prodcompare} alt="compare" />
-                            </button>
+                            </button> */}
                             <button className="border-0 bg-transparent">
                               <img
                                 onClick={() =>

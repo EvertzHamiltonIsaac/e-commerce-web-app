@@ -1,5 +1,5 @@
 import { BsSearch } from "react-icons/bs";
-import compare from "../../images/compare.svg";
+// import compare from "../../images/compare.svg";
 import wishlist from "../../images/wishlist.svg";
 import userIMG from "../../images/user.svg";
 import cart from "../../images/cart.svg";
@@ -94,7 +94,7 @@ const Header = () => {
                   </Button>
                 </InputGroup>
                 <Nav className="justify-content-star flex-grow-1 pe-3">
-                  <Nav.Link
+                  {/* <Nav.Link
                     href="/compare-product"
                     className="nav-links d-flex justify-content-center links-active"
                   >
@@ -102,7 +102,7 @@ const Header = () => {
                     <p className="mb-0">
                       Compare <br /> Products
                     </p>
-                  </Nav.Link>
+                  </Nav.Link> */}
 
                   <Nav.Link
                     href={authState?.user === null ? "/login" : "/wishlist"}

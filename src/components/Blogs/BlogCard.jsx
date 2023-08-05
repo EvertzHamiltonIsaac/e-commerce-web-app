@@ -8,6 +8,7 @@ import {
   MDBCardText,
 } from "mdb-react-ui-kit";
 import { Link } from "react-router-dom";
+import "./BlogCard.css"
 
 const BlogCard = (props) => {
   const { id, title, description, date, image } = props;

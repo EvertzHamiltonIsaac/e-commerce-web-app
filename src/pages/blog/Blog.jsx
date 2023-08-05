@@ -27,10 +27,10 @@ const Blog = () => {
       <BreadCrumb title="Blogs" />
       <Container class1="blog-wrapper home-wrapper-2 py-5">
         <div className="container-xxl">
-          <div className="d-flex">
+          <div className="content-container">
             <div className="col-3">
-              <div className="filter-card mb-3">
-                <h3 className="filter-title">Find By Categories</h3>
+              <div className="blog-pages-card" >
+                <h3 className="blog-pages-title">Find By Categories</h3>
                 <div>
                   <ul className="ps-0">
                     <li>Watch</li>
@@ -41,7 +41,7 @@ const Blog = () => {
                 </div>
               </div>
             </div>
-            <div className="">
+            <div className="" style={{width: "100%"}}>
               <div className="container-blog">
                 {blogState?.map((item, index) => {
                   const imageSrc = item.images[0]?.url || defaultImage;
