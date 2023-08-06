@@ -6,18 +6,21 @@ import cart from "../../images/cart.svg";
 import menu from "../../images/menu.svg";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
-import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import InputGroup from "react-bootstrap/InputGroup";
 import Dropdown from "react-bootstrap/Dropdown";
 import { useDispatch, useSelector } from "react-redux";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import "./Styles/Header.css";
 import useUser from "../../hooks/useUser";
 import { getCart } from "../../features/cart/cartSlice";
 import { useEffect } from "react";
+import { Typeahead } from "react-bootstrap-typeahead"; // ES2015
+import "react-bootstrap-typeahead/css/Typeahead.css";
+import { useNavigate } from "react-router-dom";
+import { getAProduct } from "../../features/products/productSlice";
 
 const Header = () => {
   const { user, sessionToken, message } = useUser();
@@ -25,11 +28,16 @@ const Header = () => {
 
   const authState = useSelector((state) => state?.auth);
   const cartItems = useSelector((state) => state?.cart?.cartGetted?.data) || [];
+  const productState = useSelector((state) => state?.product?.product?.data);
+  const [productOpt, setProductOpt] = useState([]);
+  const [paginate, setPaginate] = useState(true);
+  const [searchValue, setSearchValue] = useState("");
+  const navigate = useNavigate();
 
   const { uniqueProductIds, subtotal } = useMemo(() => {
     const uniqueIds = {};
     let totalItems = 0;
-    let subtotal = 0; 
+    let subtotal = 0;
 
     cartItems.forEach((item) => {
       if (!uniqueIds[item?.productId?._id]) {
@@ -48,7 +56,16 @@ const Header = () => {
 
   useEffect(() => {
     dispatch(getCart());
-  }, []);
+  }, [dispatch]);
+
+  useEffect(() => {
+    let data = [];
+    for (let index = 0; index < productState?.length; index++) {
+      const element = productState[index];
+      data.push({ id: index, prod: element?._id, name: element?.title });
+    }
+    setProductOpt(data);
+  }, [productState]);
 
   return (
     <>
@@ -91,10 +108,25 @@ const Header = () => {
               </Offcanvas.Header>
               <Offcanvas.Body>
                 <InputGroup className="InputGroup">
-                  <Form.Control
+                  <Typeahead
+                    id="pagination-example"
+                    onPaginate={() => console.log("Results paginated")}
+                    options={productOpt}
+                    paginate={paginate}
                     placeholder="Search Product Here..."
-                    aria-label="Search Product Here..."
-                    aria-describedby="basic-addon2"
+                    onChange={(selected) => {
+                      if (selected?.length > 0) {
+                        navigate(`/product/${selected[0]?.prod}`);
+                        dispatch(getAProduct(selected[0]?.prod));
+                        setSearchValue("");
+                      }
+                    }}
+                    labelKey={"name"}
+                    minLength={2}
+                    inputProps={{
+                      value: searchValue,
+                      onChange: (e) => setSearchValue(e.target.value),
+                    }}
                   />
                   <Button variant="outline-light" id="button-addon2">
                     <BsSearch className="fs-6" />
