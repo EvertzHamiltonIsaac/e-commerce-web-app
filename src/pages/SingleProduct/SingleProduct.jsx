@@ -6,7 +6,7 @@ import Zoom from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
 import Spinner from "react-bootstrap/Spinner";
 import { toast } from "react-toastify";
-import { TbGitCompare } from "react-icons/tb";
+// import { TbGitCompare } from "react-icons/tb";
 import { AiOutlineHeart } from "react-icons/ai";
 import BreadCrumb from "../../components/common/BreadCrumb";
 import Meta from "../../components/common/Meta";
@@ -26,7 +26,7 @@ const SingleProduct = () => {
     (state) => state?.product?.singleProduct?.data
   );
 
-  const productsState = useSelector((state) => state?.product?.singleProduct?.data);
+  const productsState = useSelector((state) => state?.product?.product?.data);
   const [isLoading, setIsLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
   const [selectedColorId, setSelectedColorId] = useState(null);
@@ -210,7 +210,7 @@ const SingleProduct = () => {
                   </div>
                   <div className="d-flex gap-10 align-items-center my-2">
                     <h3 className="product-heading">Category :</h3>
-                    <p className="product-data">{productState?.catogory}</p>
+                    <p className="product-data">{productState?.category}</p>
                   </div>
                   <div className="d-flex gap-10 align-items-center my-2">
                     <h3 className="product-heading">Tags :</h3>
@@ -262,11 +262,11 @@ const SingleProduct = () => {
                     </div>
                   </div>
                   <div className="d-flex align-items-center gap-15">
-                    <div>
+                    {/* <div>
                       <a href="">
                         <TbGitCompare className="fs-5 me-2" /> Add to Compare
                       </a>
-                    </div>
+                    </div> */}
                     <div>
                       <a href="">
                         <AiOutlineHeart className="fs-5 me-2" /> Add to Wishlist

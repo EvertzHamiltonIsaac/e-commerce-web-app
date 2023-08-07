@@ -31,7 +31,6 @@ const Header = () => {
   const productState = useSelector((state) => state?.product?.product?.data);
   const [productOpt, setProductOpt] = useState([]);
   const [paginate, setPaginate] = useState(true);
-  const [searchValue, setSearchValue] = useState("");
   const navigate = useNavigate();
 
   const { uniqueProductIds, subtotal } = useMemo(() => {
@@ -57,6 +56,7 @@ const Header = () => {
   useEffect(() => {
     dispatch(getCart());
   }, [dispatch]);
+  
 
   useEffect(() => {
     let data = [];
@@ -114,21 +114,12 @@ const Header = () => {
                     options={productOpt}
                     paginate={paginate}
                     placeholder="Search Product Here..."
-                    onChange={(selected) => {
-                      if (selected?.length > 0) {
-                        navigate(`/product/${selected[0]?.prod}`);
-                        dispatch(getAProduct(selected[0]?.prod));
-                        setSearchValue("");
-                      }
-                    }}
+                    onChange={(selected) => {navigate(`/product/${selected[0]?.prod}`);
+                    dispatch(getAProduct(selected[0]?.prod));}}
                     labelKey={"name"}
                     minLength={2}
-                    inputProps={{
-                      value: searchValue,
-                      onChange: (e) => setSearchValue(e.target.value),
-                    }}
                   />
-                  <Button variant="outline-light" id="button-addon2">
+                  <Button variant="outline-light" id="button-addon2" >
                     <BsSearch className="fs-6" />
                   </Button>
                 </InputGroup>
