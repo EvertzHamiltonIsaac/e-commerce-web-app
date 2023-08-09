@@ -30,6 +30,13 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
+          <Route path="/auth">
+            <Route path="login" element={<Login />} />
+            <Route path="signup" element={<Signup />} />
+            <Route path="reset-password/:token" element={<Resetpassword />} />
+            <Route path="forgot-password" element={<Forgotpassword />} />
+          </Route>
+
           <Route path="/" element={<Layaout />}>
             <Route index element={<Home />} />
             <Route path="about" element={<About />} />
@@ -44,10 +51,6 @@ function App() {
             <Route path="my-orders" element={<Orders />} />
             <Route path="compare-product" element={<CompareProduct />} />
             <Route path="wishlist" element={<Wishlist />} />
-            <Route path="login" element={<Login />} />
-            <Route path="forgot-password" element={<Forgotpassword />} />
-            <Route path="signup" element={<Signup />} />
-            <Route path="reset-password/:token" element={<Resetpassword />} />
             <Route path="privacy-policy" element={<PrivacyPolicy />} />
             <Route path="refund-policy" element={<RefundPloicy />} />
             <Route path="shipping-policy" element={<ShippingPolicy />} />

@@ -1,5 +1,4 @@
 import { BsSearch } from "react-icons/bs";
-// import compare from "../../images/compare.svg";
 import wishlist from "../../images/wishlist.svg";
 import userIMG from "../../images/user.svg";
 import cart from "../../images/cart.svg";
@@ -14,24 +13,26 @@ import Dropdown from "react-bootstrap/Dropdown";
 import { useDispatch, useSelector } from "react-redux";
 import { useMemo, useState } from "react";
 import "./Styles/Header.css";
-import useUser from "../../hooks/useUser";
 import { getCart } from "../../features/cart/cartSlice";
 import { useEffect } from "react";
 import { Typeahead } from "react-bootstrap-typeahead"; // ES2015
 import "react-bootstrap-typeahead/css/Typeahead.css";
 import { useNavigate } from "react-router-dom";
 import { getAProduct } from "../../features/products/productSlice";
+import useUser from "../../hooks/useUser";
 
 const Header = () => {
-  const { user, sessionToken, message } = useUser();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const { user, sessionToken, message } = useUser();
 
   const authState = useSelector((state) => state?.auth);
+  console.log(authState);
   const cartItems = useSelector((state) => state?.cart?.cartGetted?.data) || [];
   const productState = useSelector((state) => state?.product?.product?.data);
   const [productOpt, setProductOpt] = useState([]);
   const [paginate, setPaginate] = useState(true);
-  const navigate = useNavigate();
 
   const { uniqueProductIds, subtotal } = useMemo(() => {
     const uniqueIds = {};
@@ -53,10 +54,17 @@ const Header = () => {
     };
   }, [cartItems]);
 
+  // const handleLogin = (route) => {
+  //   if (sessionToken) {
+  //     navigate(route)
+  //   } else {
+  //     navigate("/login");
+  //   }
+  // };
+
   useEffect(() => {
     dispatch(getCart());
   }, [dispatch]);
-  
 
   useEffect(() => {
     let data = [];
@@ -114,12 +122,14 @@ const Header = () => {
                     options={productOpt}
                     paginate={paginate}
                     placeholder="Search Product Here..."
-                    onChange={(selected) => {navigate(`/product/${selected[0]?.prod}`);
-                    dispatch(getAProduct(selected[0]?.prod));}}
+                    onChange={(selected) => {
+                      navigate(`/product/${selected[0]?.prod}`);
+                      dispatch(getAProduct(selected[0]?.prod));
+                    }}
                     labelKey={"name"}
                     minLength={2}
                   />
-                  <Button variant="outline-light" id="button-addon2" >
+                  <Button variant="outline-light" id="button-addon2">
                     <BsSearch className="fs-6" />
                   </Button>
                 </InputGroup>
@@ -133,31 +143,32 @@ const Header = () => {
                       Compare <br /> Products
                     </p>
                   </Nav.Link> */}
-
+                  
                   <Nav.Link
-                    href={authState?.user === null ? "/login" : "/wishlist"}
                     className="nav-links d-flex justify-content-center links-active"
                   >
                     <img src={wishlist} alt="wishlist" className="links-img" />
                     Favourite <br /> Wishlist
                   </Nav.Link>
 
-                  <Nav.Link
-                    href={sessionToken === null ? "/login" : "/profile"}
-                    className="nav-links d-flex justify-content-center links-active"
-                  >
-                    <img src={userIMG} alt="user" className="links-img" />
-                    {sessionToken === null ? (
-                      <p className="mb-0">
-                        Log in /<br /> Account
-                      </p>
-                    ) : (
-                      <p className="mb-0">
-                        {user?.firstName} <br />
-                        {user?.lastName}
-                      </p>
-                    )}
-                  </Nav.Link>
+                  {
+                    <Nav.Link
+                      href={authState?.user === null ? "/auth/login" : "/profile"}
+                      className="nav-links d-flex justify-content-center links-active"
+                    >
+                      <img src={userIMG} alt="user" className="links-img" />
+                      {authState?.user === null ? (
+                        <p className="mb-0">
+                          Log in /<br /> Account
+                        </p>
+                      ) : (
+                        <p className="mb-0">
+                          {user?.firstName} <br />
+                          {user?.lastName}
+                        </p>
+                      )}
+                    </Nav.Link>
+                  }
 
                   {cartItems.length > 0 ? (
                     <Nav.Link

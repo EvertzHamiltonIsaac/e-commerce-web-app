@@ -7,8 +7,10 @@ import "react-toastify/dist/ReactToastify.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 
+
 const Layaout = () => {
   const dispatch = useDispatch();
+  
   const cartState = useSelector((state) => state?.auth?.cartProducts?.data);
   const subTotalGlobalState = useSelector((state) => state.subTotal);
   // const [subtotal, setTotal] = useState(null);
@@ -27,6 +29,9 @@ const Layaout = () => {
   return (
     <>
       <Header
+        // user={user}
+        // sessionToken={sessionToken}
+        // message={message}
         CartSubTotal={subTotalGlobalState}
         cartState={cartState?.length}
       />
