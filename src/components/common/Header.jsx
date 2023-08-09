@@ -2,14 +2,14 @@ import { BsSearch } from "react-icons/bs";
 import wishlist from "../../images/wishlist.svg";
 import userIMG from "../../images/user.svg";
 import cart from "../../images/cart.svg";
-//import menu from "../../images/menu.svg";
+import menu from "../../images/menu.svg";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import InputGroup from "react-bootstrap/InputGroup";
-//import Dropdown from "react-bootstrap/Dropdown";
+import Dropdown from "react-bootstrap/Dropdown";
 import { useDispatch, useSelector } from "react-redux";
 import { useMemo, useState } from "react";
 import "./Styles/Header.css";
@@ -143,8 +143,9 @@ const Header = () => {
                       Compare <br /> Products
                     </p>
                   </Nav.Link> */}
-                  
+
                   <Nav.Link
+                    href={sessionToken === null ? "/auth/login" : "/wishlist"}
                     className="nav-links d-flex justify-content-center links-active"
                   >
                     <img src={wishlist} alt="wishlist" className="links-img" />
@@ -153,11 +154,11 @@ const Header = () => {
 
                   {
                     <Nav.Link
-                      href={authState?.user === null ? "/auth/login" : "/profile"}
+                      href={sessionToken === null ? "/auth/login" : "/profile"}
                       className="nav-links d-flex justify-content-center links-active"
                     >
                       <img src={userIMG} alt="user" className="links-img" />
-                      {authState?.user === null ? (
+                      {sessionToken === null ? (
                         <p className="mb-0">
                           Log in /<br /> Account
                         </p>
@@ -172,7 +173,8 @@ const Header = () => {
 
                   {cartItems.length > 0 ? (
                     <Nav.Link
-                      href="/cart"
+                    href={sessionToken === null ? "/auth/login" : "/cart"}
+
                       className="nav-links d-flex justify-content-center links-active"
                     >
                       <img src={cart} alt="cart" className="links-img" />
@@ -191,12 +193,12 @@ const Header = () => {
                     </Nav.Link>
                   ) : (
                     <Nav.Link
-                      href={authState?.user === null ? "/login" : "/cart"}
+                    href={sessionToken === null ? "/auth/login" : "/cart"}
                       className="nav-links d-flex justify-content-center links-active"
                     >
                       <img src={cart} alt="cart" className="links-img" />
                       <div className="d-flex flex-column gap-15">
-                        <span className="pruebas badge bg-white text-dark">0</span>
+                        <span className="badge bg-white text-dark">0</span>
                         <p className="mb-0 size-60">$ 0.00</p>
                       </div>
                     </Nav.Link>
@@ -212,7 +214,7 @@ const Header = () => {
         <div className="container-xxl">
           <ul className="nav nav-pills d-flex align-items-center">
             <li className="nav-item dropdown">
-              {/* <Dropdown>
+              <Dropdown>
                 <Dropdown.Toggle
                   className="Dropdown-Toggle"
                   id="dropdown-basic"
@@ -230,7 +232,7 @@ const Header = () => {
                     Something else
                   </Dropdown.Item>
                 </Dropdown.Menu>
-              </Dropdown> */}
+              </Dropdown>
             </li>
             <li className="nav-item">
               <Nav.Link className="nav-link text-white" href="/">

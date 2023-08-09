@@ -9,6 +9,14 @@
       rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
   }
   
+  .link{
+  }
+
+  .link:hover{
+    color: var(--color-main);
+    border-bottom: solid 1px var(--color-main);
+  }
+
   .auth-card h3 {
     font-size: 20px;
     font-weight: 500;

@@ -40,9 +40,7 @@ const Resetpassword = () => {
 
   return (
     <>
-      <Meta title={"Reset Password"} />
-      <BreadCrumb title="Reset Password" />
-      <Container class1="login-wrapper py-5 home-wrapper-2">
+      <Container class1="login-wrapper py-5 home-wrapper-2 vh-100">
         <div className="row">
           <div className="col-12">
             <div className="auth-card">

@@ -59,9 +59,7 @@ const Signup = () => {
 
   return (
     <React.Fragment>
-      <Meta title={"Sign Up"} />
-      <BreadCrumb title="Sign Up" />
-      <Container className="login-wrapper py-5 home-wrapper-2">
+      <Container className="login-wrapper py-5 home-wrapper-2 vh-100">
         <div className="row">
           <div className="col-12">
             <div className="auth-card">

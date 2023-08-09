@@ -7,8 +7,9 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import logo from "../../images/mmlogo.png";
-import { login } from "../../features/auth/authSlice";
+import { login, resetAuthState } from "../../features/auth/authSlice";
 import React, { useEffect } from "react";
+import Swal from "sweetalert2";
 
 const loginSchema = yup.object({
   email: yup
@@ -23,7 +24,7 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const {isSuccess, isError, isLoading, userLogged} = useSelector(state => state.auth)
+  const {isSuccess, isError, isLoading, userLogged, message} = useSelector(state => state.auth);
 
   const formik = useFormik({
     initialValues: {
@@ -42,12 +43,29 @@ const Login = () => {
     }
   }, [isSuccess, userLogged])
   
+  useEffect(() => {
+    if (typeof message === "string" && isError) {
+      if (
+        message.includes("invalid") ||
+        message.includes("credentials")
+      ) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${message}`,
+        }).then((result) => {
+          if (result.isConfirmed) {
+            dispatch(resetAuthState());
+            localStorage.clear();
+          }
+        });
+      }
+    }
+  }, [isLoading, isError])
+  
   return (
     <React.Fragment>
-      <Meta title={"Login"} />
-      <BreadCrumb title="Login" />
-
-      <Container class1="login-wrapper home-wrapper-2">
+      <Container class1="login-wrapper home-wrapper-2 vh-100">
         <div className="row">
           <div className="col-12">
             <div className="auth-card">
@@ -83,16 +101,16 @@ const Login = () => {
                   {formik.touched.password && formik.errors.password}
                 </div>
                 <div>
-                  <Link to="/forgot-password" className="mx-1 btn-Forgot-pass">
+                  <Link to="/auth/forgot-password" className="mx-1 btn-Forgot-pass">
                     Forgot Password?
                   </Link>
 
-                  <div className="mt-3 d-flex justify-content-center gap-15 align-items-center">
+                  <div style={{flexDirection: 'column'}} className="mt-3 d-flex justify-content-center gap-15 align-items-center">
                     <button className="btn Primary-btn" type="submit">
                       Login
                     </button>
-                    <Link to="/signup" className="btn signup-btn">
-                      SignUp
+                    <Link to="/auth/signup" className="link">
+                      Don't have an account?
                     </Link>
                   </div>
                 </div>

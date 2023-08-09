@@ -43,6 +43,7 @@
     "slick-carousel": "^1.8.1",
     "square": "^29.0.0",
     "stripe": "^12.16.0",
+    "sweetalert2": "^11.7.20",
     "swiper": "^10.0.3",
     "uuid": "^9.0.0",
     "yup": "^1.2.0"

@@ -34,8 +34,6 @@ const Forgotpassword = () => {
 
   return (
     <>
-      <Meta title={"Forgot Password"} />
-      <BreadCrumb title="Forgot Password" />
       <Container class1="login-wrapper py-5 home-wrapper-2">
         <div className="row">
           <div className="col-12">

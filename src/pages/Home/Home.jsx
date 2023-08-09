@@ -52,7 +52,7 @@ const Home = () => {
 
     getBlogs();
     getProducts();
-  }, [dispatch,data]);
+  }, [dispatch]); //! Comente el segundo argumento: 'data'
 
   return (
     <>

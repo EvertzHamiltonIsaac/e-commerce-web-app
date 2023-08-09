@@ -4,6 +4,8 @@ import { Container } from "react-bootstrap";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
+import { resetAuthState } from "../features/auth/authSlice";
 
 const profileSchema = yup.object({
   firstname: yup.string().required("First Name is Required"),
@@ -18,6 +20,14 @@ const profileSchema = yup.object({
 const Profile = () => {
   const dispatch = useDispatch();
   const useState = useSelector((state) => state?.auth?.user?.data);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate("/");
+    dispatch(resetAuthState());
+    window.location.reload()
+  };
 
   const formik = useFormik({
     enableReinitialize: true,
@@ -108,6 +118,13 @@ const Profile = () => {
                 Save
               </button>
             </form>
+            <button
+              onClick={handleLogout}
+              type="button"
+              className="btn btn-danger"
+            >
+              Logout
+            </button>
           </div>
         </div>
       </Container>
