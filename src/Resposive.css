@@ -2,19 +2,7 @@
 @media (max-width: 1399px) {
   
   /* Header part.................................. */
-
-  .nav-links {
-    width: 100% !important;
-    height: 80px;
-    margin: 5px;
-    border-radius: 10px;
-    padding: 10px !important;
-  }
-
-  .nav-links:focus {
-    background-color: rgba(255, 255, 255, 0.76) !important;
-  }
-
+  
   .InputGroup {
     margin: auto;
     padding: 10px;

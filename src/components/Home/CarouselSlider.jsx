@@ -7,9 +7,12 @@ import Categories from "./Categories"
 import Button from 'react-bootstrap/Button';
 import "./styles/CarouselSlider.css"
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 
 const CarouselSlider = () => {
+  const navigate = useNavigate();
 
   const [hideCategories, setHideCategories] = useState(false);
   useEffect(() => {
@@ -53,7 +56,7 @@ const CarouselSlider = () => {
                 <h4>{value.brands}</h4>
                   <h1>{value.title}</h1>
                   <p>{value.price}</p>
-                  <Button className="button-slider"  variant="outline-secondary">Visit Collections</Button>{' '}
+                  <Button  onClick={() => navigate("/product")} className="button-slider"  variant="outline-secondary">Visit Collections</Button>{' '}
                 </div>
                 <div>
                   <img className="cover" src={value.cover} alt='' />

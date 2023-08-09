@@ -4,12 +4,12 @@ import {
   MDBRow,
   MDBCol,
   MDBIcon,
-  MDBInputGroup,
-  MDBBtn,
+  //MDBInputGroup,
+ // MDBBtn,
 } from "mdb-react-ui-kit";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { Container } from "react-bootstrap";
-import newsletter from "../../images/newsletter.png";
+//import newsletter from "../../images/newsletter.png";
 import { Link } from "react-router-dom";
 import "./Styles/Footer.css"
 
@@ -22,14 +22,14 @@ const Footer = () => {
             <MDBContainer className="p-4 pb-0 border-bottom">
               <form action="">
                 <MDBRow className="d-flex justify-content-center">
-                  <MDBCol size="auto" className="mb-4 mb-md-2">
+                  {/* <MDBCol size="auto" className="mb-4 mb-md-2">
                     <p className="pt-2 text-white">
                       <img src={newsletter} alt="newsletter" className="mx-2" />
                       <strong>Sign up for our newsletter</strong>
                     </p>
-                  </MDBCol>
+                  </MDBCol> */}
 
-                  <MDBCol md="5" size="12" className="mb-4 mb-md-0">
+                  {/* <MDBCol md="5" size="12" className="mb-4 mb-md-0">
                     <MDBInputGroup className="mb-3">
                       <input
                         className="form-control"
@@ -40,7 +40,8 @@ const Footer = () => {
                         Subscribe
                       </MDBBtn>
                     </MDBInputGroup>
-                  </MDBCol>
+                  </MDBCol> */}
+
                 </MDBRow>
               </form>
             </MDBContainer>

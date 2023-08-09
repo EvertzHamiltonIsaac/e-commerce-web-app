@@ -8,11 +8,14 @@ import CarouselSlider from "../../components/Home/CarouselSlider";
 import ItemCategories from "../../components/Home/ItemCategories";
 // import FamousWrapper from "../../components/Home/FamousWrapper";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useMemo} from "react";
 import { getAllBlogs } from "../../features/blogs/blogSlice";
 import moment from "moment";
 import defaultImage from "../../images/defaultImage.png";
-import { addToWishlist, getAllProducts } from "../../features/products/productSlice";
+import {
+  addToWishlist,
+  getAllProducts,
+} from "../../features/products/productSlice";
 import ReactStars from "react-rating-stars-component";
 import { useNavigate } from "react-router-dom";
 // import prodcompare from "../../images/prodcompare.svg";
@@ -22,28 +25,34 @@ import "./Home.css";
 
 const Home = () => {
   const blogState = useSelector((state) => state?.blog?.blogs?.data);
-  const productState = useSelector((state) => state?.product?.product?.data);
+  const productsState = useSelector((state) => state?.product?.product?.data);
   const navigate = useNavigate();
-
   const dispatch = useDispatch();
 
-  
+
+  const data = useMemo(() => {
+    return {
+      brand: productsState?.brand,
+      tag: productsState?.tags,
+      category: productsState?.category
+    };
+  }, [productsState]);
+
   const addToWish = (id) => {
     dispatch(addToWishlist(id));
   };
-
 
   useEffect(() => {
     const getBlogs = () => {
       dispatch(getAllBlogs());
     };
     const getProducts = () => {
-      dispatch(getAllProducts());
+      dispatch(getAllProducts(data));
     };
 
     getBlogs();
     getProducts();
-  }, [dispatch]);
+  }, [dispatch,data]);
 
   return (
     <>
@@ -61,10 +70,10 @@ const Home = () => {
             <h3 className="section-heading">Featured Collection</h3>
           </div>
           <div className="container-grid">
-            {productState
+            {productsState
               ?.filter((item) => item.tags === "featured")
-              .sort((a, b) => b.createdAt - a.createdAt) 
-              .slice(0, 4) 
+              .sort((a, b) => b.createdAt - a.createdAt)
+              .slice(0, 4)
               .map((item, index) => {
                 const imageSrc = item.images[0]?.url || defaultImage;
                 const imageSrc2 = item.images[1]?.url || defaultImage;
@@ -73,7 +82,10 @@ const Home = () => {
                     <div key={index}>
                       <div className="product-card position-relative">
                         <div className="wishlist-icon position-absolute">
-                          <button onClick={() => addToWish(item?._id)} className="border-0 bg-transparent">
+                          <button
+                            onClick={() => addToWish(item?._id)}
+                            className="border-0 bg-transparent"
+                          >
                             <img src={wish} alt="wishlist" />
                           </button>
                         </div>
@@ -146,7 +158,7 @@ const Home = () => {
           </div>
         </div>
         <div className="special-Product">
-          {productState
+          {productsState
             ?.filter((item) => item?.tags === "special")
             .sort((a, b) => new Date(b.dateAdded) - new Date(a.dateAdded))
             .slice(0, 4)
@@ -174,7 +186,7 @@ const Home = () => {
         </div>
         <div className="row">
           <div className="container-grid">
-            {productState
+            {productsState
               ?.filter((item) => item.tags === "popular")
               .sort((a, b) => b.createdAt - a.createdAt)
               .slice(0, 4)
@@ -187,7 +199,11 @@ const Home = () => {
                       <div className="product-card position-relative">
                         <div className="wishlist-icon position-absolute">
                           <button className="border-0 bg-transparent">
-                            <img onClick={() => addToWish(item?._id)} src={wish} alt="wishlist" />
+                            <img
+                              onClick={() => addToWish(item?._id)}
+                              src={wish}
+                              alt="wishlist"
+                            />
                           </button>
                         </div>
                         <div className="product-image d-flex justify-content-center align-items-center">
