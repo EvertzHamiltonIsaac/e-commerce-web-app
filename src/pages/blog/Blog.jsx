@@ -28,7 +28,7 @@ const Blog = () => {
       <Container class1="blog-wrapper home-wrapper-2 py-5">
         <div className="container-xxl">
           <div className="content-container">
-            <div className="col-3">
+            {/* <div className="col-3">
               <div className="blog-pages-card" >
                 <h3 className="blog-pages-title">Find By Categories</h3>
                 <div>
@@ -40,7 +40,7 @@ const Blog = () => {
                   </ul>
                 </div>
               </div>
-            </div>
+            </div> */}
             <div className="" style={{width: "100%"}}>
               <div className="container-blog">
                 {blogState?.map((item, index) => {
