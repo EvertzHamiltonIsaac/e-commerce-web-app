@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
-import BreadCrumb from "../../components/common/BreadCrumb";
-import Meta from "../../components/common/Meta";
+//import BreadCrumb from "../../components/common/BreadCrumb";
+//import Meta from "../../components/common/Meta";
 import Container from "../../components/Container/Container";
 import CustomInput from "../../components/Custom/CustomInput";
 import { useFormik } from "formik";
@@ -19,12 +19,14 @@ const loginSchema = yup.object({
     .required("Email is Required!"),
   password: yup.string().required("Password is Required!"),
 });
-  
+
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const {isSuccess, isError, isLoading, userLogged, message} = useSelector(state => state.auth);
+  const { isSuccess, isError, isLoading, userLogged, message } = useSelector(
+    (state) => state.auth
+  );
 
   const formik = useFormik({
     initialValues: {
@@ -38,17 +40,14 @@ const Login = () => {
   });
 
   useEffect(() => {
-    if(isSuccess && userLogged){
+    if (isSuccess && userLogged) {
       navigate("/");
     }
-  }, [isSuccess, userLogged])
-  
+  }, [isSuccess, userLogged]);
+
   useEffect(() => {
     if (typeof message === "string" && isError) {
-      if (
-        message.includes("invalid") ||
-        message.includes("credentials")
-      ) {
+      if (message.includes("invalid") || message.includes("credentials")) {
         Swal.fire({
           icon: "error",
           title: "Oops...",
@@ -61,11 +60,19 @@ const Login = () => {
         });
       }
     }
-  }, [isLoading, isError])
-  
+  }, [isLoading, isError]);
+
   return (
     <React.Fragment>
-      <Container class1="login-wrapper home-wrapper-2 vh-100">
+      <div className="figure"> 
+      
+        <div>
+          <div className="circule "></div>
+          <div className="circule-01"></div>
+        </div>
+        <div className="figure-part"></div>
+      </div>
+      <Container class1="login-wrapper vh-100">
         <div className="row">
           <div className="col-12">
             <div className="auth-card">
@@ -101,11 +108,17 @@ const Login = () => {
                   {formik.touched.password && formik.errors.password}
                 </div>
                 <div>
-                  <Link to="/auth/forgot-password" className="mx-1 btn-Forgot-pass">
+                  <Link
+                    to="/auth/forgot-password"
+                    className="mx-1 btn-Forgot-pass"
+                  >
                     Forgot Password?
                   </Link>
 
-                  <div style={{flexDirection: 'column'}} className="mt-3 d-flex justify-content-center gap-15 align-items-center">
+                  <div
+                    style={{ flexDirection: "column" }}
+                    className="mt-3 d-flex justify-content-center gap-15 align-items-center"
+                  >
                     <button className="btn Primary-btn" type="submit">
                       Login
                     </button>

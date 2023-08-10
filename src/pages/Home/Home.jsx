@@ -8,13 +8,13 @@ import CarouselSlider from "../../components/Home/CarouselSlider";
 import ItemCategories from "../../components/Home/ItemCategories";
 // import FamousWrapper from "../../components/Home/FamousWrapper";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useMemo} from "react";
+import { useEffect} from "react";
 import { getAllBlogs } from "../../features/blogs/blogSlice";
 import moment from "moment";
 import defaultImage from "../../images/defaultImage.png";
 import {
   addToWishlist,
-  getAllProducts,
+  getsAllProducts,
 } from "../../features/products/productSlice";
 import ReactStars from "react-rating-stars-component";
 import { useNavigate } from "react-router-dom";
@@ -25,18 +25,9 @@ import "./Home.css";
 
 const Home = () => {
   const blogState = useSelector((state) => state?.blog?.blogs?.data);
-  const productsState = useSelector((state) => state?.product?.product?.data);
+  const productsState = useSelector((state) => state?.product?.getsAllProducts?.data);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-
-  const data = useMemo(() => {
-    return {
-      brand: productsState?.brand,
-      tag: productsState?.tags,
-      category: productsState?.category
-    };
-  }, [productsState]);
 
   const addToWish = (id) => {
     dispatch(addToWishlist(id));
@@ -47,7 +38,7 @@ const Home = () => {
       dispatch(getAllBlogs());
     };
     const getProducts = () => {
-      dispatch(getAllProducts(data));
+      dispatch(getsAllProducts());
     };
 
     getBlogs();

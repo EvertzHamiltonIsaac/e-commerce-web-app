@@ -2,14 +2,14 @@ import { BsSearch } from "react-icons/bs";
 import wishlist from "../../images/wishlist.svg";
 import userIMG from "../../images/user.svg";
 import cart from "../../images/cart.svg";
-import menu from "../../images/menu.svg";
+//import menu from "../../images/menu.svg";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import InputGroup from "react-bootstrap/InputGroup";
-import Dropdown from "react-bootstrap/Dropdown";
+//import Dropdown from "react-bootstrap/Dropdown";
 import { useDispatch, useSelector } from "react-redux";
 import { useMemo, useState } from "react";
 import "./Styles/Header.css";
@@ -214,7 +214,7 @@ const Header = () => {
         <div className="container-xxl">
           <ul className="nav nav-pills d-flex align-items-center">
             <li className="nav-item dropdown">
-              <Dropdown>
+              {/* <Dropdown>
                 <Dropdown.Toggle
                   className="Dropdown-Toggle"
                   id="dropdown-basic"
@@ -232,7 +232,7 @@ const Header = () => {
                     Something else
                   </Dropdown.Item>
                 </Dropdown.Menu>
-              </Dropdown>
+              </Dropdown> */}
             </li>
             <li className="nav-item">
               <Nav.Link className="nav-link text-white" href="/">
