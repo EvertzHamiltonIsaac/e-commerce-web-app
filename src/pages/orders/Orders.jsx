@@ -9,7 +9,7 @@ import { getOrders } from "../../features/user/userSlice";
 const Orders = () => {
   const dispatch = useDispatch();
   const orderState = useSelector(
-    (state) => state.auth?.getOrderedProduct?.data
+    (state) => state.user?.getOrderedProduct?.data
   );
 
   useEffect(() => {

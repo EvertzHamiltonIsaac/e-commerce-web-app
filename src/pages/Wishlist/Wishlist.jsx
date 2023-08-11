@@ -17,7 +17,7 @@ const Wishlist = () => {
   }, [dispatch]);
 
   const wishlistState = useSelector(
-    (state) => state?.auth?.wishlist?.data?.wishlist
+    (state) => state?.user?.wishlist?.data?.wishlist
   );
 
   const removeFromWishlist = (id) => {

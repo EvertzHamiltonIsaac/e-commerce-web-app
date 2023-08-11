@@ -28,7 +28,7 @@ const Header = () => {
   const { user, sessionToken, message } = useUser();
 
   const authState = useSelector((state) => state?.auth);
-  console.log(authState);
+ // console.log(authState);
   const cartItems = useSelector((state) => state?.cart?.cartGetted?.data) || [];
   const productsState = useSelector((state) => state?.product?.getsAllProducts?.data);
   const [productOpt, setProductOpt] = useState([]);
