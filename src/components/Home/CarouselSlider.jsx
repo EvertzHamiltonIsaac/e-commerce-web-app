@@ -70,7 +70,7 @@ const CarouselSlider = () => {
                         <div>
                           <h4>{item?.brand}</h4>
                           <h1>{item?.title}</h1>
-                          <p> $ {item?.price}</p>
+                          <p className="prices"> $ {item?.price}</p>
                           <Button
                             onClick={() => navigate("/product")}
                             className="btn Primary-btn color"

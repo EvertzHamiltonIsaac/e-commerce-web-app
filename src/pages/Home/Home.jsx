@@ -102,7 +102,7 @@ const Home = () => {
                           <ReactStars
                             count={5}
                             size={24}
-                            value={parseFloat(item?.totalrating)}
+                            value={parseFloat(item?.totalrating) || 5}
                             edit={false}
                             activeColor="#ffd700"
                           />
@@ -160,7 +160,7 @@ const Home = () => {
                 image={item?.images?.[0]?.url}
                 brand={item?.brand}
                 title={item?.title}
-                totalrating={item?.totalrating.toString()}
+                totalrating={item?.totalrating.toString() || 5}
                 price={item?.price}
                 sold={item?.sold}
                 quantity={item?.quantity}
@@ -219,7 +219,7 @@ const Home = () => {
                           <ReactStars
                             count={5}
                             size={24}
-                            value={parseFloat(item?.totalrating)}
+                            value={parseFloat(item?.totalrating) || 5}
                             edit={false}
                             activeColor="#ffd700"
                           />
