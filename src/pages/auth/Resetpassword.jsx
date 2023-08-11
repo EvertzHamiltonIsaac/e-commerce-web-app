@@ -1,10 +1,8 @@
 import { useNavigate, useParams } from "react-router";
-import BreadCrumb from "../../components/common/BreadCrumb";
-import Meta from "../../components/common/Meta";
 import Container from "../../components/Container/Container";
 import CustomInput from "../../components/Custom/CustomInput";
 import "./Styles/auth.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { resetPassword } from "../../features/auth/authSlice";

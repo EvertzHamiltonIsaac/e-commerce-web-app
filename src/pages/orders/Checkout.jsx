@@ -58,7 +58,7 @@ const stateRD = [
 
 const Checkout = () => {
   const dispatch = useDispatch();
-  const CartState = useSelector((state) => state?.auth?.cartProducts?.data);
+  const CartState = useSelector((state) => state?.cart?.cartGetted?.data);
 
   const [totalAmount, setTotalAmount] = useState(null);
 
@@ -168,7 +168,7 @@ const Checkout = () => {
         <div className="row">
           <div className="col-7">
             <div className="checkout-left-data">
-              <h3 className="website-name">Dev Corner</h3>
+              <h3 className="website-name">Ginger Order</h3>
               <nav
                 style={{ "--bs-breadcrumb-divider": ">" }}
                 aria-label="breadcrumb"

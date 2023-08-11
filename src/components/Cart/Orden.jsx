@@ -32,7 +32,7 @@ const Orden = () => {
 
   useEffect(() => {
     dispatch(getCart());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="order-container">

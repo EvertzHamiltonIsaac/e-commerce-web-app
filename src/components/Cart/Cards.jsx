@@ -12,7 +12,6 @@ import {
 const Cards = () => {
   const dispatch = useDispatch();
   const userCartState = useSelector((state) => state?.cart?.cartGetted?.data);
-  // const [isDeleting, setIsDeleting] = useState(false);
   const [productUpdateDetails, setProductUpdateDetails] = useState({
     newQuantity: 0,
     id: "",
@@ -38,7 +37,7 @@ const Cards = () => {
 
   useEffect(() => {
     dispatch(getCart());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="container-cart">

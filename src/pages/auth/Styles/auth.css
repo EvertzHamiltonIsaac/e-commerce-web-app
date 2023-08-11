@@ -1,55 +1,50 @@
 .auth-card {
-    padding: 20px 80px 60px 80px;
-    background-color: white;
-    max-width: 500px;
-    margin: 30px auto;
-    border-radius: 10px;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em,
-      rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
-      rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
-  }
+  padding: 20px 80px 60px 80px;
+  background-color: white;
+  max-width: 500px;
+  margin: 30px auto;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em,
+    rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
+    rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+}
 
-  .link:hover{
-    color: var(--color-main);
-    border-bottom: solid 1px var(--color-main);
-  }
+.link:hover {
+  color: var(--color-main);
+  border-bottom: solid 1px var(--color-main);
+}
 
-  .auth-card h3 {
-    font-size: 20px;
-    font-weight: 500;
-    color: var(--color-Grimmy);
-  }
-  
-  .auth-card a {
-    font-size: 14px;
-    font-weight: 400;
-    color: var(--color-main);
-  }
-  
-  .circule{
-    border-radius: 50%;
-    background: #021e43;
-    height: 150px;
-    width: 150px;
-    margin: .2rem .8rem 0rem .8rem; 
-  }
+.auth-card h3 {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--color-Grimmy);
+}
 
-  .figure{
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-  }
+.auth-card a {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--color-main);
+}
 
-  .circule-01{
-    border-radius: 50%;
-    background: #021e43;
-    height: 70px;
-    width: 70px;
-    margin: .2rem 11rem;
-  }
+.circule {
+  border-radius: 50%;
+  background: #021e43;
+  height: 150px;
+  width: 150px;
+  margin: 0.2rem 0.8rem 0rem 0.8rem;
+}
 
-  .figure-part{
-    height: 100px;
-    width: 100px;
+.pro {
+  background-color: var(--color-main) !important;
+}
 
-  }
+
+
+.link-other{
+  color: var(--color-main);
+  margin: 20px;
+}
+
+.link-other:hover{
+  color: rgb(102, 102, 102);
+}

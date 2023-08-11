@@ -1,5 +1,3 @@
-import BreadCrumb from "../../components/common/BreadCrumb";
-import Meta from "../../components/common/Meta";
 import Container from "../../components/Container/Container";
 import CustomInput from "../../components/Custom/CustomInput";
 import { useFormik } from "formik";
@@ -8,6 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import logo from "../../images/mmlogo.png";
 import "./Styles/auth.css";
 import { useNavigate } from "react-router";
+import { HiOutlineArrowLeft } from "react-icons/hi";
+import { Link } from "react-router-dom";
 
 import { register, resetAuthState } from "../../features/auth/authSlice";
 import React, { useEffect } from "react";
@@ -53,13 +53,16 @@ const Signup = () => {
   useEffect(() => {
     if (isSuccess && userRegistered) {
       dispatch(resetAuthState());
-      navigate("/login");
+      navigate("/auth/login");
     }
   }, [isSuccess, userRegistered]);
 
   return (
     <React.Fragment>
       <Container className="login-wrapper py-5 home-wrapper-2 vh-100">
+        <Link to="/" className="link-other">
+          <HiOutlineArrowLeft className="fs-4" /> Go back to Home
+        </Link>
         <div className="row">
           <div className="col-12">
             <div className="auth-card">

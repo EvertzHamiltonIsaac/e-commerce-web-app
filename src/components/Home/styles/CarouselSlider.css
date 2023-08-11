@@ -71,7 +71,17 @@
     width: 100%;
     padding: 0 15px;
   }
-  
+
+  .cover{
+    object-fit: contain;
+    width: 400px;
+    height: 400px;
+  }
+
+  .color{
+    background-color: white;
+  }
+
   @media (max-width: 767px) {
     .contentWidth {
       width: 100%;

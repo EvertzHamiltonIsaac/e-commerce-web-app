@@ -116,9 +116,9 @@ export const authSlice = createSlice({
         state.isError = true;
         state.isSuccess = false;
         state.message = action.error;
-        if (state.isSuccess === false) {
-          toast.error("Somthing went wrong!");
-        }
+        // if (state.isSuccess === false) {
+        //   toast.error("Somthing went wrong!");
+        // }
       })
       .addCase(getOrders.pending, (state) => {
         state.isLoading = true;

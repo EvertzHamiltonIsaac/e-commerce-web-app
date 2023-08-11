@@ -18,7 +18,7 @@ import { useEffect } from "react";
 import { Typeahead } from "react-bootstrap-typeahead"; // ES2015
 import "react-bootstrap-typeahead/css/Typeahead.css";
 import { useNavigate } from "react-router-dom";
-import { getAProduct } from "../../features/products/productSlice";
+import { getsAllProducts } from "../../features/products/productSlice";
 import useUser from "../../hooks/useUser";
 
 const Header = () => {
@@ -30,7 +30,7 @@ const Header = () => {
   const authState = useSelector((state) => state?.auth);
   console.log(authState);
   const cartItems = useSelector((state) => state?.cart?.cartGetted?.data) || [];
-  const productState = useSelector((state) => state?.product?.product?.data);
+  const productsState = useSelector((state) => state?.product?.getsAllProducts?.data);
   const [productOpt, setProductOpt] = useState([]);
   const [paginate, setPaginate] = useState(true);
 
@@ -68,12 +68,12 @@ const Header = () => {
 
   useEffect(() => {
     let data = [];
-    for (let index = 0; index < productState?.length; index++) {
-      const element = productState[index];
+    for (let index = 0; index < productsState?.length; index++) {
+      const element = productsState[index];
       data.push({ id: index, prod: element?._id, name: element?.title });
     }
     setProductOpt(data);
-  }, [productState]);
+  }, [productsState]);
 
   return (
     <>
@@ -124,7 +124,7 @@ const Header = () => {
                     placeholder="Search Product Here..."
                     onChange={(selected) => {
                       navigate(`/product/${selected[0]?.prod}`);
-                      dispatch(getAProduct(selected[0]?.prod));
+                      dispatch(getsAllProducts(selected[0]?.prod));
                     }}
                     labelKey={"name"}
                     minLength={2}
@@ -197,7 +197,7 @@ const Header = () => {
                       className="nav-links d-flex justify-content-center links-active"
                     >
                       <img src={cart} alt="cart" className="links-img" />
-                      <div className="d-flex flex-column gap-15">
+                      <div className="d-flex flex-column gap-15 subtotal">
                         <span className="badge bg-white text-dark">0</span>
                         <p className="mb-0 size-60">$ 0.00</p>
                       </div>

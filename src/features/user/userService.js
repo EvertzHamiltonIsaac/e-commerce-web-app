@@ -11,7 +11,7 @@ const getUserWishlist = async () => {
   }
 };
 
-const updateProfile = async () => {
+const updateProfile = async (data) => {
   try {
     const response = await axios.put(
       `${base_url}user/updateUser`,

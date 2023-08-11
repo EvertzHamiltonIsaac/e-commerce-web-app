@@ -1,11 +1,13 @@
-import React from "react";
 import BreadCrumb from "../components/common/BreadCrumb";
 import { Container } from "react-bootstrap";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
+import logo from "../images/mmlogo.png";
+
 import { resetAuthState } from "../features/auth/authSlice";
+import "./Profile.css";
 
 const profileSchema = yup.object({
   firstname: yup.string().required("First Name is Required"),
@@ -26,7 +28,7 @@ const Profile = () => {
     localStorage.clear();
     navigate("/");
     dispatch(resetAuthState());
-    window.location.reload()
+    window.location.reload();
   };
 
   const formik = useFormik({
@@ -47,17 +49,21 @@ const Profile = () => {
     <div>
       <BreadCrumb title="My Profile" />
       <Container class1="cart-wrapper home-wrapper-2 py-5">
-        <div className="row">
-          <div className="col-12">
+       <div className="d-flex justify-content-center">
+       <div className="container-profile">
+        <div className="d-flex justify-content-center my-2">
+                    <img src={logo} alt="logo" />
+                  </div>
+          <div className="d-flex justify-content-center">
             <form onSubmit={formik.handleSubmit}>
-              <div class="mb-3">
+              <div className="mb-3">
                 <label htmlFor="exampleInput1" className="form-label">
                   First Name
                 </label>
                 <input
                   type="text"
                   name="firstname"
-                  className="form-control"
+                  className="form-control size-u"
                   id="fistNameInput"
                   value={formik.values.firstname}
                   onChange={formik.handleChange("firstname")}
@@ -67,14 +73,14 @@ const Profile = () => {
                   {formik.touched.firstname && formik.errors.firstname}
                 </div>
               </div>
-              <div class="mb-3">
+              <div className="mb-3">
                 <label htmlFor="exampleInput1" className="form-label">
                   Last Name
                 </label>
                 <input
                   type="text"
                   name="lastname"
-                  className="form-control"
+                  className="form-control size-u"
                   id="lastNameInput"
                   value={formik.values.lastname}
                   onChange={formik.handleChange("lastname")}
@@ -89,7 +95,7 @@ const Profile = () => {
               </label>
               <input
                 type="email"
-                className="form-control"
+                className="form-control size-u"
                 id="emailInput"
                 aria-describedby="emailHelp"
                 value={formik.values.email}
@@ -104,7 +110,7 @@ const Profile = () => {
               </label>
               <input
                 type="number"
-                className="form-control"
+                className="form-control size-u"
                 id="mobileInput"
                 aria-describedby="phoneHelp"
                 value={formik.values.mobile}
@@ -114,19 +120,25 @@ const Profile = () => {
               <div className="error">
                 {formik.touched.mobile && formik.errors.mobile}
               </div>
-              <button type="submit" className="btn btn-primary">
+              
+              <div className="button">
+              <button type="submit" className="btn Primary-btn mar">
                 Save
               </button>
-            </form>
-            <button
+
+              <button
               onClick={handleLogout}
               type="button"
               className="btn btn-danger"
             >
               Logout
             </button>
+              </div>
+            </form>
+           
           </div>
         </div>
+       </div>
       </Container>
     </div>
   );

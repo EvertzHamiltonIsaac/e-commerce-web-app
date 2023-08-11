@@ -43,7 +43,7 @@ const Home = () => {
 
     getBlogs();
     getProducts();
-  }, [dispatch]); //! Comente el segundo argumento: 'data'
+  }, [dispatch]);
 
   return (
     <>

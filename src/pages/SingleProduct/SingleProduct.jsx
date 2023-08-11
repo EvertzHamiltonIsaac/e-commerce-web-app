@@ -13,7 +13,7 @@ import Meta from "../../components/common/Meta";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import Color from "../../components/Color/Color";
 import Container from "../../components/Container/Container";
-import { addRating, getAProduct } from "../../features/products/productSlice";
+import { addRating, getAProduct, getsAllProducts } from "../../features/products/productSlice";
 import defaultImage from "../../images/defaultImage.png";
 import "./SingleProduct.css";
 import { addToCart, getCart } from "../../features/cart/cartSlice";
@@ -26,7 +26,7 @@ const SingleProduct = () => {
     (state) => state?.product?.singleProduct?.data
   );
 
-  const productsState = useSelector((state) => state?.product?.product?.data);
+  const productsState = useSelector((state) => state?.product?.getsAllProducts?.data);
   const [isLoading, setIsLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
   const [selectedColorId, setSelectedColorId] = useState(null);
@@ -49,6 +49,7 @@ const SingleProduct = () => {
   };
 
   useEffect(() => {
+    dispatch(getsAllProducts());
     dispatch(getAProduct(getProductId))
       .then(() => setIsLoading(false))
       .catch((error) => {
@@ -120,6 +121,7 @@ const SingleProduct = () => {
         addRating({ stars: stars, productId: getProductId, comment: comment })
       );
       dispatch(getAProduct(getProductId));
+      window.location.reload(false);
     }
     return false;
   };
@@ -193,11 +195,11 @@ const SingleProduct = () => {
                     <ReactStars
                       count={5}
                       size={24}
-                      value={parseFloat(productState?.totalrating)}
+                      value={parseFloat(productState?.totalrating) || 5}
                       edit={false}
                       activeColor="#ffd700"
                     />
-                    <p className="mb-0 t-review">( 2 Reviews )</p>
+                    <p className="mb-0 t-review">( {productState?.ratings?.length} Reviews )</p>
                   </div>
                   <a className="review-btn" href="#review">
                     Write a Review
@@ -326,11 +328,11 @@ const SingleProduct = () => {
                     <ReactStars
                       count={5}
                       size={24}
-                      value={3}
+                      value={parseFloat(productState?.totalrating) || 5}
                       edit={false}
                       activeColor="#ffd700"
                     />
-                    <p className="mb-0">{`Based on ${productsState?.ratings?.length} Reviews`}</p>
+                    <p className="mb-0">{`Based on ${productState?.ratings?.length} Reviews`}</p>
                   </div>
                 </div>
                 {orderedProduct && (
